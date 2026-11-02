@@ -201,6 +201,63 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
 .rank .d{font-size:11px;color:var(--sub);font-weight:700;display:block;margin-top:3px}
 .rank.me .nm{color:var(--sky3)}
 .dupres div{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #EEF6FC;font-size:13.5px}
+
+.live{display:flex;align-items:center;gap:6px;margin-left:auto;margin-right:8px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:800;white-space:nowrap}
+.live i{width:8px;height:8px;border-radius:50%;background:#3EF58A;box-shadow:0 0 0 0 rgba(62,245,138,.7);animation:pulse 1.8s infinite}
+.live.off i{background:#FFB938;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,245,138,.7)}70%{box-shadow:0 0 0 8px rgba(62,245,138,0)}100%{box-shadow:0 0 0 0 rgba(62,245,138,0)}}
+.side-brand{display:none}
+.ptitle{display:none}
+.lead.flash{animation:flash 1.6s ease}
+@keyframes flash{0%{background:#FFF4D6}100%{background:#fff}}
+@media (max-width:370px){ body{font-size:14px} .kpi b{font-size:18px} .today-hero .big{font-size:21px} .rank .nm{flex-basis:44px} .tbl{font-size:12px} .live span{display:none} }
+@media (min-width:900px){
+  body{font-size:15px}
+  #login{display:flex;align-items:center;justify-content:center;padding:40px}
+  .typo{font-size:150px}
+  .login-wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:40px;align-items:center;max-width:1000px;width:100%}
+  .login-hero{margin:0;width:100%;max-width:520px;justify-self:end}
+  .login-brand{margin-top:0}
+  #app{min-height:100vh}
+  nav{top:0;bottom:0;right:auto;width:236px;display:flex;flex-direction:column;gap:4px;padding:22px 14px;border-top:0;border-right:1px solid var(--line);background:#fff}
+  nav .side-brand{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0 22px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+  nav .side-brand img{width:170px}
+  nav .side-brand span{font-size:12px;font-weight:900;letter-spacing:2px;color:var(--sky3)}
+  nav button{flex-direction:row;justify-content:flex-start;gap:12px;padding:13px 16px;font-size:15px}
+  nav button svg{width:22px;height:22px}
+  nav .dot{position:static;margin-left:auto}
+  header{margin-left:236px;padding:14px 32px}
+  header .hd .logo{display:none}
+  .ptitle{display:block;font-weight:900;font-size:22px;color:#fff;text-shadow:0 2px 10px rgba(13,111,184,.35)}
+  .xrow{justify-content:flex-end}.xrow .btn{flex:0 0 190px!important}
+  #tab-db .dbtop{display:flex;gap:10px}
+  header .wm{font-size:110px}
+  main{margin-left:236px;max-width:none;padding:24px 32px 48px}
+  #tab-home,#tab-add,#tab-db,#tab-stat,#tab-set{max-width:1240px;margin:0 auto}
+  .two:not(.hide){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px;align-items:start}
+  #tab-home .colB > .ttl:first-child{margin-top:0!important}
+  .today-hero{padding:24px}
+  .today-hero .big{font-size:30px}
+  .today-hero .mug{width:150px;height:150px}
+  #list{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  #list .lead,#list .empty{margin:0}
+  #list .empty{grid-column:1/-1}
+  #tab-db .seg{max-width:420px}
+  .statgrid:not(.hide){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+  .statgrid .span{grid-column:1/-1}
+  .statgrid .card{margin:0}
+  .tbl{font-size:14.5px}.tbl th{font-size:12px}
+  .setgrid:not(.hide){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+  .setgrid .card{margin:0}
+  .setgrid > .card:nth-child(2){grid-row:span 3}
+  .sheet{align-items:center;padding:30px}
+  .sheet .panel{border-radius:24px;max-width:760px;max-height:88vh}
+  .dtabs{top:-16px}
+  #dFields,#dt-prog .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #toast{bottom:32px;left:calc(50% + 118px)}
+  .btn{cursor:pointer}
+  .lead:hover{border-color:#9ED6F8;box-shadow:0 8px 20px rgba(30,147,221,.12)}
+}
 </style>
 </head>
 <body>
@@ -208,7 +265,7 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
 <!-- ========== 로그인 ========== -->
 <section id="login">
   <div class="typo anton" aria-hidden="true"><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div></div>
-  <div class="login-hero"><img src="hero.jpg" alt="군함맥주"></div>
+  <div class="login-wrap"><div class="login-hero"><img src="hero.jpg" alt="군함맥주"></div><div class="login-right">
   <div class="login-brand"><img src="logo.png" alt="군함맥주"><div class="t">공식 가맹 영업앱</div></div>
   <div class="login-card">
     <div class="lbl">담당자를 선택하세요</div>
@@ -218,7 +275,7 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <button id="loginBtn">입장</button>
     </div>
     <div class="login-note">처음 입력한 숫자가 내 PIN이 돼요. 다른 사람이 먼저 정하지 않게 바로 설정해 주세요.</div>
-  </div>
+  </div></div></div>
 </section>
 
 <!-- ========== 앱 ========== -->
@@ -227,13 +284,16 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
   <div class="wm anton">GUNHAM BEER</div>
   <div class="hd">
     <div class="logo"><img src="logo.png" alt="군함맥주"></div>
+    <div class="ptitle" id="pTitle">오늘</div>
+    <div class="live" id="live" title="다른 영업자 기록이 자동으로 반영돼요"><i></i><span id="liveTxt">실시간</span></div>
     <div class="me"><i id="meInit">염</i><span id="meName">염찬웅</span></div>
   </div>
 </header>
 
 <main>
   <!-- 오늘 -->
-  <div id="tab-home">
+  <div id="tab-home" class="two">
+   <div class="colA">
     <div class="today-hero">
       <div class="wm anton">GUNHAM BEER</div>
       <div class="mug"><img src="hero.jpg" alt=""></div>
@@ -259,14 +319,18 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <div id="rankList"></div>
       <div class="small" style="margin-top:6px">영업 = 그 기간에 새로 등록했거나 제안서·통화 기록을 남긴 매장 수</div>
     </div>
+   </div>
+   <div class="colB">
     <div class="ttl" style="margin:16px 2px 10px">오늘 연락할 곳<span class="r" data-go="db" data-filter="오늘 연락">전체 보기</span></div>
     <div id="dueList"></div>
     <div class="ttl" style="margin:16px 2px 10px">최근 등록<span class="r" data-go="db">DB 보기</span></div>
     <div id="recentList"></div>
+   </div>
   </div>
 
   <!-- 등록 -->
-  <div id="tab-add" class="hide">
+  <div id="tab-add" class="hide two">
+   <div class="colA">
     <div class="card">
       <div class="ttl"><span class="n">1</span>링크 붙여넣기</div>
       <div class="hint"><b>네이버 지도</b> 공유 링크나 <b>점포라인</b> 매물 링크를 넣으면 자동으로 채워요. 상호명만 넣어도 돼요.</div>
@@ -299,6 +363,8 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <div class="dup-msg hide" id="dupMsg"></div>
     </div>
 
+   </div>
+   <div class="colB">
     <div class="card">
       <div class="ttl"><span class="n">2</span>점주 휴대폰 · 통화 결과</div>
       <div class="mobile-box">
@@ -331,6 +397,7 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <button class="btn ghost full sm" id="formBtn" style="margin-top:8px">일괄등록 빈 양식 받기</button>
       <input type="file" id="bulkFile" accept=".xlsx,.xls,.csv" class="hide">
     </div>
+   </div>
   </div>
 
   <!-- DB -->
@@ -342,7 +409,7 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <select class="f" id="sortSel" style="flex:0 0 112px"><option value="recent">최근 등록</option><option value="next">다음 연락순</option><option value="upd">최근 수정</option></select>
     </div>
     <div class="chips" id="filterStatus" style="margin-bottom:10px"></div>
-    <div class="row" style="margin-bottom:12px">
+    <div class="row xrow" style="margin-bottom:12px">
       <button class="btn pri" id="xlsxBtn" style="flex:1">엑셀 받기</button>
       <button class="btn line" id="xlsxShareBtn" style="flex:1">엑셀 보내기</button>
     </div>
@@ -351,9 +418,9 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
   </div>
 
   <!-- 현황 -->
-  <div id="tab-stat" class="hide">
-    <div class="chips" id="periodChips" style="margin-bottom:12px"></div>
-    <div class="card">
+  <div id="tab-stat" class="hide statgrid">
+    <div class="chips span" id="periodChips" style="margin-bottom:12px"></div>
+    <div class="card span">
       <div class="ttl">영업자별 현황</div>
       <table class="tbl" id="repTable"></table>
     </div>
@@ -365,14 +432,14 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <div class="ttl">출처별</div>
       <table class="tbl" id="srcTable"></table>
     </div>
-    <div class="grid2">
+    <div class="grid2 span">
       <button class="btn pri" id="xlsxAllBtn">전체 DB 엑셀</button>
       <button class="btn line" id="sheetBtn">구글시트 열기</button>
     </div>
   </div>
 
   <!-- 설정 -->
-  <div id="tab-set" class="hide">
+  <div id="tab-set" class="hide setgrid">
     <div class="card">
       <div class="ttl">내 정보</div>
       <div class="lbl2" style="margin-top:0">내 휴대폰 (문자 서명에 들어가요)</div>
@@ -403,12 +470,13 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <div class="ttl">휴대폰에 앱으로 설치</div>
       <div class="small">아이폰: Safari 하단 공유 버튼 → <b>홈 화면에 추가</b><br>갤럭시: Chrome 오른쪽 위 ⋮ → <b>홈 화면에 추가</b> (또는 앱 설치)</div>
     </div>
-    <button class="btn line full" id="logoutBtn">로그아웃</button>
-    <div class="small" style="margin-top:10px;text-align:center">군함맥주 가맹문의 1577-0832</div>
+    <div><button class="btn line full" id="logoutBtn">로그아웃</button>
+    <div class="small" style="margin-top:10px;text-align:center">군함맥주 가맹문의 1577-0832</div></div>
   </div>
 </main>
 
 <nav>
+  <div class="side-brand"><img src="logo.png" alt="군함맥주"><span>공식 가맹 영업앱</span></div>
   <button data-tab="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>오늘<span class="dot hide" id="dueDot">0</span></button>
   <button data-tab="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><path d="M12 7v5M9.5 9.5h5"/></svg>등록</button>
   <button data-tab="db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>영업 DB</button>
@@ -609,16 +677,42 @@ async function enter(){
   $('#meName').textContent=me.name; $('#meInit').textContent=me.name[0];
   S = LS.get('set2_'+me.name, null) || {phone:'', link:DEFAULT_LINK, tpls:DEFAULT_TPLS};
   renderStaticChips(); renderAll(); loadSettingsUI();
-  refresh();
+  await refresh(); poll();
   api('getSettings').then(j=>{ if(j.ok && j.settings && j.settings.tpls && j.settings.v===2){ S=Object.assign({phone:'',link:DEFAULT_LINK,tpls:DEFAULT_TPLS}, j.settings); LS.set('set2_'+me.name,S); loadSettingsUI(); } });
 }
-async function refresh(){
-  try{ const j=await api('list'); if(j.ok){ rows=j.rows; if(j.members){ MEMBERS=j.members; LS.set('members',MEMBERS);} LS.set('rowsCache', rows.slice(0,800)); renderAll(); } }
-  catch(e){ toast('DB 연결 실패 (저장된 목록 표시 중)'); }
+let VER=null, lastSync=0, syncing=false;
+function setLive(ok){ $('#live').classList.toggle('off',!ok); }
+function liveLabel(){ if(!lastSync) return; const s=Math.round((Date.now()-lastSync)/1000); $('#liveTxt').textContent = s<10?'실시간 · 방금':s<60?'실시간 · '+s+'초 전':'실시간 · '+Math.round(s/60)+'분 전'; }
+async function poll(force){
+  if(!me || syncing || document.hidden) return;
+  syncing=true;
+  try{
+    const j=await api('ver');
+    if(j.ok){
+      setLive(true);
+      if(VER!==null && j.ver!==VER){
+        await refresh(true);
+        const e=j.evt||{};
+        if(e.who && e.who!==me.name) toast(`${e.who}님 · ${e.what}${e.title?' · '+e.title:''}`, 2600);
+      }
+      VER=j.ver; lastSync=Date.now(); liveLabel();
+    } else setLive(false);
+  }catch(e){ setLive(false); }
+  finally{ syncing=false; }
+}
+setInterval(()=>poll(), 10000);
+setInterval(liveLabel, 5000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) poll(); });
+window.addEventListener('focus', ()=>poll());
+async function refresh(silent){
+  try{ const j=await api('list'); if(j.ok){ rows=j.rows; if(j.members){ MEMBERS=j.members; LS.set('members',MEMBERS);} LS.set('rowsCache', rows.slice(0,800)); lastSync=Date.now(); liveLabel(); renderAll(); syncDetail(); } }
+  catch(e){ if(!silent) toast('DB 연결 실패 (저장된 목록 표시 중)'); setLive(false); }
 }
 
 /* ===== 탭 ===== */
+const TITLES={home:'오늘',add:'매장 등록',db:'영업 DB',stat:'영업 현황',set:'설정'};
 function go(tab, filter){
+  $('#pTitle').textContent=TITLES[tab]||'';
   $$('nav button').forEach(x=>x.classList.toggle('on',x.dataset.tab===tab));
   ['home','add','db','stat','set'].forEach(t=>$('#tab-'+t).classList.toggle('hide', t!==tab));
   if(filter){ filterSt=filter; renderStaticChips(); renderList(); }
@@ -881,6 +975,15 @@ function fillDetail(){
   $('#p_meet').value=r['미팅일']||''; $('#p_contract').value=r['계약일']||''; $('#p_open').value=r['오픈예정일']||''; $('#p_consent').value=r['수신동의']||'';
   $('#pTo').innerHTML=MEMBERS.filter(m=>m!==r['담당자']).map(m=>`<option>${esc(m)}</option>`).join('');
   $('#pTake').classList.toggle('hide', r['담당자']===me.name); $('#pDel').classList.toggle('hide', r['담당자']!==me.name);
+}
+function syncDetail(){
+  if(!D || $('#detail').classList.contains('hide')) return;
+  const n=rows.find(r=>r.ID===D.ID); if(!n) return;
+  if(n['수정일시']===D['수정일시'] && n['연락기록']===D['연락기록']) return;
+  const typing=document.activeElement && $('#detail').contains(document.activeElement) && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
+  D=n;
+  if(typing){ $('#dHist').textContent=n['연락기록']||'아직 기록이 없어요.'; return; }
+  const keepTpl=dTplIdx, keepMsg=$('#dPreview').value; fillDetail(); dTplIdx=keepTpl;
 }
 function setDTab(t){ dTab=t; $$('.dtabs button').forEach(b=>b.classList.toggle('on',b.dataset.dt===t)); ['info','call','msg','prog'].forEach(x=>$('#dt-'+x).classList.toggle('hide',x!==t)); }
 $$('.dtabs button').forEach(b=>b.onclick=()=>setDTab(b.dataset.dt));
