@@ -3,164 +3,213 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
-<meta name="theme-color" content="#0B3B8C">
+<meta name="theme-color" content="#2FA6EE">
 <meta name="robots" content="noindex,nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="군함 영업">
 <title>군함맥주 영업앱</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
-  --navy:#081E52; --deep:#0B3B8C; --blue:#1456D9; --sky:#3C8DFF; --ice:#EAF2FF; --ice2:#F5F9FF;
-  --line:#D6E4FA; --ink:#0E1B33; --sub:#5B6B86; --gold:#C99A4B; --red:#E5383B; --green:#12A26B;
-  --r:16px; --safe-b:env(safe-area-inset-bottom,0px);
+  --sky:#38ACEF; --sky2:#1E93DD; --sky3:#0D6FB8; --skyl:#E4F4FE; --ice:#F4FAFF; --navy:#13285E; --ink:#0F1F3D; --sub:#5C7391;
+  --line:#CFE6F7; --beer:#F5A524; --beer2:#E08A00; --foam:#FFF7E3; --red:#E5484D; --green:#16A36D; --orange:#F08C00;
+  --r:18px; --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--ice2);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;letter-spacing:-.2px;word-break:keep-all}
+html,body{margin:0;background:var(--ice);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;letter-spacing:-.2px;word-break:keep-all;overflow-x:hidden}
 button,input,textarea,select{font:inherit;color:inherit;letter-spacing:inherit}
 button{cursor:pointer;border:0;background:none}
+a{color:inherit}
 .hide{display:none!important}
+.anton{font-family:Anton,Impact,"Arial Narrow",sans-serif;letter-spacing:0;font-weight:400}
 
 /* ---------- 로그인 ---------- */
-#login{min-height:100dvh;display:flex;flex-direction:column;background:
-  radial-gradient(120% 60% at 50% -10%,#3C8DFF55,transparent 60%),
-  linear-gradient(170deg,#1456D9 0%,#0B3B8C 45%,#081E52 100%);color:#fff;padding:0 22px calc(28px + var(--safe-b));position:relative;overflow:hidden}
-#login .wave{position:absolute;left:0;right:0;bottom:-2px;height:180px;opacity:.08;pointer-events:none}
-.login-top{padding-top:calc(54px + env(safe-area-inset-top,0px));text-align:center}
-.login-top img{width:min(78%,300px);filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))}
-.login-top .tag{margin-top:14px;font-size:12px;letter-spacing:5px;opacity:.75;font-weight:600}
-.login-top h1{margin:6px 0 0;font-size:24px;font-weight:800;letter-spacing:-.6px}
-.login-card{margin-top:30px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:18px;backdrop-filter:blur(10px);position:relative;z-index:1}
-.login-card .lbl{font-size:13px;opacity:.8;margin:0 0 10px 2px;font-weight:600}
-.reps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.rep{padding:16px 10px;border-radius:14px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:#fff;font-weight:700;font-size:17px;transition:.15s}
-.rep.on{background:#fff;color:var(--deep);border-color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.25)}
-.pin{margin-top:16px;display:flex;gap:8px}
-.pin input{flex:1;min-width:0;height:52px;border-radius:14px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;padding:0 16px;font-size:20px;letter-spacing:6px;outline:none}
-.pin input::placeholder{letter-spacing:0;font-size:14px;color:rgba(255,255,255,.6)}
-.pin button{height:52px;padding:0 20px;border-radius:14px;background:var(--gold);color:#fff;font-weight:800;font-size:16px}
-.login-note{font-size:12px;opacity:.65;margin-top:12px;line-height:1.5;text-align:center}
+#login{min-height:100dvh;background:linear-gradient(180deg,#5CC3F7 0%,#38ACEF 45%,#1E93DD 100%);position:relative;overflow:hidden;padding:calc(18px + var(--safe-t)) 18px calc(26px + var(--safe-b))}
+.typo{position:absolute;inset:-10px -20px auto -20px;color:#fff;opacity:.8;line-height:.86;font-size:104px;white-space:nowrap;pointer-events:none;user-select:none}
+.typo div{overflow:hidden}
+.login-hero{position:relative;z-index:1;margin:64px auto 0;width:min(70vw,280px);aspect-ratio:1;border-radius:28px;overflow:hidden;box-shadow:0 24px 50px rgba(13,111,184,.45);border:4px solid #fff}
+.login-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.login-brand{position:relative;z-index:1;text-align:center;margin:18px auto 0;color:var(--navy);background:#fff;border-radius:22px;padding:12px 20px 12px;width:fit-content;box-shadow:0 12px 28px rgba(13,111,184,.35)}
+.login-brand img{width:min(56vw,210px);display:block;margin:0 auto}
+.login-brand .t{font-weight:900;font-size:16px;margin-top:6px;letter-spacing:2px;color:var(--sky3)}
+.login-card{position:relative;z-index:1;margin-top:18px;background:#fff;border-radius:24px;padding:18px;box-shadow:0 16px 40px rgba(13,111,184,.3)}
+.login-card .lbl{font-size:13px;color:var(--sub);margin:0 0 10px 2px;font-weight:700}
+.reps{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rep{padding:14px 8px;border-radius:14px;background:var(--skyl);color:var(--navy);font-weight:800;font-size:17px;border:2px solid transparent}
+.rep.on{background:var(--navy);color:#fff;box-shadow:0 8px 18px rgba(19,40,94,.3)}
+.pin{margin-top:12px;display:flex;gap:8px}
+.pin input{flex:1;min-width:0;height:54px;border-radius:14px;border:2px solid var(--line);background:var(--ice);padding:0 16px;font-size:20px;letter-spacing:6px;outline:none}
+.pin input:focus{border-color:var(--sky)}
+.pin input::placeholder{letter-spacing:0;font-size:14px}
+.pin button{height:54px;padding:0 22px;border-radius:14px;background:var(--beer);color:#fff;font-weight:900;font-size:16px;box-shadow:0 8px 18px rgba(245,165,36,.4)}
+.login-note{font-size:12px;color:var(--sub);margin-top:10px;line-height:1.5;text-align:center}
 
-/* ---------- 앱 헤더 ---------- */
-header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#1456D9,#0B3B8C 60%,#081E52);color:#fff;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 12px;box-shadow:0 6px 20px rgba(8,30,82,.25)}
-.hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.hd img{height:34px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
-.me{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 12px 6px 6px;font-weight:700;font-size:14px}
-.me i{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--deep);display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:800}
-.hd-sub{margin-top:8px;font-size:12px;opacity:.75;letter-spacing:.2px}
+/* ---------- 헤더 ---------- */
+header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#4BB8F3,#2A9FE8);color:#fff;padding:calc(10px + var(--safe-t)) 16px 12px;overflow:hidden;box-shadow:0 6px 18px rgba(30,147,221,.3)}
+header .wm{position:absolute;right:-8px;top:-12px;font-size:84px;line-height:.85;opacity:.22;white-space:nowrap;pointer-events:none}
+.hd{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hd .logo{background:#fff;border-radius:14px;padding:5px 12px;box-shadow:0 4px 12px rgba(13,111,184,.25);display:flex}.hd .logo img{height:30px;display:block}
+.me{display:flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border-radius:999px;padding:5px 12px 5px 5px;font-weight:800;font-size:14px;box-shadow:0 4px 12px rgba(13,111,184,.25)}
+.me i{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:800}
 
-html,body{overflow-x:hidden}main{padding:14px 14px calc(96px + var(--safe-b));max-width:640px;margin:0 auto}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:0 4px 14px rgba(20,86,217,.06);margin-bottom:12px}
-.ttl{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;margin:0 0 12px}
-.ttl .n{width:22px;height:22px;border-radius:7px;background:var(--blue);color:#fff;font-size:12px;display:grid;place-items:center}
+main{padding:14px 14px calc(100px + var(--safe-b));max-width:680px;margin:0 auto}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:0 6px 18px rgba(30,147,221,.07);margin-bottom:12px}
+.ttl{display:flex;align-items:center;gap:8px;font-weight:900;font-size:16.5px;margin:0 0 12px;color:var(--navy)}
+.ttl .n{width:24px;height:24px;border-radius:8px;background:var(--sky);color:#fff;font-size:13px;display:grid;place-items:center}
+.ttl .r{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--sky3)}
 .hint{font-size:12.5px;color:var(--sub);line-height:1.5;margin:-4px 0 10px}
-textarea,input.f,select.f{width:100%;border:1.5px solid var(--line);border-radius:12px;background:var(--ice2);padding:12px 13px;outline:none;transition:.15s}
-textarea:focus,input.f:focus,select.f:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px #1456D922}
-textarea{resize:vertical;min-height:84px;line-height:1.45}
+textarea,input.f,select.f{width:100%;border:1.5px solid var(--line);border-radius:12px;background:var(--ice);padding:12px 13px;outline:none;transition:.15s}
+textarea:focus,input.f:focus,select.f:focus{border-color:var(--sky);background:#fff;box-shadow:0 0 0 3px #38ACEF26}
+textarea{resize:vertical;min-height:80px;line-height:1.45}
 .row{display:flex;gap:8px}
-.btn{height:48px;border-radius:12px;font-weight:800;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;transition:transform .08s}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.btn{height:48px;border-radius:13px;font-weight:800;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;transition:transform .08s;text-decoration:none;white-space:nowrap}
 .btn:active{transform:scale(.97)}
-.btn.pri{background:linear-gradient(135deg,#1F6BFF,#1456D9);color:#fff;box-shadow:0 6px 16px #1456D944}
-.btn.dark{background:var(--navy);color:#fff}
-.btn.gold{background:linear-gradient(135deg,#D7AE62,#B8873A);color:#fff;box-shadow:0 6px 16px #C99A4B44}
-.btn.line{background:#fff;border:1.5px solid var(--line);color:var(--deep)}
-.btn.ghost{background:var(--ice);color:var(--deep)}
+.btn.pri{background:linear-gradient(180deg,#45B4F2,#1E93DD);color:#fff;box-shadow:0 6px 16px #1E93DD40}
+.btn.navy{background:var(--navy);color:#fff}
+.btn.beer{background:linear-gradient(180deg,#FFB938,#F09A10);color:#fff;box-shadow:0 6px 16px #F5A52450}
+.btn.line{background:#fff;border:1.5px solid var(--line);color:var(--sky3)}
+.btn.ghost{background:var(--skyl);color:var(--sky3)}
+.btn.red{background:#FFECEC;color:var(--red)}
 .btn.full{width:100%}
+.btn.sm{height:38px;font-size:13px;border-radius:11px;padding:0 11px}
 .btn[disabled]{opacity:.5;pointer-events:none}
 
-/* 결과 필드 */
-.fields{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
-.fld{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 12px;background:var(--ice2)}
-.fld .k{flex:0 0 58px;font-size:12px;color:var(--sub);font-weight:700}
-.fld input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-weight:600;font-size:15px;padding:4px 0}
-.cp{flex:0 0 auto;height:32px;padding:0 11px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--blue);font-size:12.5px;font-weight:800}
-.cp.ok{background:var(--blue);color:#fff;border-color:var(--blue)}
-.place-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.badge{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:800;border-radius:999px;padding:4px 9px;background:var(--ice);color:var(--deep)}
+/* 필드 */
+.fields{display:grid;grid-template-columns:minmax(0,1fr);gap:7px}
+.fld{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:7px 7px 7px 12px;background:var(--ice)}
+.fld .k{flex:0 0 60px;font-size:12px;color:var(--sub);font-weight:800}
+.fld input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-weight:700;font-size:15px;padding:4px 0}
+.cp{flex:0 0 auto;height:32px;padding:0 11px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--sky3);font-size:12.5px;font-weight:800}
+.cp.ok{background:var(--sky);color:#fff;border-color:var(--sky)}
+.fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px;margin-top:7px}
+.fgrid .fld .k{flex-basis:48px}
+.badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:800;border-radius:999px;padding:4px 9px;background:var(--skyl);color:var(--sky3);white-space:nowrap}
 .badge.n{background:#03C75A;color:#fff}
+.badge.jp{background:#FF6A13;color:#fff}
 .badge.red{background:#FFE8E8;color:var(--red)}
 .badge.green{background:#E3F7EE;color:var(--green)}
-.mobile-box{border:2px dashed #9CC0FF;background:linear-gradient(180deg,#F3F8FF,#fff);border-radius:14px;padding:12px}
-.mobile-box input{font-size:22px;font-weight:800;letter-spacing:1px;text-align:center;background:#fff}
-.found{font-size:12.5px;color:var(--green);font-weight:700;margin-top:6px;min-height:16px;text-align:center}
-.dup{border:1.5px solid var(--red)!important;background:#FFF5F5!important}
-.dup-msg{color:var(--red);font-weight:700;font-size:13px;margin-top:8px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.badge.orange{background:#FFF1DC;color:#C66A00}
+.badge.alert{background:var(--red);color:#fff}
+.badge.navy{background:var(--navy);color:#fff}
+.mobile-box{border:2px dashed #8FD0F7;background:linear-gradient(180deg,#F0F9FF,#fff);border-radius:16px;padding:12px}
+.mobile-box input{font-size:23px;font-weight:900;letter-spacing:1px;text-align:center;background:#fff}
+.found{font-size:12.5px;color:var(--green);font-weight:800;margin-top:6px;min-height:16px;text-align:center}
+.dup{border-color:var(--red)!important;background:#FFF5F5!important}
+.dup-msg{color:var(--red);font-weight:800;font-size:13px;margin-top:8px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;height:34px;padding:0 13px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:13px;color:var(--sub)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip .c{margin-left:4px;opacity:.7}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.res button{height:44px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:13.5px;color:var(--navy)}
+.res button.on{background:var(--sky2);border-color:var(--sky2);color:#fff}
+.res button[data-r="부재중"].on{background:var(--orange);border-color:var(--orange)}
+.res button[data-r="관심없음"].on{background:#8A99B4;border-color:#8A99B4}
+.res button[data-r="미팅잡힘"].on{background:var(--green);border-color:var(--green)}
+.nextrow{display:flex;gap:8px;align-items:center;margin-top:8px}
+.nextrow input{flex:1;min-width:0;height:44px}
+.lbl2{font-size:12.5px;font-weight:900;color:var(--navy);margin:14px 0 6px}
+.small{font-size:12px;color:var(--sub);line-height:1.5}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
 .actions .wide{grid-column:1/-1}
-.statusbar{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
-.statusbar::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;height:34px;padding:0 13px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:13px;color:var(--sub)}
-.chip.on{background:var(--deep);border-color:var(--deep);color:#fff}
 
-/* DB 리스트 */
-.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--ice);border-radius:12px;padding:4px;margin-bottom:10px}
-.seg button{height:38px;border-radius:9px;font-weight:800;color:var(--sub)}
-.seg button.on{background:#fff;color:var(--deep);box-shadow:0 2px 8px rgba(20,86,217,.15)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 4px;text-align:center}
-.stat b{display:block;font-size:20px;color:var(--deep)}
-.stat span{font-size:11px;color:var(--sub);font-weight:700}
-.lead{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:9px}
+/* 오늘 */
+.today-hero{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(160deg,#5CC3F7,#2A9FE8 60%,#1E93DD);color:#fff;padding:18px;margin-bottom:12px;box-shadow:0 12px 28px rgba(30,147,221,.35)}
+.today-hero .wm{position:absolute;left:-6px;bottom:-14px;font-size:76px;line-height:.85;opacity:.2;white-space:nowrap}
+.today-hero .mug{position:absolute;right:-14px;top:-6px;width:120px;height:120px;border-radius:24px;overflow:hidden;opacity:.95;transform:rotate(8deg);border:3px solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.today-hero .mug img{width:100%;height:100%;object-fit:cover}
+.today-hero .hi{position:relative;font-weight:800;font-size:14px;opacity:.95}
+.today-hero .big{position:relative;font-weight:900;font-size:25px;margin-top:4px;line-height:1.25;max-width:64%}
+.today-hero .big b{color:var(--foam);text-shadow:0 2px 0 rgba(224,138,0,.6)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center}
+.kpi b{display:block;font-size:21px;color:var(--navy);font-weight:900}
+.kpi span{font-size:11px;color:var(--sub);font-weight:800}
+.kpi.hot b{color:var(--red)}
+
+/* 리스트 */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--skyl);border-radius:13px;padding:4px;margin-bottom:10px}
+.seg button{height:38px;border-radius:10px;font-weight:900;color:var(--sub)}
+.seg button.on{background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(30,147,221,.18)}
+.lead{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:9px;cursor:pointer;transition:.12s}
+.lead:active{transform:scale(.99)}
 .lead .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.lead .nm{font-weight:800;font-size:16px;line-height:1.3}
+.lead .nm{font-weight:900;font-size:16px;line-height:1.3;color:var(--ink)}
 .lead .ad{font-size:12.5px;color:var(--sub);margin-top:3px;line-height:1.4}
-.lead .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;font-size:12px;color:var(--sub)}
-.lead .ph{font-weight:800;color:var(--blue);font-size:15px;text-decoration:none}
+.lead .meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;align-items:center}
+.lead .ph{font-weight:900;color:var(--sky3);font-size:15px;text-decoration:none;margin-right:2px}
+.lead .loglast{font-size:12px;color:var(--sub);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lead .btns{display:flex;gap:6px;margin-top:10px}
-.lead .btns .btn{height:38px;font-size:13px;flex:1;padding:0 8px}
-.lead select{height:32px;border-radius:9px;border:1.5px solid var(--line);background:var(--ice2);font-weight:700;font-size:12.5px;padding:0 6px;color:var(--deep)}
+.lead .btns .btn{flex:1}
+.st{flex:0 0 auto;font-size:12px;font-weight:900;border-radius:9px;padding:5px 9px;background:var(--skyl);color:var(--sky3)}
+.st.s-부재중{background:#FFF1DC;color:#C66A00}.st.s-재연락{background:#FFF7D6;color:#9A7400}.st.s-제안발송{background:#E4F4FE;color:#0D6FB8}
+.st.s-상담중{background:#E8ECFF;color:#3949AB}.st.s-미팅예정{background:#E3F7EE;color:#0F8A5C}.st.s-계약{background:var(--navy);color:#fff}
+.st.s-보류{background:#EEF1F5;color:#5C7391}.st.s-거절{background:#F3F3F3;color:#999}
 .lead.isdup{border-color:var(--red);box-shadow:0 0 0 1px var(--red) inset}
-.empty{text-align:center;color:var(--sub);padding:40px 10px;font-size:14px;line-height:1.6}
+.empty{text-align:center;color:var(--sub);padding:34px 10px;font-size:14px;line-height:1.6}
 
-/* 제안서 */
-.prop-hero{border-radius:18px;overflow:hidden;background:linear-gradient(150deg,#1F6BFF,#0B3B8C 55%,#081E52);color:#fff;padding:20px;position:relative}
-.prop-hero .bg{position:absolute;inset:0;opacity:.07;font-weight:900;font-size:34px;line-height:1.05;letter-spacing:-1px;overflow:hidden;white-space:pre;pointer-events:none}
-.prop-hero h3{margin:8px 0 4px;font-size:22px;font-weight:900;position:relative}
-.prop-hero p{margin:0;opacity:.85;font-size:13px;position:relative}
-.prop-hero .promo{display:inline-block;margin-top:12px;background:var(--gold);color:#fff;font-weight:800;font-size:12.5px;border-radius:999px;padding:6px 12px;position:relative}
-.preview{white-space:pre-wrap;background:#F3F7FE;border:1px solid var(--line);border-radius:14px;padding:13px;font-size:13.5px;line-height:1.55;max-height:300px;overflow:auto}
+/* 현황 */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{font-size:10.5px;white-space:nowrap;color:var(--sub);font-weight:800;padding:8px 4px;border-bottom:1px solid var(--line);text-align:center}
+.tbl td{padding:10px 4px;border-bottom:1px solid #EEF6FC;text-align:center;font-weight:800}
+.tbl td:first-child,.tbl th:first-child{text-align:left}
+.tbl tr.me td{background:#F0F9FF}
+.funnel .fr{display:flex;align-items:center;gap:8px;margin:7px 0}
+.funnel .fr span{flex:0 0 64px;font-size:12.5px;font-weight:800;color:var(--sub)}
+.funnel .bar{flex:1;height:26px;background:var(--skyl);border-radius:8px;overflow:hidden;position:relative}
+.funnel .bar i{display:block;height:100%;background:linear-gradient(90deg,#5CC3F7,#1E93DD);border-radius:8px}
+.funnel .bar b{position:absolute;left:10px;top:4px;font-size:12.5px;color:var(--navy)}
 
-/* 하단 탭 */
-nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:6px 6px calc(6px + var(--safe-b))}
-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:#8A99B4;font-size:11.5px;font-weight:700;border-radius:12px}
-nav button svg{width:24px;height:24px}
-nav button.on{color:var(--blue);background:var(--ice)}
-#toast{position:fixed;left:50%;bottom:calc(88px + var(--safe-b));transform:translateX(-50%) translateY(20px);opacity:0;background:var(--navy);color:#fff;padding:11px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:99;transition:.2s;max-width:88vw;text-align:center;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+/* 시트(모달) */
+.sheet{position:fixed;inset:0;z-index:60;background:rgba(15,31,61,.45);display:flex;align-items:flex-end}
+.sheet .panel{background:#fff;width:100%;max-width:680px;margin:0 auto;border-radius:24px 24px 0 0;padding:16px 16px calc(18px + var(--safe-b));max-height:92dvh;overflow:auto;animation:up .2s ease}
+@keyframes up{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+.grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:-4px auto 12px}
+.dtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--skyl);padding:4px;border-radius:13px;margin:10px 0 12px;position:sticky;top:-16px;z-index:2}
+.dtabs button{height:36px;border-radius:10px;font-weight:900;font-size:13px;color:var(--sub)}
+.dtabs button.on{background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(30,147,221,.18)}
+.hist{white-space:pre-wrap;font-size:12.5px;line-height:1.65;background:var(--ice);border:1px solid var(--line);border-radius:12px;padding:10px 12px;max-height:220px;overflow:auto}
+.preview{white-space:pre-wrap;font-size:13.5px;line-height:1.55;min-height:230px}
+.consent{background:var(--foam);border:1.5px solid #FFD98A;border-radius:14px;padding:12px;font-size:13px;line-height:1.55;color:#7A5200}
+
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 6px calc(6px + var(--safe-b))}
+nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:#8AA3BD;font-size:11px;font-weight:800;border-radius:12px;position:relative}
+nav button svg{width:23px;height:23px}
+nav button.on{color:var(--sky3);background:var(--skyl)}
+nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:17px;border-radius:9px;background:var(--red);color:#fff;font-size:10.5px;display:grid;place-items:center;padding:0 4px}
+#toast{position:fixed;left:50%;bottom:calc(92px + var(--safe-b));transform:translateX(-50%) translateY(20px);opacity:0;background:var(--navy);color:#fff;padding:11px 16px;border-radius:13px;font-weight:800;font-size:14px;z-index:99;transition:.2s;max-width:88vw;text-align:center;box-shadow:0 10px 26px rgba(0,0,0,.25);pointer-events:none}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 .spin{width:18px;height:18px;border:2.5px solid #ffffff66;border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.res{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.res button{height:44px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:13.5px;color:var(--deep)}
-.res button.on{background:var(--deep);border-color:var(--deep);color:#fff}
-.res button[data-r="부재중"].on{background:#F08C00;border-color:#F08C00}
-.res button[data-r="관심없음"].on{background:#8A99B4;border-color:#8A99B4}
-.nextrow{display:flex;gap:8px;align-items:center;margin-top:8px}
-.nextrow input{flex:1;min-width:0;height:44px}
-.badge.orange{background:#FFF1DC;color:#C66A00}
-.badge.alert{background:var(--red);color:#fff}
-.loglast{font-size:12px;color:var(--sub);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#sheet{position:fixed;inset:0;z-index:60;background:rgba(8,30,82,.45);display:flex;align-items:flex-end}
-#sheet .panel{background:#fff;width:100%;max-width:640px;margin:0 auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + var(--safe-b));max-height:86dvh;overflow:auto}
-#sheet .grab{width:44px;height:5px;border-radius:9px;background:#D6E4FA;margin:-6px auto 12px}
-.hist{white-space:pre-wrap;font-size:12.5px;line-height:1.6;background:var(--ice2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--ink);max-height:180px;overflow:auto}
-.small{font-size:12px;color:var(--sub);line-height:1.5}
-.lbl2{font-size:12.5px;font-weight:800;color:var(--deep);margin:12px 0 6px}
-.demo{background:#FFF7E6;color:#9A6A00;border:1px solid #F3D9A0;border-radius:12px;padding:9px 12px;font-size:12.5px;font-weight:700;margin-bottom:12px}
+.rank{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #EEF6FC}
+.rank:last-child{border-bottom:0}
+.rank .no{flex:0 0 26px;height:26px;border-radius:9px;background:var(--skyl);color:var(--sky3);font-weight:900;display:grid;place-items:center;font-size:13px}
+.rank.r1 .no{background:var(--beer);color:#fff}
+.rank .nm{flex:0 0 52px;font-weight:900;color:var(--navy)}
+.rank .bar{height:22px;background:var(--skyl);border-radius:7px;overflow:hidden}
+.rank .bar i{display:block;height:100%;background:linear-gradient(90deg,#5CC3F7,#1E93DD);border-radius:7px}
+.rank .v{flex:0 0 auto;font-weight:900;color:var(--navy);font-size:15px;min-width:42px;text-align:right}
+.rank .d{font-size:11px;color:var(--sub);font-weight:700;display:block;margin-top:3px}
+.rank.me .nm{color:var(--sky3)}
+.dupres div{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #EEF6FC;font-size:13.5px}
 </style>
 </head>
 <body>
 
 <!-- ========== 로그인 ========== -->
 <section id="login">
-  <div class="login-top">
-    <img src="logo-white.png" alt="군함맥주">
-    <div class="tag">OFFICIAL SALES</div>
-    <h1>군함맥주 공식 영업앱</h1>
-  </div>
+  <div class="typo anton" aria-hidden="true"><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div><div>GUNHAM BEER</div></div>
+  <div class="login-hero"><img src="hero.jpg" alt="군함맥주"></div>
+  <div class="login-brand"><img src="logo.png" alt="군함맥주"><div class="t">공식 가맹 영업앱</div></div>
   <div class="login-card">
     <div class="lbl">담당자를 선택하세요</div>
     <div class="reps" id="reps"></div>
@@ -168,30 +217,60 @@ nav button.on{color:var(--blue);background:var(--ice)}
       <input id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN 4~8자리">
       <button id="loginBtn">입장</button>
     </div>
-    <div class="login-note">처음 입력한 숫자가 내 PIN으로 저장돼요.<br>다른 사람이 먼저 쓰지 않게 바로 설정해 주세요.</div>
+    <div class="login-note">처음 입력한 숫자가 내 PIN이 돼요. 다른 사람이 먼저 정하지 않게 바로 설정해 주세요.</div>
   </div>
-  <svg class="wave" viewBox="0 0 400 180" preserveAspectRatio="none"><path d="M0 70 Q50 40 100 70 T200 70 T300 70 T400 70 V180 H0Z" fill="#fff"/><path d="M0 110 Q50 80 100 110 T200 110 T300 110 T400 110 V180 H0Z" fill="#fff"/></svg>
 </section>
 
 <!-- ========== 앱 ========== -->
 <section id="app" class="hide">
 <header>
+  <div class="wm anton">GUNHAM BEER</div>
   <div class="hd">
-    <img src="logo-white.png" alt="군함맥주">
-    <div class="me" id="meChip"><i id="meInit">염</i><span id="meName">염찬웅</span></div>
+    <div class="logo"><img src="logo.png" alt="군함맥주"></div>
+    <div class="me"><i id="meInit">염</i><span id="meName">염찬웅</span></div>
   </div>
-  <div class="hd-sub" id="hdSub">공식 가맹 영업 · 플레이스 등록 → 번호 확보 → 제안서 발송</div>
 </header>
 
 <main>
-  <div id="demoBar" class="demo hide">테스트 모드: 서버 연결 전이라 이 기기에만 저장돼요.</div>
-
-  <!-- 등록 탭 -->
-  <div id="tab-add">
+  <!-- 오늘 -->
+  <div id="tab-home">
+    <div class="today-hero">
+      <div class="wm anton">GUNHAM BEER</div>
+      <div class="mug"><img src="hero.jpg" alt=""></div>
+      <div class="hi" id="hiTxt">염찬웅님, 오늘도 출항!</div>
+      <div class="big" id="bigTxt">오늘 연락할 곳 <b>0곳</b></div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid2" style="margin-bottom:12px">
+      <button class="btn pri" data-go="add">링크로 매장 등록</button>
+      <button class="btn beer" id="goQuick">번호로 바로 제안서</button>
+    </div>
+    <div class="card hide" id="quickCard">
+      <div class="ttl">번호만 넣고 바로 제안서<span class="r" id="quickClose">닫기</span></div>
+      <input class="f" id="q_mobile" inputmode="tel" placeholder="010-0000-0000" style="font-size:20px;font-weight:900;text-align:center">
+      <div class="found" id="qFound"></div>
+      <input class="f" id="q_title" placeholder="상호 (선택)" style="margin-top:4px">
+      <button class="btn beer full" id="qSendBtn" style="margin-top:10px">문자로 제안서 보내기</button>
+      <button class="btn line full" id="qPdfBtn" style="margin-top:8px">PDF 파일로 공유 (카톡 등)</button>
+    </div>
     <div class="card">
-      <div class="ttl"><span class="n">1</span>네이버 스마트플레이스 붙여넣기</div>
-      <div class="hint">네이버 지도에서 매장 → 공유 → 링크 복사 후 붙여넣기. 링크, 공유 문구, 상호명 모두 돼요.</div>
-      <textarea id="paste" placeholder="예) https://naver.me/xxxx&#10;또는 [네이버 지도] 군함맥주 동명점 ..."></textarea>
+      <div class="ttl">영업자 랭킹<span class="r" data-go="stat">자세히</span></div>
+      <div class="chips" id="rankChips" style="margin-bottom:6px"></div>
+      <div id="rankList"></div>
+      <div class="small" style="margin-top:6px">영업 = 그 기간에 새로 등록했거나 제안서·통화 기록을 남긴 매장 수</div>
+    </div>
+    <div class="ttl" style="margin:16px 2px 10px">오늘 연락할 곳<span class="r" data-go="db" data-filter="오늘 연락">전체 보기</span></div>
+    <div id="dueList"></div>
+    <div class="ttl" style="margin:16px 2px 10px">최근 등록<span class="r" data-go="db">DB 보기</span></div>
+    <div id="recentList"></div>
+  </div>
+
+  <!-- 등록 -->
+  <div id="tab-add" class="hide">
+    <div class="card">
+      <div class="ttl"><span class="n">1</span>링크 붙여넣기</div>
+      <div class="hint"><b>네이버 지도</b> 공유 링크나 <b>점포라인</b> 매물 링크를 넣으면 자동으로 채워요. 상호명만 넣어도 돼요.</div>
+      <textarea id="paste" placeholder="https://naver.me/xxxx&#10;https://www.jumpoline.com/_jumpo/jumpo_view.asp?webjofrsid=..."></textarea>
       <div class="row" style="margin-top:8px">
         <button class="btn line" id="clipBtn" style="flex:0 0 auto">붙여넣기</button>
         <button class="btn pri" id="readBtn" style="flex:1">정보 불러오기</button>
@@ -199,11 +278,7 @@ nav button.on{color:var(--blue);background:var(--ice)}
     </div>
 
     <div class="card hide" id="resultCard">
-      <div class="place-head">
-        <span class="badge n">N 플레이스</span>
-        <span class="badge" id="catBadge">업종</span>
-        <span class="badge red hide" id="dupBadge">중복</span>
-      </div>
+      <div class="badges" id="resBadges"></div>
       <div class="fields">
         <div class="fld"><span class="k">상호</span><input id="f_title"><button class="cp" data-cp="f_title">복사</button></div>
         <div class="fld"><span class="k">업종</span><input id="f_category"><button class="cp" data-cp="f_category">복사</button></div>
@@ -212,144 +287,217 @@ nav button.on{color:var(--blue);background:var(--ice)}
         <div class="fld"><span class="k">매장전화</span><input id="f_storePhone" inputmode="tel"><button class="cp" data-cp="f_storePhone">복사</button></div>
         <div class="fld"><span class="k">링크</span><input id="f_link"><button class="cp" data-cp="f_link">복사</button></div>
       </div>
+      <div class="fgrid" id="extraFields">
+        <div class="fld"><span class="k">층수</span><input id="f_floor"></div>
+        <div class="fld"><span class="k">면적</span><input id="f_size"></div>
+        <div class="fld"><span class="k">권리금</span><input id="f_premium"></div>
+        <div class="fld"><span class="k">월세</span><input id="f_rent"></div>
+        <div class="fld"><span class="k">월매출</span><input id="f_sales"></div>
+        <div class="fld"><span class="k">점주</span><input id="f_ownerName"></div>
+      </div>
       <button class="btn ghost full" id="copyAllBtn" style="margin-top:10px">전체 정보 한 번에 복사</button>
       <div class="dup-msg hide" id="dupMsg"></div>
     </div>
 
     <div class="card">
-      <div class="ttl"><span class="n">2</span>점주 휴대폰 번호</div>
-      <div class="hint">통화·문자에서 딴 번호를 아무렇게나 붙여넣어도 010 번호만 뽑아드려요.</div>
+      <div class="ttl"><span class="n">2</span>점주 휴대폰 · 통화 결과</div>
       <div class="mobile-box">
         <input class="f" id="f_mobile" inputmode="tel" placeholder="010-0000-0000" autocomplete="off">
-        <div class="found" id="mobileFound"></div>
+        <div class="found" id="mobileFound">문장째 붙여넣어도 010 번호만 뽑아요</div>
       </div>
       <div class="lbl2">통화 결과 <span style="font-weight:600;color:var(--sub)">(선택)</span></div>
       <div class="res" id="addRes"></div>
-      <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:700">다음 연락일</span><input class="f" type="date" id="f_next"></div>
+      <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:800">다음 연락일</span><input class="f" type="date" id="f_next"></div>
       <div class="lbl2">상태</div>
-      <div class="statusbar" id="addStatus"></div>
-      <div class="lbl2">메모</div>
-      <input class="f" id="f_memo" placeholder="예) 양도 고민 중, 30평, 저녁 통화 선호">
+      <div class="chips" id="addStatus"></div>
+      <div class="lbl2">메모 · 희망조건</div>
+      <input class="f" id="f_memo" placeholder="예) 양도 고민 중, 저녁 통화 선호">
       <div class="actions">
-        <button class="btn gold wide" id="sendSmsBtn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <button class="btn beer wide" id="sendSmsBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           문자로 가맹제안서 보내기</button>
-        <button class="btn dark" id="sharePdfBtn">PDF 파일 공유</button>
+        <button class="btn navy" id="sharePdfBtn">PDF 파일 공유</button>
         <button class="btn line" id="saveBtn">DB 저장만</button>
       </div>
-      <button class="btn ghost full" id="resetBtn" style="margin-top:8px;height:40px;font-size:13px">새 매장 입력 (초기화)</button>
+      <button class="btn ghost full sm" id="resetBtn" style="margin-top:8px">새 매장 입력 (초기화)</button>
+    </div>
+
+    <div class="card">
+      <div class="ttl">한 번에 여러 곳</div>
+      <div class="grid2">
+        <button class="btn line" id="bulkBtn">엑셀로 일괄등록</button>
+        <button class="btn line" id="dupBtn">중복 검사</button>
+      </div>
+      <button class="btn ghost full sm" id="formBtn" style="margin-top:8px">일괄등록 빈 양식 받기</button>
+      <input type="file" id="bulkFile" accept=".xlsx,.xls,.csv" class="hide">
     </div>
   </div>
 
-  <!-- DB 탭 -->
+  <!-- DB -->
   <div id="tab-db" class="hide">
     <div class="seg"><button data-scope="mine" class="on">내 담당</button><button data-scope="all">전체 영업자</button></div>
-    <div class="stats" id="stats"></div>
+    <div class="chips hide" id="repFilter" style="margin-bottom:8px"></div>
     <div class="row" style="margin-bottom:8px">
-      <input class="f" id="q" placeholder="상호·주소·번호 검색" style="flex:1">
+      <input class="f" id="q" placeholder="상호·주소·번호·메모 검색" style="flex:1">
+      <select class="f" id="sortSel" style="flex:0 0 112px"><option value="recent">최근 등록</option><option value="next">다음 연락순</option><option value="upd">최근 수정</option></select>
     </div>
-    <div class="statusbar" id="filterStatus" style="margin-bottom:10px"></div>
+    <div class="chips" id="filterStatus" style="margin-bottom:10px"></div>
     <div class="row" style="margin-bottom:12px">
-      <button class="btn pri" id="xlsxBtn" style="flex:1">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v3h16v-3"/></svg>
-        엑셀 받기</button>
+      <button class="btn pri" id="xlsxBtn" style="flex:1">엑셀 받기</button>
       <button class="btn line" id="xlsxShareBtn" style="flex:1">엑셀 보내기</button>
-      <button class="btn ghost" id="sheetBtn" style="flex:0 0 auto">시트</button>
     </div>
+    <div class="small" id="listCount" style="margin:0 2px 8px"></div>
     <div id="list"></div>
   </div>
 
-  <!-- 빠른발송 탭 -->
-  <div id="tab-quick" class="hide">
-    <div class="prop-hero">
-      <div class="bg">GUNHAM BEER GUNHAM BEER
-GUNHAM BEER GUNHAM BEER
-GUNHAM BEER GUNHAM BEER
-GUNHAM BEER GUNHAM BEER</div>
-      <span class="badge" style="background:#ffffff22;color:#fff;position:relative">FRANCHISE PROPOSAL 2026</span>
-      <h3>번호만 넣고 바로 제안서</h3>
-      <p>통화 중에 딴 번호, 바로 문자로 보내세요.</p>
-      <span class="promo">11월 프로모션 최대 2,400만원 지원</span>
+  <!-- 현황 -->
+  <div id="tab-stat" class="hide">
+    <div class="chips" id="periodChips" style="margin-bottom:12px"></div>
+    <div class="card">
+      <div class="ttl">영업자별 현황</div>
+      <table class="tbl" id="repTable"></table>
     </div>
-    <div class="card" style="margin-top:12px">
-      <div class="lbl2" style="margin-top:0">점주 휴대폰</div>
-      <input class="f" id="q_mobile" inputmode="tel" placeholder="010-0000-0000" style="font-size:20px;font-weight:800;text-align:center">
-      <div class="found" id="qFound"></div>
-      <div class="lbl2">상호 (선택)</div>
-      <input class="f" id="q_title" placeholder="예) OO호프 상무점">
-      <div class="lbl2">문자 미리보기</div>
-      <div class="preview" id="qPreview"></div>
-      <button class="btn gold full" id="qSendBtn" style="margin-top:12px">문자로 제안서 보내기</button>
-      <button class="btn line full" id="qPdfBtn" style="margin-top:8px">PDF 파일로 공유 (카톡 등)</button>
-      <div class="small" style="margin-top:10px">보내면 영업 DB에 자동으로 기록돼요(담당자·발송시간).</div>
+    <div class="card">
+      <div class="ttl">전체 진행 단계</div>
+      <div class="funnel" id="funnel"></div>
+    </div>
+    <div class="card">
+      <div class="ttl">출처별</div>
+      <table class="tbl" id="srcTable"></table>
+    </div>
+    <div class="grid2">
+      <button class="btn pri" id="xlsxAllBtn">전체 DB 엑셀</button>
+      <button class="btn line" id="sheetBtn">구글시트 열기</button>
     </div>
   </div>
 
-  <!-- 설정 탭 -->
+  <!-- 설정 -->
   <div id="tab-set" class="hide">
     <div class="card">
       <div class="ttl">내 정보</div>
-      <div class="lbl2" style="margin-top:0">내 휴대폰 (문자 서명에 들어감)</div>
+      <div class="lbl2" style="margin-top:0">내 휴대폰 (문자 서명에 들어가요)</div>
       <input class="f" id="s_phone" inputmode="tel" placeholder="010-0000-0000">
       <div class="lbl2">제안서 링크</div>
       <input class="f" id="s_link">
-      <div class="row" style="margin-top:8px">
-        <a class="btn line" id="openPdf" target="_blank" style="flex:1;text-decoration:none">제안서 열어보기</a>
-      </div>
+      <div class="row" style="margin-top:8px"><a class="btn line" id="openPdf" target="_blank" style="flex:1">제안서 열어보기</a><button class="btn pri" id="saveMeBtn" style="flex:1">저장</button></div>
     </div>
     <div class="card">
-      <div class="ttl">문자 문구</div>
-      <div class="hint">치환: {호칭} {상호} {담당자} {담당자번호} {제안서링크}</div>
-      <textarea id="s_tpl" style="min-height:260px;font-size:13.5px"></textarea>
-      <div class="row" style="margin-top:8px">
-        <button class="btn pri" id="saveSetBtn" style="flex:1">저장</button>
-        <button class="btn line" id="resetTplBtn">기본 문구</button>
+      <div class="ttl">문자 멘트<span class="r" id="newTplBtn">+ 새 멘트</span></div>
+      <div class="chips" id="tplChips" style="margin-bottom:10px"></div>
+      <input class="f" id="t_name" placeholder="멘트 이름">
+      <textarea id="t_body" style="min-height:280px;font-size:13.5px;margin-top:8px"></textarea>
+      <div class="small" style="margin-top:6px">치환: {호칭} {상호} {지역} {담당자} {담당자번호} {제안서링크} {미팅일}</div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn pri" id="saveTplBtn" style="flex:1">멘트 저장</button>
+        <button class="btn red" id="delTplBtn">삭제</button>
+        <button class="btn line" id="resetTplBtn">기본값</button>
       </div>
-      <div class="small" style="margin-top:10px">광고성 문자는 (광고) 표시와 수신거부 안내가 필요하고, 받는 분의 사전 동의가 있어야 해요. 통화로 자료 받기를 허락받은 번호에만 보내 주세요.</div>
+      <div class="small" style="margin-top:10px">광고 문자는 (광고) 표시, 수신거부 안내, 받는 분의 사전 동의가 필요해요. 통화로 자료 받기를 허락받은 번호에만 보내 주세요.</div>
     </div>
     <div class="card">
-      <button class="btn line full" id="logoutBtn">로그아웃</button>
-      <div class="small" style="margin-top:10px;text-align:center">군함맥주 가맹문의 1577-0832</div>
+      <div class="ttl">팀원</div>
+      <div class="small" id="memberList" style="margin-bottom:8px"></div>
+      <div class="row"><input class="f" id="newMember" placeholder="새 영업자 이름" style="flex:1"><button class="btn pri" id="addMemberBtn">추가</button></div>
     </div>
+    <div class="card">
+      <div class="ttl">휴대폰에 앱으로 설치</div>
+      <div class="small">아이폰: Safari 하단 공유 버튼 → <b>홈 화면에 추가</b><br>갤럭시: Chrome 오른쪽 위 ⋮ → <b>홈 화면에 추가</b> (또는 앱 설치)</div>
+    </div>
+    <button class="btn line full" id="logoutBtn">로그아웃</button>
+    <div class="small" style="margin-top:10px;text-align:center">군함맥주 가맹문의 1577-0832</div>
   </div>
 </main>
 
 <nav>
-  <button data-tab="add" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>매장 등록</button>
-  <button data-tab="quick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>빠른 발송</button>
-  <button data-tab="db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>영업 DB</button>
-  <button data-tab="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>내 설정</button>
+  <button data-tab="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>오늘<span class="dot hide" id="dueDot">0</span></button>
+  <button data-tab="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><path d="M12 7v5M9.5 9.5h5"/></svg>등록</button>
+  <button data-tab="db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>영업 DB</button>
+  <button data-tab="stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>현황</button>
+  <button data-tab="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>설정</button>
 </nav>
 </section>
-<div id="sheet" class="hide"><div class="panel">
+
+<!-- 상세 시트 -->
+<div class="sheet hide" id="detail"><div class="panel">
   <div class="grab"></div>
-  <div class="ttl" id="shTitle" style="margin-bottom:4px">통화 기록</div>
-  <div class="small" id="shSub" style="margin-bottom:12px"></div>
-  <div class="res" id="shRes"></div>
-  <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:700">다음 연락일</span><input class="f" type="date" id="sh_next"></div>
-  <input class="f" id="sh_note" placeholder="한 줄 메모 (예: 사장님 저녁 7시 이후 통화 가능)" style="margin-top:8px">
-  <div class="row" style="margin-top:10px"><button class="btn line" id="shClose" style="flex:0 0 auto">닫기</button><button class="btn pri" id="shSave" style="flex:1">기록 저장</button></div>
-  <div class="lbl2">지난 기록</div>
-  <div class="hist" id="shHist"></div>
+  <div class="badges" id="dBadges" style="margin-bottom:6px"></div>
+  <div style="font-weight:900;font-size:19px;color:var(--navy)" id="dTitle"></div>
+  <div class="small" id="dSub" style="margin-top:2px"></div>
+  <div class="dtabs"><button data-dt="info" class="on">정보</button><button data-dt="call">통화</button><button data-dt="msg">문자</button><button data-dt="prog">진행</button></div>
+
+  <div id="dt-info">
+    <div class="fields" id="dFields"></div>
+    <div class="lbl2">상태</div>
+    <div class="chips" id="dStatus"></div>
+    <div class="grid2" style="margin-top:12px">
+      <button class="btn pri" id="dSave">정보 저장</button>
+      <button class="btn line" id="dCopy">정보 복사</button>
+      <a class="btn ghost" id="dCall" href="#">전화 걸기</a>
+      <a class="btn ghost" id="dLink" target="_blank" href="#">원본 링크</a>
+    </div>
+  </div>
+
+  <div id="dt-call" class="hide">
+    <div class="res" id="dRes"></div>
+    <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:800">다음 연락일</span><input class="f" type="date" id="d_next"></div>
+    <input class="f" id="d_note" placeholder="한 줄 메모 (예: 저녁 7시 이후 통화 가능)" style="margin-top:8px">
+    <label class="small" style="display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:700"><input type="checkbox" id="d_consent"> 통화 중 자료(문자) 받기 동의 받음</label>
+    <button class="btn pri full" id="dLogSave" style="margin-top:10px">통화 기록 저장</button>
+    <div class="lbl2">지난 기록</div>
+    <div class="hist" id="dHist"></div>
+  </div>
+
+  <div id="dt-msg" class="hide">
+    <div class="chips" id="dTpl" style="margin-bottom:10px"></div>
+    <textarea class="preview" id="dPreview"></textarea>
+    <div class="consent hide" id="dConsentBox" style="margin-top:10px">
+      <b>광고 수신 동의 확인</b><br>이 번호는 아직 동의 기록이 없어요. 통화로 자료 받기를 허락받았다면 체크 후 보내세요.
+      <label style="display:flex;gap:8px;align-items:center;margin-top:8px;font-weight:800"><input type="checkbox" id="dConsentChk"> 통화로 동의 받았어요</label>
+    </div>
+    <button class="btn beer full" id="dSms" style="margin-top:10px">문자 앱으로 보내기</button>
+    <div class="grid2" style="margin-top:8px">
+      <button class="btn navy" id="dPdf">PDF 파일 공유</button>
+      <button class="btn line" id="dMsgCopy">문구 복사</button>
+    </div>
+  </div>
+
+  <div id="dt-prog" class="hide">
+    <div class="fields">
+      <div class="fld"><span class="k">미팅일</span><input type="date" id="p_meet"></div>
+      <div class="fld"><span class="k">계약일</span><input type="date" id="p_contract"></div>
+      <div class="fld"><span class="k">오픈예정</span><input type="date" id="p_open"></div>
+      <div class="fld"><span class="k">수신동의</span><input id="p_consent" placeholder="미확인 / 통화동의 11-02"></div>
+    </div>
+    <button class="btn pri full" id="pSave" style="margin-top:10px">진행 정보 저장</button>
+    <div class="lbl2">담당자 변경</div>
+    <div class="row"><select class="f" id="pTo" style="flex:1"></select><button class="btn line" id="pTransfer">넘기기</button></div>
+    <button class="btn ghost full" id="pTake" style="margin-top:8px">내 담당으로 가져오기</button>
+    <button class="btn red full" id="pDel" style="margin-top:16px">이 매장 삭제 (내 담당만)</button>
+  </div>
+  <button class="btn line full" id="dClose" style="margin-top:14px">닫기</button>
+</div></div>
+
+<!-- 중복 검사 / 일괄등록 시트 -->
+<div class="sheet hide" id="tool"><div class="panel">
+  <div class="grab"></div>
+  <div class="ttl" id="toolTitle">중복 검사</div>
+  <div id="toolBody"></div>
+  <button class="btn line full" id="toolClose" style="margin-top:12px">닫기</button>
 </div></div>
 <div id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
 <script>
 /* ===== 설정 ===== */
-const API_URL = 'https://script.google.com/macros/s/AKfycby24cqc3vdb0DNdGuNGX3pDaqjSYc65h_NwxbHsAV8lH7v26A0ffbA0crv1QiXD3shk1w/exec';            // Apps Script 웹앱 /exec 주소 (배포 후 입력)
-const MEMBERS = ['염찬웅','한얼','배한나','유경웅'];
+const API_URL = 'https://script.google.com/macros/s/AKfycby24cqc3vdb0DNdGuNGX3pDaqjSYc65h_NwxbHsAV8lH7v26A0ffbA0crv1QiXD3shk1w/exec';
+let MEMBERS = ['염찬웅','한얼','배한나','유경웅'];
 const STATUSES = ['신규','부재중','재연락','제안발송','상담중','미팅예정','계약','보류','거절'];
 const RESULTS = ['부재중','내일 다시','날짜 지정','통화완료','미팅잡힘','관심없음'];
 const RES_STATUS = {'부재중':'부재중','내일 다시':'재연락','날짜 지정':'재연락','통화완료':'상담중','미팅잡힘':'미팅예정','관심없음':'거절'};
-function ymd(d){ return d.toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'}); }
-function plusDays(n){ const d=new Date(); d.setDate(d.getDate()+n); return ymd(d); }
-function today(){ return ymd(new Date()); }
-function defaultNext(r){ return r==='내일 다시'?plusDays(1):r==='부재중'?plusDays(1):r==='날짜 지정'?plusDays(2):''; }
-function renderRes(el, sel){ el.innerHTML=RESULTS.map(r=>`<button data-r="${r}" class="${r===sel?'on':''}">${r}</button>`).join(''); }
 const DEFAULT_LINK = new URL('proposal.pdf', location.href).href;
-const DEFAULT_TPL =
-`(광고) 군함맥주 가맹 제안
+const SIGN = `담당 {담당자} {담당자번호}\n가맹문의 1577-0832`;
+const DEFAULT_TPLS = [
+ {name:'첫 제안', body:`(광고) 군함맥주 가맹 제안
 {호칭}, 안녕하세요.
 군함맥주 가맹팀 {담당자}입니다.
 
@@ -360,195 +508,277 @@ const DEFAULT_TPL =
 {제안서링크}
 
 10분만 통화해 보시면 왜 자신 있게 연락드렸는지 아실 겁니다.
-담당 {담당자} {담당자번호}
-가맹문의 1577-0832
-수신거부: '거부' 회신`;
+${SIGN}
+수신거부: '거부' 회신`},
+ {name:'점포라인 매물', body:`(광고) 군함맥주 업종전환 제안
+사장님, 안녕하세요. 군함맥주 가맹팀 {담당자}입니다.
+점포라인에 올리신 {지역} 매물 보고 연락드렸습니다.
+
+양도 전에 한 번만 검토해 보세요. 지금 시설 살려서 군함맥주로 업종 전환하면 신규 창업보다 비용 부담이 확 줄고, 11월 프로모션으로 최대 2,400만원까지 지원합니다.
+이 자리라면 군함맥주로 확실히 승부 볼 수 있다고 자신 있게 말씀드립니다.
+
+▶ 군함맥주 가맹제안서
+{제안서링크}
+
+${SIGN}
+수신거부: '거부' 회신`},
+ {name:'부재중 후속', body:`(광고) 군함맥주 가맹 제안
+{호칭}, 군함맥주 가맹팀 {담당자}입니다.
+조금 전 전화드렸는데 바쁘신 것 같아 자료 먼저 보내드립니다.
+
+▶ 군함맥주 가맹제안서
+{제안서링크}
+
+편하신 시간 알려주시면 10분만 설명드리겠습니다.
+${SIGN}
+수신거부: '거부' 회신`},
+ {name:'미팅 안내', body:`{호칭}, 군함맥주 가맹팀 {담당자}입니다.
+{미팅일} 미팅 일정 안내드립니다.
+미리 제안서 한 번 훑어보시면 미팅이 훨씬 빠르게 진행됩니다.
+
+▶ 군함맥주 가맹제안서
+{제안서링크}
+
+${SIGN}`}
+];
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const LS = { get:(k,d)=>{try{return JSON.parse(localStorage.getItem('gs_'+k))??d}catch(e){return d}}, set:(k,v)=>localStorage.setItem('gs_'+k,JSON.stringify(v)) };
-const DEMO = !API_URL;
 let me = LS.get('me', null);
-let rows = [];
-let current = null;      // 현재 등록 중인 리드 (서버 저장 후 ID 보유)
-let addStatus = '신규', filterSt = '전체', scope = 'mine', addResult = '', shResult = '', shId = null;
+let rows = LS.get('rowsCache', []);
+let S = null;                     // 내 설정 {phone, link, tpls}
+let current = null;               // 등록 화면에서 작업 중인 리드
+let addStatus='신규', addResult='', filterSt='전체', scope='mine', repSel='전체', period='week';
+let D = null, dTab='info', dResult='', dStatusSel='', dTplIdx=0, editTplIdx=0;
 
 function toast(m, ms=2000){ const t=$('#toast'); t.textContent=m; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'), ms); }
 function esc(s){ return String(s??'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function digits(s){ return String(s||'').replace(/\D/g,''); }
 function fmtMobile(d){ d=digits(d); if(d.startsWith('82')) d='0'+d.slice(2); if(d.length===11) return d.replace(/(\d{3})(\d{4})(\d{4})/,'$1-$2-$3'); if(d.length===10) return d.replace(/(\d{3})(\d{3})(\d{4})/,'$1-$2-$3'); return d; }
 function extractMobile(s){
-  s=String(s||'');
-  const m = s.match(/(?:\+?82[-\s.]?)?0?1[016789][-\s.)]*\d{3,4}[-\s.]*\d{4}/);
+  const m=String(s||'').match(/(?:\+?82[-\s.]?)?0?1[016789][-\s.)]*\d{3,4}[-\s.]*\d{4}/);
   if(!m) return '';
   let d=digits(m[0]); if(d.startsWith('82')) d='0'+d.slice(2); if(!d.startsWith('0')) d='0'+d;
   return /^01[016789]\d{7,8}$/.test(d) ? fmtMobile(d) : '';
 }
-function settings(){ const all=LS.get('settings',{}); return Object.assign({phone:'',link:DEFAULT_LINK,tpl:DEFAULT_TPL}, all[me?.name]||{}); }
-function saveSettings(s){ const all=LS.get('settings',{}); all[me.name]=s; LS.set('settings',all); }
+function ymd(d){ return d.toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'}); }
+function plusDays(n){ const d=new Date(); d.setDate(d.getDate()+n); return ymd(d); }
+const today=()=>ymd(new Date());
+function defaultNext(r){ return r==='내일 다시'||r==='부재중'?plusDays(1):r==='날짜 지정'?plusDays(2):r==='미팅잡힘'?plusDays(3):''; }
+function isDue(r){ const n=r['다음연락일']; return !!n && n<=today() && !['계약','거절'].includes(r['상태']); }
+function region(r){
+  const j=(r['지번주소']||r['도로명주소']||'').replace(/\(.*?\)/g,'').split(/\s+/);
+  const city=j.find(t=>/(시|군)$/.test(t)&&!/^(서울|부산|대구|인천|광주|대전|울산|세종)/.test(t)) || j[1] || '';
+  const dong=j.find(t=>/(동|읍|면|가)$/.test(t)&&!/\d/.test(t)) || '';
+  return [city,dong].filter(Boolean).join(' ') || j.slice(0,2).join(' ');
+}
+async function copy(text){ try{ await navigator.clipboard.writeText(text); }catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } }
 
 /* ===== API ===== */
 async function api(action, data={}){
-  if(DEMO) return demoApi(action, data);
   const body = JSON.stringify(Object.assign({action, name:me?.name, token:me?.token}, data));
   const r = await fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body});
   const j = await r.json();
-  if(!j.ok && /로그인이 만료/.test(j.error||'')){ logout(); }
+  if(!j.ok && /로그인이 만료/.test(j.error||'')) { toast('다시 로그인해 주세요'); logout(); }
   return j;
 }
-/* 테스트 모드(서버 없이 로컬 저장) */
-function demoApi(action, d){
-  const db = LS.get('demo_rows', []);
-  const now = new Date().toLocaleString('sv-SE',{timeZone:'Asia/Seoul'}).slice(0,16);
-  if(action==='login') return {ok:true, name:d.name, token:'demo'};
-  if(action==='list') return {ok:true, rows:db.slice().reverse()};
-  if(action==='place') return {ok:false, error:'테스트 모드에서는 공유 문구만 읽어요'};
-  if(action==='save'){
-    const L=d.lead, dup=db.find(r=>(L.placeId&&r['플레이스ID']===L.placeId)||(digits(L.mobile)&&digits(r['점주휴대폰'])===digits(L.mobile)));
-    if(dup && !d.force) return {ok:false, duplicate:dup, error:'이미 등록된 매장/번호예요 (담당: '+dup['담당자']+')'};
-    const row={'ID':'G'+Date.now(),'등록일시':now,'담당자':me.name,'상호':L.title||'','업종':L.category||'','도로명주소':L.road||'','지번주소':L.jibun||'','매장전화':L.storePhone||'','점주휴대폰':L.mobile||'','플레이스ID':L.placeId||'','플레이스링크':L.link||'','상태':L.status||'신규','메모':L.memo||'','최근제안발송':'','발송횟수':'0','수정일시':now};
-    db.push(row); LS.set('demo_rows',db); return {ok:true,row};
-  }
-  const r=db.find(x=>x.ID===d.id); if(!r) return {ok:false,error:'없음'};
-  if(action==='update'){ const map={title:'상호',category:'업종',road:'도로명주소',jibun:'지번주소',storePhone:'매장전화',mobile:'점주휴대폰',status:'상태',memo:'메모'}; Object.entries(d.fields).forEach(([k,v])=>map[k]&&(r[map[k]]=v)); r['수정일시']=now; }
-  if(action==='sent'){ if(!r['상태']||r['상태']==='신규') r['상태']='제안발송'; r['최근제안발송']=now; r['발송횟수']=String((+r['발송횟수']||0)+1); }
-  if(action==='remove'){ LS.set('demo_rows', db.filter(x=>x.ID!==d.id)); return {ok:true}; }
-  LS.set('demo_rows',db); return {ok:true,row:r};
-}
+function upsert(row){ const i=rows.findIndex(r=>r.ID===row.ID); if(i>=0) rows[i]=row; else rows.unshift(row); LS.set('rowsCache', rows.slice(0,800)); renderAll(); }
 
 /* ===== 로그인 ===== */
 let pickRep = LS.get('lastRep', MEMBERS[0]);
-function renderReps(){ $('#reps').innerHTML = MEMBERS.map(n=>`<button class="rep ${n===pickRep?'on':''}" data-n="${n}">${n}</button>`).join(''); }
+function renderReps(){ $('#reps').innerHTML = MEMBERS.map(n=>`<button class="rep ${n===pickRep?'on':''}" data-n="${esc(n)}">${esc(n)}</button>`).join(''); }
 $('#reps').onclick = e=>{ const b=e.target.closest('.rep'); if(!b) return; pickRep=b.dataset.n; LS.set('lastRep',pickRep); renderReps(); $('#pin').focus(); };
 async function doLogin(){
   const pin=$('#pin').value.trim();
   if(!/^\d{4,8}$/.test(pin)) return toast('PIN은 숫자 4~8자리예요');
   $('#loginBtn').disabled=true;
   try{
-    me={name:pickRep};
     const j=await api('login',{name:pickRep,pin});
-    if(!j.ok){ me=null; return toast(j.error||'로그인 실패'); }
+    if(!j.ok) return toast(j.error||'로그인 실패');
     me={name:j.name, token:j.token}; LS.set('me',me);
     if(j.sheetUrl) LS.set('sheetUrl', j.sheetUrl);
+    if(j.members){ MEMBERS=j.members; LS.set('members',MEMBERS); }
     if(j.first) toast('PIN이 등록됐어요. 다음부터 같은 PIN으로 들어오세요', 3000);
     enter();
-  }catch(e){ me=null; toast('연결 실패: 인터넷을 확인해 주세요'); }
+  }catch(e){ toast('연결 실패: 인터넷을 확인해 주세요'); }
   finally{ $('#loginBtn').disabled=false; }
 }
 $('#loginBtn').onclick=doLogin; $('#pin').onkeydown=e=>{ if(e.key==='Enter') doLogin(); };
 function logout(){ LS.set('me',null); me=null; $('#app').classList.add('hide'); $('#login').classList.remove('hide'); $('#pin').value=''; }
 $('#logoutBtn').onclick=logout;
 
-function enter(){
+async function enter(){
   $('#login').classList.add('hide'); $('#app').classList.remove('hide');
   $('#meName').textContent=me.name; $('#meInit').textContent=me.name[0];
-  $('#demoBar').classList.toggle('hide', !DEMO);
-  loadSettingsUI(); renderAddStatus(); renderRes($('#addRes'), addResult); renderFilter(); updateQPreview();
+  S = LS.get('set_'+me.name, null) || {phone:'', link:DEFAULT_LINK, tpls:DEFAULT_TPLS};
+  renderStaticChips(); renderAll(); loadSettingsUI();
   refresh();
+  api('getSettings').then(j=>{ if(j.ok && j.settings && j.settings.tpls){ S=Object.assign({phone:'',link:DEFAULT_LINK,tpls:DEFAULT_TPLS}, j.settings); LS.set('set_'+me.name,S); loadSettingsUI(); } });
+}
+async function refresh(){
+  try{ const j=await api('list'); if(j.ok){ rows=j.rows; if(j.members){ MEMBERS=j.members; LS.set('members',MEMBERS);} LS.set('rowsCache', rows.slice(0,800)); renderAll(); } }
+  catch(e){ toast('DB 연결 실패 (저장된 목록 표시 중)'); }
 }
 
 /* ===== 탭 ===== */
-$$('nav button').forEach(b=>b.onclick=()=>{
-  $$('nav button').forEach(x=>x.classList.toggle('on',x===b));
-  ['add','quick','db','set'].forEach(t=>$('#tab-'+t).classList.toggle('hide', t!==b.dataset.tab));
-  if(b.dataset.tab==='db') refresh();
-  if(b.dataset.tab==='quick') updateQPreview();
+function go(tab, filter){
+  $$('nav button').forEach(x=>x.classList.toggle('on',x.dataset.tab===tab));
+  ['home','add','db','stat','set'].forEach(t=>$('#tab-'+t).classList.toggle('hide', t!==tab));
+  if(filter){ filterSt=filter; renderStaticChips(); renderList(); }
+  if(tab==='db'||tab==='home'||tab==='stat') refresh();
   scrollTo({top:0});
+}
+$$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.tab));
+document.addEventListener('click',e=>{ const g=e.target.closest('[data-go]'); if(g) go(g.dataset.go, g.dataset.filter); });
+
+function renderAll(){ if(!me) return; renderHome(); renderList(); renderStats(); checkDup(); }
+
+/* ===== 오늘 ===== */
+function mine(){ return rows.filter(r=>r['담당자']===me.name); }
+function weekStart(){ const d=new Date(); const day=(d.getDay()+6)%7; d.setDate(d.getDate()-day); return ymd(d); }
+function renderHome(){
+  const m=mine(), due=m.filter(isDue), late=due.filter(r=>r['다음연락일']<today());
+  const ws=weekStart();
+  $('#hiTxt').textContent=`${me.name}님, 오늘도 출항!`;
+  $('#bigTxt').innerHTML=`오늘 연락할 곳 <b>${due.length}곳</b>`;
+  $('#kpis').innerHTML=[['오늘 연락',due.length,due.length?'hot':''],['밀린 연락',late.length,late.length?'hot':''],['이번 주 등록',m.filter(r=>(r['등록일시']||'').slice(0,10)>=ws).length],['이번 주 발송',m.filter(r=>(r['최근제안발송']||'').slice(0,10)>=ws).length]]
+    .map(([k,v,c])=>`<div class="kpi ${c||''}"><b>${v}</b><span>${k}</span></div>`).join('');
+  renderRank();
+  const dot=$('#dueDot'); dot.textContent=due.length; dot.classList.toggle('hide',!due.length);
+  $('#dueList').innerHTML = due.length ? due.sort((a,b)=>a['다음연락일'].localeCompare(b['다음연락일'])).slice(0,30).map(r=>card(r,true)).join('') : `<div class="empty">오늘 연락할 곳이 없어요. 새 매장을 등록해 보세요!</div>`;
+  const rec=m.slice(0,5);
+  $('#recentList').innerHTML = rec.length ? rec.map(r=>card(r,false)).join('') : `<div class="empty">아직 등록한 매장이 없어요.</div>`;
+}
+$('#goQuick').onclick=()=>{ $('#quickCard').classList.toggle('hide'); $('#q_mobile').focus(); };
+$('#quickClose').onclick=()=>$('#quickCard').classList.add('hide');
+
+/* ===== 카드 ===== */
+function srcBadge(r){ return r['출처']==='점포라인'?'<span class="badge jp">점포라인</span>':r['출처']==='네이버'?'<span class="badge n">N</span>':''; }
+function nextBadge(r){ const n=r['다음연락일']; if(!n) return ''; const t=today(); return `<span class="badge ${isDue(r)?'alert':'orange'}">${n<t?'밀림 ':n===t?'오늘 ':'다음 '}${esc(n.slice(5).replace('-','/'))}</span>`; }
+let DUPS=new Set();
+function card(r, compact){
+  return `<div class="lead ${DUPS.has(r.ID)?'isdup':''}" data-id="${r.ID}">
+    <div class="top"><div style="min-width:0"><div class="nm">${esc(r['상호']||r['점주휴대폰']||'(이름 없음)')}</div>
+    <div class="ad">${esc(r['도로명주소']||r['지번주소']||'')}</div></div>
+    <span class="st s-${esc(r['상태'])}">${esc(r['상태']||'신규')}</span></div>
+    <div class="meta">
+      ${r['점주휴대폰']?`<a class="ph" href="tel:${digits(r['점주휴대폰'])}" onclick="event.stopPropagation()">${esc(r['점주휴대폰'])}</a>`:''}
+      ${srcBadge(r)}${nextBadge(r)}
+      ${scope==='all'||r['담당자']!==me.name?`<span class="badge navy">${esc(r['담당자'])}</span>`:''}
+      ${DUPS.has(r.ID)?'<span class="badge red">중복</span>':''}
+      ${+r['발송횟수']>0?`<span class="badge green">발송 ${r['발송횟수']}</span>`:''}
+      ${r['층수']||r['면적']?`<span class="badge">${esc([r['층수'],String(r['면적']).replace(/\s*\(.*$/,'')].filter(Boolean).join(' · '))}</span>`:''}
+    </div>
+    ${r['연락기록']?`<div class="loglast">${esc(String(r['연락기록']).split('\n')[0])}</div>`:''}
+    ${compact?`<div class="btns"><button class="btn beer sm" data-quick="msg">제안서 문자</button><button class="btn ghost sm" data-quick="call">통화 기록</button></div>`:''}
+  </div>`;
+}
+document.addEventListener('click', e=>{
+  const c=e.target.closest('.lead'); if(!c) return;
+  const q=e.target.closest('[data-quick]');
+  openDetail(c.dataset.id, q?q.dataset.quick:'info');
 });
 
-/* ===== 1. 플레이스 읽기 ===== */
+/* ===== 1. 링크 읽기 ===== */
 function parseShareText(t){
-  // 네이버 지도 공유 문구: [네이버 지도]\n상호\n주소\n링크  (전화가 있으면 함께)
   const url=(t.match(/https?:\/\/[^\s<>"']+/)||[''])[0];
   const lines=t.split(/\n+/).map(s=>s.trim()).filter(s=>s && !/^\[?네이버\s*지도\]?$/.test(s) && !/^https?:/.test(s));
   const out={link:url};
   const addrRe=/(서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충북|충남|전북|전남|경북|경남|제주|충청|전라|경상)/;
-  lines.forEach(l=>{
-    const clean=l.replace(/^\[?네이버\s*지도\]?\s*/,'');
-    if(!clean) return;
-    if(!out.road && addrRe.test(clean) && /(로|길|동|읍|면|리)\s*\d|\d+-\d+/.test(clean)) out.road=clean;
-    else if(!out.storePhone && /^0\d{1,3}[-\s]?\d{3,4}[-\s]?\d{4}$/.test(clean)) out.storePhone=clean;
-    else if(!out.title) out.title=clean;
-  });
+  lines.forEach(l=>{ const c=l.replace(/^\[?네이버\s*지도\]?\s*/,''); if(!c) return;
+    if(!out.road && addrRe.test(c) && /(로|길|동|읍|면|리)\s*\d|\d+-\d+/.test(c)) out.road=c;
+    else if(!out.storePhone && /^0\d{1,3}[-\s]?\d{3,4}[-\s]?\d{4}$/.test(c)) out.storePhone=c;
+    else if(!out.title) out.title=c; });
   return out;
 }
-function setField(k,v){ const el=$('#f_'+k); if(el) el.value=v||''; }
+const PF=['title','category','road','jibun','storePhone','link','floor','size','premium','rent','sales','ownerName'];
+function setF(k,v){ const el=$('#f_'+k); if(el) el.value=v||''; }
 function showPlace(p){
-  current = Object.assign({}, current||{}, p, {id:null});
-  ['title','category','road','jibun','storePhone','link'].forEach(k=>setField(k, p[k]||''));
-  $('#catBadge').textContent = p.category || '업종 미확인';
+  current = Object.assign({}, p, {id:null});
+  PF.forEach(k=>setF(k,p[k]||''));
+  if(p.mobile && !$('#f_mobile').value){ $('#f_mobile').value=p.mobile; $('#mobileFound').textContent='✓ 점포라인 직거래 번호를 넣었어요'; }
+  if(p.memo && !$('#f_memo').value) $('#f_memo').value=p.memo;
+  const jp=p.source==='점포라인';
+  $('#extraFields').classList.toggle('hide', !jp && !p.floor);
+  $('#resBadges').innerHTML=(jp?'<span class="badge jp">점포라인</span>':'<span class="badge n">N 플레이스</span>')+
+    `<span class="badge">${esc(p.category||'업종 미확인')}</span>`+(p.listingNo?`<span class="badge">매물 ${esc(p.listingNo)}</span>`:'')+(p.reviews?`<span class="badge">${esc(p.reviews)}</span>`:'')+
+    (jp?'<span class="badge orange">광고 수신동의 미확인</span>':'');
   $('#resultCard').classList.remove('hide');
-  $('#dupBadge').classList.add('hide'); $('#dupMsg').classList.add('hide');
   checkDup();
 }
 async function readPlace(){
   const q=$('#paste').value.trim();
-  if(!q) return toast('네이버 플레이스 링크를 붙여넣어 주세요');
+  if(!q) return toast('링크를 붙여넣어 주세요');
   const btn=$('#readBtn'); btn.disabled=true; btn.innerHTML='<span class="spin"></span> 불러오는 중';
-  const local=parseShareText(q);
+  const local=/jumpoline/i.test(q)?{}:parseShareText(q);
   try{
     const j=await api('place',{q});
-    if(j.ok){ showPlace(Object.assign({}, local, j.place, {link:j.place.shareLink||j.place.link})); toast('매장 정보를 불러왔어요'); }
-    else if(local.title){ showPlace(local); toast(DEMO?'공유 문구에서 읽었어요':'링크 조회가 안 돼 공유 문구에서 읽었어요'); }
+    if(j.ok){ showPlace(Object.assign({}, local, j.place, {link:j.place.shareLink||j.place.link})); toast(j.place.source==='점포라인'?'점포라인 매물 정보를 불러왔어요':'매장 정보를 불러왔어요'); }
+    else if(local.title){ showPlace(Object.assign({source:'네이버'},local)); toast('공유 문구에서 읽었어요'); }
     else toast(j.error||'정보를 찾지 못했어요', 2600);
   }catch(e){ if(local.title){ showPlace(local); toast('공유 문구에서 읽었어요'); } else toast('연결 실패'); }
   finally{ btn.disabled=false; btn.textContent='정보 불러오기'; }
 }
 $('#readBtn').onclick=readPlace;
-$('#paste').addEventListener('paste', ()=>setTimeout(()=>{ if(/naver|^\[?네이버/.test($('#paste').value)) readPlace(); }, 60));
+$('#paste').addEventListener('paste', ()=>setTimeout(()=>{ if(/naver|jumpoline|^\[?네이버/.test($('#paste').value)) readPlace(); }, 60));
 $('#clipBtn').onclick=async()=>{ try{ const t=await navigator.clipboard.readText(); $('#paste').value=t; if(t) readPlace(); }catch(e){ toast('길게 눌러 붙여넣기 해주세요'); $('#paste').focus(); } };
-
-async function copy(text){ try{ await navigator.clipboard.writeText(text); }catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } }
 document.addEventListener('click', async e=>{
   const b=e.target.closest('.cp'); if(!b) return;
   const v=$('#'+b.dataset.cp).value; if(!v) return toast('복사할 내용이 없어요');
   await copy(v); b.classList.add('ok'); b.textContent='완료'; setTimeout(()=>{b.classList.remove('ok'); b.textContent='복사';},1200);
 });
-$('#copyAllBtn').onclick=async()=>{
-  const g=k=>$('#f_'+k).value; const mob=$('#f_mobile').value;
-  const t=[`상호: ${g('title')}`, `업종: ${g('category')}`, `도로명: ${g('road')}`, g('jibun')&&`지번: ${g('jibun')}`, g('storePhone')&&`매장전화: ${g('storePhone')}`, mob&&`점주: ${mob}`, `플레이스: ${g('link')}`].filter(Boolean).join('\n');
-  await copy(t); toast('전체 정보를 복사했어요');
-};
+function infoText(o){
+  return [`상호: ${o.title||''}`, o.category&&`업종: ${o.category}`, o.road&&`도로명: ${o.road}`, o.jibun&&`지번: ${o.jibun}`, o.floor&&`층수: ${o.floor}`, o.size&&`면적: ${o.size}`,
+    o.premium&&`권리금: ${o.premium}`, o.rent&&`월세: ${o.rent}`, o.sales&&`월매출: ${o.sales}`, o.storePhone&&`매장전화: ${o.storePhone}`, o.mobile&&`점주: ${o.ownerName?o.ownerName+' ':''}${o.mobile}`, o.link&&`링크: ${o.link}`].filter(Boolean).join('\n');
+}
+$('#copyAllBtn').onclick=async()=>{ await copy(infoText(collectLead())); toast('전체 정보를 복사했어요'); };
 
-/* ===== 2. 번호 ===== */
+/* ===== 2. 번호/결과 ===== */
 function bindMobile(inp, found, after){
   inp.addEventListener('input', ()=>{
     const raw=inp.value, m=extractMobile(raw);
-    if(m && (raw.length>13 || /[^\d-\s]/.test(raw) || digits(raw).length===11)){ if(inp.value!==m){ inp.value=m; } found.textContent='✓ '+m+' 번호 확인'; }
-    else found.textContent = digits(raw).length>=10 && !m ? '휴대폰 번호(010)만 문자 발송돼요' : '';
+    if(m && (raw.length>13 || /[^\d-\s]/.test(raw) || digits(raw).length===11)){ if(inp.value!==m) inp.value=m; found.textContent='✓ '+m; }
+    else found.textContent = digits(raw).length>=10 && !m ? '휴대폰(010) 번호만 문자 발송돼요' : '';
     after&&after();
   });
 }
 bindMobile($('#f_mobile'), $('#mobileFound'), checkDup);
-bindMobile($('#q_mobile'), $('#qFound'), updateQPreview);
-$('#q_title').oninput=updateQPreview;
+bindMobile($('#q_mobile'), $('#qFound'));
+function renderRes(el, sel){ el.innerHTML=RESULTS.map(r=>`<button data-r="${r}" class="${r===sel?'on':''}">${r}</button>`).join(''); }
+function renderStaticChips(){
+  $('#addStatus').innerHTML=STATUSES.map(s=>`<button class="chip ${s===addStatus?'on':''}" data-s="${s}">${s}</button>`).join('');
+  renderRes($('#addRes'), addResult);
+  const base=rows.filter(r=>scope==='all'?(repSel==='전체'||r['담당자']===repSel):r['담당자']===me?.name);
+  const cnt=s=>s==='전체'?base.length:s==='오늘 연락'?base.filter(isDue).length:base.filter(r=>r['상태']===s).length;
+  $('#filterStatus').innerHTML=['전체','오늘 연락',...STATUSES].map(s=>`<button class="chip ${s===filterSt?'on':''}" data-s="${s}">${s}<span class="c">${cnt(s)}</span></button>`).join('');
+  $('#repFilter').innerHTML=['전체',...MEMBERS].map(s=>`<button class="chip ${s===repSel?'on':''}" data-r="${esc(s)}">${esc(s)}</button>`).join('');
+  $('#periodChips').innerHTML=[['today','오늘'],['week','이번 주'],['month','이번 달'],['all','전체 기간']].map(([k,v])=>`<button class="chip ${k===period?'on':''}" data-p="${k}">${v}</button>`).join('');
+}
+$('#addStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; addStatus=b.dataset.s; renderStaticChips(); };
+$('#addRes').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; addResult = addResult===b.dataset.r?'':b.dataset.r; if(addResult){ addStatus=RES_STATUS[addResult]; $('#f_next').value=defaultNext(addResult); if(addResult==='날짜 지정') $('#f_next').showPicker?.(); } renderStaticChips(); };
 
-function renderAddStatus(){ $('#addStatus').innerHTML=STATUSES.map(s=>`<button class="chip ${s===addStatus?'on':''}" data-s="${s}">${s}</button>`).join(''); }
-$('#addStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; addStatus=b.dataset.s; renderAddStatus(); };
-$('#addRes').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; addResult = addResult===b.dataset.r ? '' : b.dataset.r; renderRes($('#addRes'), addResult);
-  if(addResult){ addStatus=RES_STATUS[addResult]; renderAddStatus(); const n=defaultNext(addResult); $('#f_next').value=n; if(addResult==='날짜 지정') $('#f_next').showPicker?.(); } };
-
-function findDup(placeId, mobile, exceptId){
+function findDup(placeId, mobile, listingNo, exceptId){
   const d=digits(mobile);
-  return rows.find(r=>r.ID!==exceptId && ((placeId && r['플레이스ID']===String(placeId)) || (d.length>=10 && digits(r['점주휴대폰'])===d)));
+  return rows.find(r=>r.ID!==exceptId && ((placeId && r['플레이스ID']===String(placeId)) || (listingNo && r['매물번호']===String(listingNo)) || (d.length>=10 && digits(r['점주휴대폰'])===d)));
 }
 function checkDup(){
-  const dup=findDup(current?.placeId, $('#f_mobile').value, current?.id);
-  const on=!!dup;
-  $('#dupBadge').classList.toggle('hide',!on);
+  if(!$('#dupMsg')) return;
+  const dup=findDup(current?.placeId, $('#f_mobile').value, current?.listingNo, current?.id);
   $('#f_mobile').classList.toggle('dup', !!(dup && digits(dup['점주휴대폰'])===digits($('#f_mobile').value)));
-  const m=$('#dupMsg'); m.classList.toggle('hide',!on);
-  if(on) m.textContent=`이미 등록된 매장이에요 · 담당 ${dup['담당자']} · ${dup['상태']} · ${dup['등록일시']}`;
+  $('#dupMsg').classList.toggle('hide',!dup);
+  if(dup) $('#dupMsg').textContent=`이미 등록된 매장이에요 · 담당 ${dup['담당자']} · ${dup['상태']} · ${dup['등록일시']}`;
   return dup;
 }
-
 function collectLead(){
-  const g=k=>$('#f_'+k).value.trim();
-  return { title:g('title'), category:g('category'), road:g('road'), jibun:g('jibun'), storePhone:g('storePhone'), link:g('link'),
-    placeId: current?.placeId||'', mobile:extractMobile($('#f_mobile').value)||$('#f_mobile').value.trim(), memo:$('#f_memo').value.trim(), status:addStatus, nextDate:$('#f_next').value, log: addResult ? addResult+($('#f_next').value?' → '+$('#f_next').value:'')+' ['+me.name+']' : '' };
+  const g=k=>($('#f_'+k)?.value||'').trim();
+  const o={}; PF.forEach(k=>o[k]=g(k));
+  return Object.assign(o, { placeId:current?.placeId||'', listingNo:current?.listingNo||'', source:current?.source||'직접', consent:current?.consent||'',
+    mobile:extractMobile($('#f_mobile').value)||$('#f_mobile').value.trim(), memo:$('#f_memo').value.trim(), status:addStatus, nextDate:$('#f_next').value,
+    log: addResult ? addResult+($('#f_next').value?' → '+$('#f_next').value:'')+' ['+me.name+']' : '' });
 }
-async function saveLead(lead, opt={}){
-  if(current?.id){ // 이미 저장됨 → 수정
+async function saveLead(lead){
+  if(current?.id){
     const f=Object.assign({}, lead); delete f.log;
     let j=await api('update',{id:current.id, fields:f});
     if(j.ok && lead.log && current.lastLog!==lead.log){ const c=await api('contact',{id:current.id, result:addResult, nextDate:lead.nextDate}); if(c.ok){ j=c; current.lastLog=lead.log; } }
@@ -561,11 +791,9 @@ async function saveLead(lead, opt={}){
     if(!confirm(`이미 등록된 매장/번호예요.\n담당: ${d['담당자']} · ${d['상태']}\n\n그래도 새로 등록할까요?`)) return {ok:false, cancel:true};
     j=await api('save',{lead, force:true});
   }
-  if(j.ok){ current=Object.assign(current||{}, {id:j.row.ID, placeId:lead.placeId, lastLog:lead.log}); upsert(j.row); }
+  if(j.ok){ current=Object.assign(current||{}, {id:j.row.ID, lastLog:lead.log}); upsert(j.row); }
   return j;
 }
-function upsert(row){ const i=rows.findIndex(r=>r.ID===row.ID); if(i>=0) rows[i]=row; else rows.unshift(row); }
-
 $('#saveBtn').onclick=async()=>{
   const lead=collectLead();
   if(!lead.title && !lead.mobile) return toast('매장 정보나 번호를 먼저 넣어주세요');
@@ -573,42 +801,52 @@ $('#saveBtn').onclick=async()=>{
   try{ const j=await saveLead(lead); if(j.ok) toast('영업 DB에 저장했어요'); else if(!j.cancel) toast(j.error||'저장 실패'); }
   catch(e){ toast('연결 실패'); } finally{ b.disabled=false; }
 };
-$('#resetBtn').onclick=()=>{ current=null; $('#paste').value=''; ['title','category','road','jibun','storePhone','link','mobile','memo'].forEach(k=>setField(k,'')); $('#mobileFound').textContent=''; $('#resultCard').classList.add('hide'); addStatus='신규'; renderAddStatus(); addResult=''; renderRes($('#addRes'),''); $('#f_next').value=''; scrollTo({top:0,behavior:'smooth'}); };
+$('#resetBtn').onclick=()=>{ current=null; $('#paste').value=''; PF.forEach(k=>setF(k,'')); ['mobile','memo','next'].forEach(k=>setF(k,'')); $('#mobileFound').textContent=''; $('#resultCard').classList.add('hide'); addStatus='신규'; addResult=''; renderStaticChips(); scrollTo({top:0,behavior:'smooth'}); };
+$('#sendSmsBtn').onclick=async()=>{
+  const lead=collectLead();
+  if(!extractMobile(lead.mobile)) return toast('010 휴대폰 번호를 넣어주세요');
+  const b=$('#sendSmsBtn'); b.disabled=true;
+  try{ const j=await saveLead(lead); if(j.ok){ openDetail(current.id,'msg'); } else if(!j.cancel) toast(j.error||'저장 실패'); }
+  catch(e){ toast('연결 실패'); } finally{ b.disabled=false; }
+};
+$('#sharePdfBtn').onclick=async()=>{
+  const lead=collectLead();
+  if(lead.title||lead.mobile){ const j=await saveLead(lead); if(j.ok && current?.id){ const ok=await sharePdf(lead.title); if(ok) api('sent',{id:current.id, phone:lead.mobile, via:'PDF공유'}).then(r=>r.ok&&upsert(r.row)); return; } }
+  sharePdf(lead.title);
+};
 
-/* ===== 3. 제안서 발송 ===== */
-function buildMsg(title){
-  const s=settings();
-  const t=(title||'').trim();
-  return s.tpl.replaceAll('{호칭}', t? `${t} 사장님` : '사장님').replaceAll('{상호}', t).replaceAll('{담당자}', me.name)
-    .replaceAll('{담당자번호}', s.phone||'').replaceAll('{제안서링크}', s.link||DEFAULT_LINK).replace(/[ \t]+\n/g,'\n');
+/* 빠른 발송 */
+$('#qSendBtn').onclick=async()=>{
+  const mob=extractMobile($('#q_mobile').value), title=$('#q_title').value.trim();
+  if(!mob) return toast('010 휴대폰 번호를 넣어주세요');
+  const ex=findDup('', mob);
+  if(ex) return openDetail(ex.ID,'msg');
+  const j=await api('save',{lead:{title, mobile:mob, source:'직접', status:'신규', memo:'빠른발송'}});
+  if(j.ok){ upsert(j.row); $('#q_mobile').value=''; $('#q_title').value=''; $('#qFound').textContent=''; openDetail(j.row.ID,'msg'); } else toast(j.error||'저장 실패');
+};
+$('#qPdfBtn').onclick=()=>sharePdf($('#q_title').value.trim());
+
+/* ===== 문자 ===== */
+function tplFor(r){
+  const names=S.tpls.map(t=>t.name);
+  let n = r['상태']==='미팅예정'?'미팅 안내': r['상태']==='부재중'?'부재중 후속': r['출처']==='점포라인'?'점포라인 매물':'첫 제안';
+  const i=names.indexOf(n); return i>=0?i:0;
+}
+function buildMsg(body, r){
+  const t=(r['상호']||'').trim();
+  const isJp=r['출처']==='점포라인';
+  return body.replaceAll('{호칭}', t&&!isJp? `${t} 사장님` : '사장님').replaceAll('{상호}', t).replaceAll('{지역}', region(r)||'')
+    .replaceAll('{담당자}', me.name).replaceAll('{담당자번호}', S.phone||'').replaceAll('{제안서링크}', S.link||DEFAULT_LINK)
+    .replaceAll('{미팅일}', r['미팅일']?r['미팅일'].slice(5).replace('-','월 ')+'일':'').replace(/[ \t]+\n/g,'\n');
 }
 function smsHref(num, body){
   const ios=/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
   return `sms:${digits(num)}${ios?'&':'?'}body=${encodeURIComponent(body)}`;
 }
-async function sendSms(num, title, leadForSave){
-  const mob=extractMobile(num);
-  if(!mob) return toast('010 휴대폰 번호를 넣어주세요');
-  if(!settings().phone && !confirm('내 휴대폰 번호가 설정에 없어요. 서명 번호 없이 보낼까요?')) return;
-  let j=await saveLead(leadForSave);
-  if(!j.ok){ if(!j.cancel) toast(j.error||'DB 저장 실패'); if(j.cancel) return; }
-  if(current?.id) api('sent',{id:current.id, phone:mob, via:'문자'}).then(r=>r.ok&&upsert(r.row));
-  location.href = smsHref(mob, buildMsg(title));
-}
-$('#sendSmsBtn').onclick=()=>{ const lead=collectLead(); sendSms(lead.mobile, lead.title, lead); };
-$('#qSendBtn').onclick=()=>{
-  const mob=extractMobile($('#q_mobile').value), title=$('#q_title').value.trim();
-  if(!mob) return toast('010 휴대폰 번호를 넣어주세요');
-  const ex=findDup('', mob);
-  current = ex ? {id:ex.ID} : null;
-  sendSms(mob, title || ex?.['상호'], {title: title||ex?.['상호']||'', mobile:mob, status:'제안발송', memo:'빠른발송'});
-};
-function updateQPreview(){ if(me) $('#qPreview').textContent=buildMsg($('#q_title').value); }
-
 let pdfCache=null;
 async function sharePdf(title){
-  const s=settings(), link=s.link||DEFAULT_LINK;
-  const text = `${title?title+' 사장님, ':''}군함맥주 가맹제안서 보내드립니다.\n담당 ${me.name} ${s.phone||''}\n가맹문의 1577-0832`;
+  const link=S.link||DEFAULT_LINK;
+  const text=`${title?title+' 사장님, ':''}군함맥주 가맹제안서 보내드립니다.\n담당 ${me.name} ${S.phone||''}\n가맹문의 1577-0832`;
   try{
     if(navigator.canShare){
       toast('제안서 PDF 준비 중…', 4000);
@@ -619,133 +857,234 @@ async function sharePdf(title){
   }catch(e){ if(e.name==='AbortError') return false; }
   await copy(text+'\n'+link); toast('공유가 안 되는 기기라 제안서 링크를 복사했어요', 2600); return false;
 }
-$('#sharePdfBtn').onclick=async()=>{
-  const lead=collectLead();
-  if(lead.title||lead.mobile){ const j=await saveLead(lead); if(j.ok && current?.id){ const ok=await sharePdf(lead.title); if(ok) api('sent',{id:current.id, phone:lead.mobile, via:'PDF공유'}).then(r=>r.ok&&upsert(r.row)); return; } }
-  sharePdf(lead.title);
+
+/* ===== 상세 ===== */
+const DF=[['상호','title'],['업종','category'],['도로명','road'],['지번','jibun'],['매장전화','storePhone'],['점주명','ownerName'],['점주폰','mobile'],['층수','floor'],['면적','size'],['권리금','premium'],['월세','rent'],['월매출','sales'],['희망조건','wish'],['메모','memo']];
+const DCOL={title:'상호',category:'업종',road:'도로명주소',jibun:'지번주소',storePhone:'매장전화',ownerName:'점주명',mobile:'점주휴대폰',floor:'층수',size:'면적',premium:'권리금',rent:'월세',sales:'월매출',wish:'희망조건',memo:'메모'};
+function openDetail(id, tab='info'){
+  D=rows.find(r=>r.ID===id); if(!D) return;
+  dResult=''; dStatusSel=D['상태']; dTplIdx=tplFor(D);
+  $('#detail').classList.remove('hide'); document.body.style.overflow='hidden';
+  fillDetail(); setDTab(tab);
+}
+function fillDetail(){
+  const r=D;
+  $('#dBadges').innerHTML=`<span class="st s-${esc(r['상태'])}">${esc(r['상태'])}</span>${srcBadge(r)}${nextBadge(r)}<span class="badge navy">${esc(r['담당자'])}</span>${r['매물번호']?`<span class="badge">매물 ${esc(r['매물번호'])}</span>`:''}`;
+  $('#dTitle').textContent=r['상호']||r['점주휴대폰']||'(이름 없음)';
+  $('#dSub').textContent=[r['도로명주소']||r['지번주소'], '등록 '+(r['등록일시']||'')].filter(Boolean).join(' · ');
+  $('#dFields').innerHTML=DF.map(([k,f])=>`<div class="fld"><span class="k">${k}</span><input data-f="${f}" value="${esc(r[DCOL[f]]||'')}" ${f==='mobile'||f==='storePhone'?'inputmode="tel"':''}><button class="cp" data-cpv="${f}">복사</button></div>`).join('');
+  $('#dStatus').innerHTML=STATUSES.map(s=>`<button class="chip ${s===dStatusSel?'on':''}" data-s="${s}">${s}</button>`).join('');
+  const tel=digits(r['점주휴대폰']||r['매장전화']); $('#dCall').href=tel?'tel:'+tel:'#'; $('#dCall').classList.toggle('hide',!tel);
+  $('#dLink').href=r['플레이스링크']||'#'; $('#dLink').classList.toggle('hide',!r['플레이스링크']); $('#dLink').textContent=r['출처']==='점포라인'?'점포라인 매물':'네이버 플레이스';
+  renderRes($('#dRes'), dResult); $('#d_next').value=r['다음연락일']||''; $('#d_note').value=''; $('#d_consent').checked=/동의/.test(r['수신동의']||'') && !/미확인/.test(r['수신동의']||'');
+  $('#dHist').textContent=r['연락기록']||'아직 기록이 없어요.';
+  $('#dTpl').innerHTML=S.tpls.map((t,i)=>`<button class="chip ${i===dTplIdx?'on':''}" data-i="${i}">${esc(t.name)}</button>`).join('');
+  $('#dPreview').value=buildMsg(S.tpls[dTplIdx]?.body||'', r);
+  const needConsent=/\(광고\)/.test($('#dPreview').value) && !(/동의/.test(r['수신동의']||'') && !/미확인/.test(r['수신동의']||''));
+  $('#dConsentBox').classList.toggle('hide', !needConsent); $('#dConsentChk').checked=false;
+  $('#p_meet').value=r['미팅일']||''; $('#p_contract').value=r['계약일']||''; $('#p_open').value=r['오픈예정일']||''; $('#p_consent').value=r['수신동의']||'';
+  $('#pTo').innerHTML=MEMBERS.filter(m=>m!==r['담당자']).map(m=>`<option>${esc(m)}</option>`).join('');
+  $('#pTake').classList.toggle('hide', r['담당자']===me.name); $('#pDel').classList.toggle('hide', r['담당자']!==me.name);
+}
+function setDTab(t){ dTab=t; $$('.dtabs button').forEach(b=>b.classList.toggle('on',b.dataset.dt===t)); ['info','call','msg','prog'].forEach(x=>$('#dt-'+x).classList.toggle('hide',x!==t)); }
+$$('.dtabs button').forEach(b=>b.onclick=()=>setDTab(b.dataset.dt));
+function closeDetail(){ $('#detail').classList.add('hide'); document.body.style.overflow=''; D=null; }
+$('#dClose').onclick=closeDetail; $('#detail').onclick=e=>{ if(e.target.id==='detail') closeDetail(); };
+$('#dFields').onclick=async e=>{ const b=e.target.closest('[data-cpv]'); if(!b) return; const v=b.previousElementSibling.value; if(!v) return; await copy(v); b.classList.add('ok'); b.textContent='완료'; setTimeout(()=>{b.classList.remove('ok'); b.textContent='복사';},1100); };
+$('#dStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; dStatusSel=b.dataset.s; $$('#dStatus .chip').forEach(c=>c.classList.toggle('on',c===b)); };
+async function dUpdate(fields, msg){
+  const j=await api('update',{id:D.ID, fields}); if(j.ok){ upsert(j.row); D=j.row; fillDetail(); toast(msg||'저장했어요'); } else toast(j.error||'저장 실패'); return j;
+}
+$('#dSave').onclick=async()=>{ const f={status:dStatusSel}; $$('#dFields input').forEach(i=>f[i.dataset.f]=i.dataset.f==='mobile'?(extractMobile(i.value)||i.value.trim()):i.value.trim()); $('#dSave').disabled=true; try{ await dUpdate(f); } finally{ $('#dSave').disabled=false; } };
+$('#dCopy').onclick=async()=>{ const o={}; $$('#dFields input').forEach(i=>o[i.dataset.f]=i.value.trim()); o.link=D['플레이스링크']; await copy(infoText(o)+`\n담당: ${D['담당자']} · ${D['상태']}`); toast('복사했어요'); };
+$('#dRes').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; dResult = dResult===b.dataset.r?'':b.dataset.r; renderRes($('#dRes'), dResult); if(dResult){ $('#d_next').value=defaultNext(dResult); if(dResult==='날짜 지정'||dResult==='미팅잡힘') $('#d_next').showPicker?.(); } };
+$('#dLogSave').onclick=async()=>{
+  const note=$('#d_note').value.trim(), next=$('#d_next').value;
+  if(!dResult && !note && next===(D['다음연락일']||'') && !$('#d_consent').checked) return toast('결과를 고르거나 메모를 적어주세요');
+  const consent=$('#d_consent').checked && !/동의/.test(D['수신동의']||'').valueOf() ? '통화동의 '+today().slice(5) : ($('#d_consent').checked?D['수신동의']:'');
+  $('#dLogSave').disabled=true;
+  try{ const j=await api('contact',{id:D.ID, result:dResult||'메모', nextDate:next, note, consent: $('#d_consent').checked && !(/동의/.test(D['수신동의']||'')&&!/미확인/.test(D['수신동의']||'')) ? '통화동의 '+today().slice(5) : ''});
+    if(j.ok){ upsert(j.row); D=j.row; dResult=''; fillDetail(); toast('기록했어요'+(next?' · 다음 연락 '+next:'')); } else toast(j.error||'저장 실패'); }
+  catch(e){ toast('연결 실패'); } finally{ $('#dLogSave').disabled=false; }
 };
-$('#qPdfBtn').onclick=()=>sharePdf($('#q_title').value.trim());
+$('#dTpl').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; dTplIdx=+b.dataset.i; fillDetail(); setDTab('msg'); };
+$('#dMsgCopy').onclick=async()=>{ await copy($('#dPreview').value); toast('문구를 복사했어요'); };
+$('#dSms').onclick=async()=>{
+  const mob=extractMobile(D['점주휴대폰']); if(!mob) return toast('점주 휴대폰(010) 번호가 없어요. 정보 탭에서 넣어주세요');
+  const needConsent=!$('#dConsentBox').classList.contains('hide');
+  if(needConsent && !$('#dConsentChk').checked) return toast('통화로 동의 받았는지 체크해 주세요', 2600);
+  if(!S.phone && !confirm('내 휴대폰 번호가 설정에 없어요. 서명 번호 없이 보낼까요?')) return;
+  if(+D['발송횟수']>0 && !confirm(`이미 ${D['발송횟수']}회 보냈어요 (${D['최근제안발송']}). 다시 보낼까요?`)) return;
+  const body=$('#dPreview').value;
+  api('sent',{id:D.ID, phone:mob, via:'문자', tpl:S.tpls[dTplIdx]?.name||'', consent: needConsent?'통화동의 '+today().slice(5):''}).then(r=>{ if(r.ok){ upsert(r.row); if(D&&D.ID===r.row.ID){ D=r.row; } } });
+  location.href=smsHref(mob, body);
+};
+$('#dPdf').onclick=async()=>{ const ok=await sharePdf(D['상호']); if(ok) api('sent',{id:D.ID, phone:D['점주휴대폰'], via:'PDF공유'}).then(r=>r.ok&&upsert(r.row)); };
+$('#pSave').onclick=()=>dUpdate({meetDate:$('#p_meet').value, contractDate:$('#p_contract').value, openDate:$('#p_open').value, consent:$('#p_consent').value.trim()}, '진행 정보를 저장했어요');
+async function transferTo(to){ const j=await api('transfer',{id:D.ID, to}); if(j.ok){ upsert(j.row); D=j.row; fillDetail(); toast('담당자: '+to); } else toast(j.error||'변경 실패'); }
+$('#pTransfer').onclick=()=>{ const to=$('#pTo').value; if(to && confirm(`${D['상호']||'이 매장'}을(를) ${to}님에게 넘길까요?`)) transferTo(to); };
+$('#pTake').onclick=()=>{ if(confirm(`${D['담당자']}님 담당을 내 담당으로 가져올까요?`)) transferTo(me.name); };
+$('#pDel').onclick=async()=>{ if(!confirm('정말 삭제할까요? 되돌릴 수 없어요.')) return; const j=await api('remove',{id:D.ID}); if(j.ok){ rows=rows.filter(r=>r.ID!==D.ID); closeDetail(); renderAll(); toast('삭제했어요'); } else toast(j.error||'삭제 실패'); };
 
 /* ===== DB ===== */
-async function refresh(){
-  try{ const j=await api('list'); if(j.ok){ rows=j.rows; renderList(); checkDup(); } else toast(j.error||'불러오기 실패'); }
-  catch(e){ toast('DB 연결 실패'); }
-}
-function renderFilter(){ $('#filterStatus').innerHTML=['전체','오늘 연락',...STATUSES].map(s=>`<button class="chip ${s===filterSt?'on':''}" data-s="${s}">${s}</button>`).join(''); }
-$('#filterStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; filterSt=b.dataset.s; renderFilter(); renderList(); };
-$$('.seg button').forEach(b=>b.onclick=()=>{ scope=b.dataset.scope; $$('.seg button').forEach(x=>x.classList.toggle('on',x===b)); renderList(); });
-$('#q').oninput=()=>renderList();
-function visibleRows(){
-  const q=$('#q').value.trim().toLowerCase(), qd=digits(q);
-  return rows.filter(r=>(scope==='all'||r['담당자']===me.name) && (filterSt==='전체'||(filterSt==='오늘 연락'? isDue(r) : r['상태']===filterSt)) &&
-    (!q || [r['상호'],r['도로명주소'],r['지번주소'],r['메모'],r['담당자']].join(' ').toLowerCase().includes(q) || (qd.length>=3 && (digits(r['점주휴대폰'])+digits(r['매장전화'])).includes(qd))));
-}
-function isDue(r){ const n=r['다음연락일']; return !!n && n<=today() && !['계약','거절'].includes(r['상태']); }
+$$('.seg button').forEach(b=>b.onclick=()=>{ scope=b.dataset.scope; $$('.seg button').forEach(x=>x.classList.toggle('on',x===b)); $('#repFilter').classList.toggle('hide',scope!=='all'); renderStaticChips(); renderList(); });
+$('#filterStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; filterSt=b.dataset.s; renderStaticChips(); renderList(); };
+$('#repFilter').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; repSel=b.dataset.r; renderStaticChips(); renderList(); };
+$('#q').oninput=()=>renderList(); $('#sortSel').onchange=()=>renderList();
 function dupSet(){
   const c={}, s=new Set();
-  rows.forEach(r=>{ [r['플레이스ID']&&'p'+r['플레이스ID'], digits(r['점주휴대폰']).length>=10&&'m'+digits(r['점주휴대폰'])].filter(Boolean).forEach(k=>{ (c[k]=c[k]||[]).push(r.ID); }); });
+  rows.forEach(r=>{ [r['플레이스ID']&&'p'+r['플레이스ID'], r['매물번호']&&'j'+r['매물번호'], digits(r['점주휴대폰']).length>=10&&'m'+digits(r['점주휴대폰'])].filter(Boolean).forEach(k=>{ (c[k]=c[k]||[]).push(r.ID); }); });
   Object.values(c).forEach(ids=>ids.length>1&&ids.forEach(i=>s.add(i))); return s;
 }
+function visibleRows(){
+  const q=$('#q').value.trim().toLowerCase(), qd=digits(q);
+  let L=rows.filter(r=>(scope==='all'?(repSel==='전체'||r['담당자']===repSel):r['담당자']===me.name) && (filterSt==='전체'||(filterSt==='오늘 연락'? isDue(r) : r['상태']===filterSt)) &&
+    (!q || [r['상호'],r['도로명주소'],r['지번주소'],r['메모'],r['담당자'],r['업종'],r['연락기록']].join(' ').toLowerCase().includes(q) || (qd.length>=3 && (digits(r['점주휴대폰'])+' '+digits(r['매장전화'])).includes(qd))));
+  const s=$('#sortSel').value;
+  if(s==='next') L=L.slice().sort((a,b)=>(a['다음연락일']||'9999').localeCompare(b['다음연락일']||'9999'));
+  if(s==='upd') L=L.slice().sort((a,b)=>(b['수정일시']||'').localeCompare(a['수정일시']||''));
+  return L;
+}
 function renderList(){
-  const base=rows.filter(r=>scope==='all'||r['담당자']===me.name);
-  const cnt=s=>base.filter(r=>r['상태']===s).length;
-  $('#stats').innerHTML=[['전체',base.length],['오늘 연락',base.filter(isDue).length],['부재·재연락',cnt('부재중')+cnt('재연락')],['계약',cnt('계약')]].map(([k,v])=>`<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
-  const list=visibleRows().sort((a,b)=>(isDue(b)-isDue(a))), dups=dupSet();
-  if(!list.length){ $('#list').innerHTML=`<div class="empty">아직 등록된 매장이 없어요.<br>매장 등록 탭에서 플레이스 링크를 붙여넣어 보세요.</div>`; return; }
-  $('#list').innerHTML=list.map(r=>`
-  <div class="lead ${dups.has(r.ID)?'isdup':''}" data-id="${r.ID}">
-    <div class="top">
-      <div style="min-width:0"><div class="nm">${esc(r['상호']||'(상호 없음)')}</div>
-      <div class="ad">${esc(r['도로명주소']||r['지번주소']||'')}</div></div>
-      <select data-act="status">${STATUSES.map(s=>`<option ${s===r['상태']?'selected':''}>${s}</option>`).join('')}</select>
-    </div>
-    <div class="meta">
-      ${r['점주휴대폰']?`<a class="ph" href="tel:${digits(r['점주휴대폰'])}">${esc(r['점주휴대폰'])}</a>`:'<span>번호 없음</span>'}
-      ${r['업종']?`<span class="badge">${esc(r['업종'])}</span>`:''}
-      ${scope==='all'?`<span class="badge">${esc(r['담당자'])}</span>`:''}
-      ${dups.has(r.ID)?'<span class="badge red">중복</span>':''}
-      ${r['다음연락일']?`<span class="badge ${isDue(r)?'alert':'orange'}">${r['다음연락일']<today()?'연락 밀림 ':r['다음연락일']===today()?'오늘 연락 ':'다음 연락 '}${esc(r['다음연락일'].slice(5).replace('-','/'))}</span>`:''}
-      ${+r['발송횟수']>0?`<span class="badge green">발송 ${r['발송횟수']}회 · ${esc(r['최근제안발송'])}</span>`:''}
-    </div>
-    ${r['메모']?`<div class="ad" style="margin-top:6px">메모: ${esc(r['메모'])}</div>`:''}
-    ${r['연락기록']?`<div class="loglast">최근: ${esc(String(r['연락기록']).split('\n')[0])}</div>`:''}
-    <div class="btns">
-      <button class="btn gold" data-act="sms">제안서 문자</button>
-      <button class="btn line" data-act="copy">정보 복사</button>
-      <button class="btn ghost" data-act="call">통화기록</button>
-      ${r['플레이스링크']?`<a class="btn ghost" style="text-decoration:none;flex:0 0 auto" href="${esc(r['플레이스링크'])}" target="_blank">N</a>`:''}
-    </div>
-  </div>`).join('');
+  if(!me) return;
+  DUPS=dupSet(); renderStaticChips();
+  const list=visibleRows();
+  $('#listCount').textContent=`${list.length}곳`;
+  $('#list').innerHTML = list.length ? list.slice(0,300).map(r=>card(r,false)).join('') + (list.length>300?`<div class="empty">상위 300곳만 표시 중 · 검색으로 좁혀 보세요</div>`:'')
+    : `<div class="empty">조건에 맞는 매장이 없어요.</div>`;
 }
-$('#list').addEventListener('change', async e=>{
-  if(e.target.dataset.act!=='status') return;
-  const id=e.target.closest('.lead').dataset.id;
-  const j=await api('update',{id, fields:{status:e.target.value}}); if(j.ok){ upsert(j.row); renderList(); toast('상태 변경: '+e.target.value); } else toast(j.error||'변경 실패');
-});
-$('#list').addEventListener('click', async e=>{
-  const b=e.target.closest('[data-act]'); if(!b||b.tagName==='SELECT') return;
-  const id=b.closest('.lead').dataset.id, r=rows.find(x=>x.ID===id); if(!r) return;
-  if(b.dataset.act==='sms'){
-    const mob=extractMobile(r['점주휴대폰']); if(!mob) return toast('이 매장은 휴대폰 번호가 없어요');
-    if(+r['발송횟수']>0 && !confirm(`이미 ${r['발송횟수']}회 보냈어요(${r['최근제안발송']}). 다시 보낼까요?`)) return;
-    api('sent',{id, phone:mob, via:'문자'}).then(x=>x.ok&&(upsert(x.row),renderList()));
-    location.href=smsHref(mob, buildMsg(r['상호']));
-  }
-  if(b.dataset.act==='copy'){ await copy([`상호: ${r['상호']}`,`업종: ${r['업종']}`,`도로명: ${r['도로명주소']}`,r['지번주소']&&`지번: ${r['지번주소']}`,r['매장전화']&&`매장전화: ${r['매장전화']}`,r['점주휴대폰']&&`점주: ${r['점주휴대폰']}`,`담당: ${r['담당자']} · ${r['상태']}`,r['플레이스링크']&&`플레이스: ${r['플레이스링크']}`].filter(Boolean).join('\n')); toast('복사했어요'); }
-  if(b.dataset.act==='call'){ openSheet(r); return; }
-  if(b.dataset.act==='memo'){ const m=prompt('메모', r['메모']||''); if(m===null) return; const j=await api('update',{id, fields:{memo:m}}); if(j.ok){ upsert(j.row); renderList(); } }
-});
 
-/* 통화 기록 시트 */
-function openSheet(r){
-  shId=r.ID; shResult='';
-  $('#shTitle').textContent=r['상호']||r['점주휴대폰']||'통화 기록';
-  $('#shSub').textContent=[r['점주휴대폰'], r['상태'], r['다음연락일']&&('다음 연락 '+r['다음연락일'])].filter(Boolean).join(' · ');
-  renderRes($('#shRes'),''); $('#sh_next').value=r['다음연락일']||''; $('#sh_note').value='';
-  $('#shHist').textContent=r['연락기록']||'아직 기록이 없어요.';
-  $('#sheet').classList.remove('hide');
+/* ===== 영업 집계 ===== */
+let rankPeriod='today';
+function periodStart(p){ return p==='today'?today(): p==='week'?weekStart(): p==='month'?today().slice(0,8)+'01':'0000'; }
+function logDates(r){ return String(r['연락기록']||'').split('\n').map(l=>{ const m=l.match(/^(\d{2})\/(\d{2})/); return m? today().slice(0,4)+'-'+m[1]+'-'+m[2] : ''; }).filter(Boolean); }
+function touched(r, s){ return (r['등록일시']||'').slice(0,10)>=s || (r['최근제안발송']||'').slice(0,10)>=s || logDates(r).some(d=>d>=s && d<=today()); }
+function repLine(m, p){
+  const s=periodStart(p), R=rows.filter(r=>r['담당자']===m);
+  return { m, act:R.filter(r=>touched(r,s)).length, reg:R.filter(r=>(r['등록일시']||'').slice(0,10)>=s).length,
+    sent:R.filter(r=>(r['최근제안발송']||'').slice(0,10)>=s).length, calls:R.filter(r=>logDates(r).some(d=>d>=s && d<=today())).length,
+    talk:R.filter(r=>['상담중','미팅예정'].includes(r['상태'])).length, win:R.filter(r=>r['상태']==='계약').length, due:R.filter(isDue).length, total:R.length };
 }
-$('#shRes').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; shResult = shResult===b.dataset.r?'':b.dataset.r; renderRes($('#shRes'), shResult); if(shResult){ $('#sh_next').value=defaultNext(shResult); if(shResult==='날짜 지정') $('#sh_next').showPicker?.(); } };
-$('#shClose').onclick=()=>$('#sheet').classList.add('hide');
-$('#sheet').onclick=e=>{ if(e.target.id==='sheet') $('#sheet').classList.add('hide'); };
-$('#shSave').onclick=async()=>{
-  const note=$('#sh_note').value.trim(), next=$('#sh_next').value;
-  if(!shResult && !note && !next) return toast('결과를 고르거나 메모를 적어주세요');
-  const b=$('#shSave'); b.disabled=true;
-  try{ const j=await api('contact',{id:shId, result:shResult||'메모', nextDate:next, note}); if(j.ok){ upsert(j.row); renderList(); $('#sheet').classList.add('hide'); toast('기록했어요'+(next?' · 다음 연락 '+next:'')); } else toast(j.error||'저장 실패'); }
-  catch(e){ toast('연결 실패'); } finally{ b.disabled=false; }
-};
+function renderRank(){
+  $('#rankChips').innerHTML=[['today','오늘'],['week','이번 주'],['month','이번 달'],['all','전체']].map(([k,v])=>`<button class="chip ${k===rankPeriod?'on':''}" data-p="${k}">${v}</button>`).join('');
+  const L=MEMBERS.map(m=>repLine(m,rankPeriod)).sort((a,b)=>b.act-a.act||b.sent-a.sent);
+  const max=Math.max(1,...L.map(x=>x.act));
+  $('#rankList').innerHTML=L.map((x,i)=>`<div class="rank ${i===0&&x.act?'r1':''} ${x.m===me.name?'me':''}"><span class="no">${i+1}</span><span class="nm">${esc(x.m)}</span>
+    <div style="flex:1;min-width:0"><div class="bar"><i style="width:${Math.round(x.act/max*100)}%"></i></div><span class="d">등록 ${x.reg} · 발송 ${x.sent} · 통화 ${x.calls}</span></div>
+    <span class="v">${x.act}곳</span></div>`).join('');
+}
+$('#rankChips').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; rankPeriod=b.dataset.p; renderRank(); };
 
-/* 엑셀 */
-function xlsxBlob(){
-  if(!window.XLSX) { toast('엑셀 모듈 로딩 중이에요. 잠시 후 다시 눌러주세요'); return null; }
-  const cols=['등록일시','담당자','상호','업종','도로명주소','지번주소','매장전화','점주휴대폰','상태','다음연락일','연락기록','메모','최근제안발송','발송횟수','플레이스링크'];
-  const data=visibleRows().map(r=>cols.map(c=>c==='발송횟수'?(+r[c]||0):(r[c]||'')));
-  const ws=XLSX.utils.aoa_to_sheet([cols,...data]);
-  ws['!cols']=[16,8,22,10,34,26,15,15,9,12,40,30,16,8,40].map(w=>({wch:w}));
-  ws['!autofilter']={ref:`A1:O${data.length+1}`};
+/* ===== 현황 ===== */
+$('#periodChips').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; period=b.dataset.p; renderStaticChips(); renderStats(); };
+function inPeriod(d){ if(!d) return false; if(period==='all') return true; const s=period==='week'?weekStart():today().slice(0,8)+'01'; return d.slice(0,10)>=s; }
+function renderStats(){
+  if(!me) return;
+  const L=MEMBERS.map(m=>repLine(m,period)).sort((a,b)=>b.act-a.act);
+  const sum=k=>L.reduce((a,x)=>a+x[k],0);
+  $('#repTable').innerHTML=`<tr><th>영업자</th><th>영업</th><th>등록</th><th>발송</th><th>통화</th><th>상담·미팅</th><th>계약</th><th>보유</th></tr>`+
+    L.map(x=>`<tr class="${x.m===me.name?'me':''}"><td>${esc(x.m)}</td><td style="color:var(--sky3)">${x.act}</td><td>${x.reg}</td><td>${x.sent}</td><td>${x.calls}</td><td>${x.talk}</td><td>${x.win}</td><td>${x.total}</td></tr>`).join('')+
+    `<tr><td>합계</td><td>${sum('act')}</td><td>${sum('reg')}</td><td>${sum('sent')}</td><td>${sum('calls')}</td><td>${sum('talk')}</td><td>${sum('win')}</td><td>${sum('total')}</td></tr>`;
+  const all=rows.length||1, sent=rows.filter(r=>+r['발송횟수']>0).length, talk=rows.filter(r=>['상담중','미팅예정','계약'].includes(r['상태'])).length, meet=rows.filter(r=>r['미팅일']||['미팅예정','계약'].includes(r['상태'])).length, win=rows.filter(r=>r['상태']==='계약').length;
+  $('#funnel').innerHTML=[['전체 DB',rows.length],['제안 발송',sent],['상담 진행',talk],['미팅',meet],['계약',win]].map(([k,v])=>`<div class="fr"><span>${k}</span><div class="bar"><i style="width:${Math.max(4,Math.round(v/all*100))}%"></i><b>${v}곳 · ${Math.round(v/all*100)}%</b></div></div>`).join('');
+  const src={}; rows.forEach(r=>{ const k=r['출처']||'기타'; src[k]=src[k]||{n:0,s:0,w:0}; src[k].n++; if(+r['발송횟수']>0) src[k].s++; if(r['상태']==='계약') src[k].w++; });
+  $('#srcTable').innerHTML=`<tr><th>출처</th><th>등록</th><th>발송</th><th>계약</th></tr>`+Object.entries(src).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${v.n}</td><td>${v.s}</td><td>${v.w}</td></tr>`).join('');
+}
+$('#sheetBtn').onclick=()=>{ const u=LS.get('sheetUrl',''); if(u) window.open(u,'_blank'); else toast('시트 주소가 없어요'); };
+
+/* ===== 엑셀 ===== */
+const XCOLS=['등록일시','담당자','출처','상호','업종','도로명주소','지번주소','층수','면적','권리금','월세','월매출','매장전화','점주명','점주휴대폰','상태','다음연락일','연락기록','메모','희망조건','최근제안발송','발송횟수','미팅일','계약일','오픈예정일','수신동의','매물번호','플레이스링크'];
+function xlsxOf(list, who){
+  if(!window.XLSX){ toast('엑셀 모듈 로딩 중이에요. 잠시 후 다시 눌러주세요'); return null; }
+  const data=list.map(r=>XCOLS.map(c=>c==='발송횟수'?(+r[c]||0):(r[c]||'')));
+  const ws=XLSX.utils.aoa_to_sheet([XCOLS,...data]);
+  ws['!cols']=XCOLS.map(c=>({wch:{상호:22,도로명주소:34,지번주소:26,연락기록:40,메모:30,플레이스링크:40,업종:14}[c]||12}));
+  ws['!autofilter']={ref:XLSX.utils.encode_range({s:{r:0,c:0},e:{r:data.length,c:XCOLS.length-1}})};
   const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, '영업DB');
   const out=XLSX.write(wb,{bookType:'xlsx',type:'array'});
-  const d=new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'}).replaceAll('-','');
-  const who=scope==='all'?'전체':me.name;
-  return {blob:new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}), name:`군함맥주_영업DB_${who}_${d}.xlsx`, n:data.length};
+  return {blob:new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}), name:`군함맥주_영업DB_${who}_${today().replaceAll('-','')}.xlsx`, n:data.length};
 }
-$('#xlsxBtn').onclick=()=>{ const x=xlsxBlob(); if(!x) return; const a=document.createElement('a'); a.href=URL.createObjectURL(x.blob); a.download=x.name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000); toast(`엑셀 저장: ${x.n}건`); };
+function download(x){ const a=document.createElement('a'); a.href=URL.createObjectURL(x.blob); a.download=x.name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000); toast(`엑셀 저장: ${x.n}건`); }
+const whoNow=()=>scope==='all'?(repSel==='전체'?'전체':repSel):me.name;
+$('#xlsxBtn').onclick=()=>{ const x=xlsxOf(visibleRows(), whoNow()); if(x) download(x); };
+$('#xlsxAllBtn').onclick=()=>{ const x=xlsxOf(rows,'전체'); if(x) download(x); };
 $('#xlsxShareBtn').onclick=async()=>{
-  const x=xlsxBlob(); if(!x) return;
+  const x=xlsxOf(visibleRows(), whoNow()); if(!x) return;
   const f=new File([x.blob], x.name, {type:x.blob.type});
   try{ if(navigator.canShare && navigator.canShare({files:[f]})){ await navigator.share({files:[f], title:x.name, text:`군함맥주 영업DB ${x.n}건 (${me.name})`}); return; } }catch(e){ if(e.name==='AbortError') return; }
-  $('#xlsxBtn').click(); toast('이 기기는 바로 보내기가 안 돼서 파일로 저장했어요', 2600);
+  download(x); toast('이 기기는 바로 보내기가 안 돼서 파일로 저장했어요', 2600);
 };
-$('#sheetBtn').onclick=()=>{ const u=LS.get('sheetUrl',''); if(u) window.open(u,'_blank'); else toast(DEMO?'테스트 모드에는 구글시트가 없어요':'관리자 계정에서 열 수 있어요'); };
+
+/* 일괄등록 */
+const FORM_COLS=['상호','업종','도로명주소','지번주소','층수','면적','권리금','월세','월매출','매장전화','점주명','점주휴대폰','상태','다음연락일','메모','출처','담당자','링크'];
+$('#formBtn').onclick=()=>{
+  if(!window.XLSX) return toast('잠시 후 다시 눌러주세요');
+  const ws=XLSX.utils.aoa_to_sheet([FORM_COLS,['OO호프 상무점','호프','광주 서구 시청로 00','','1층','66㎡','','','','062-000-0000','김OO','010-0000-0000','신규','','저녁 통화 선호','직접',me.name,'']]);
+  ws['!cols']=FORM_COLS.map(()=>({wch:14}));
+  const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, '일괄등록');
+  download({blob:new Blob([XLSX.write(wb,{bookType:'xlsx',type:'array'})]), name:'군함맥주_일괄등록_양식.xlsx', n:1});
+};
+$('#bulkBtn').onclick=()=>$('#bulkFile').click();
+const HMAP={'상호':'title','매장명':'title','가게명':'title','업종':'category','도로명주소':'road','주소':'road','지번주소':'jibun','층수':'floor','층':'floor','면적':'size','권리금':'premium','월세':'rent','월매출':'sales','매출':'sales',
+  '매장전화':'storePhone','전화':'storePhone','점주명':'ownerName','이름':'ownerName','점주휴대폰':'mobile','휴대폰':'mobile','연락처':'mobile','핸드폰':'mobile','번호':'mobile','상태':'status','다음연락일':'nextDate','메모':'memo','출처':'source','담당자':'owner','링크':'link','플레이스링크':'link','매물번호':'listingNo'};
+$('#bulkFile').onchange=async e=>{
+  const f=e.target.files[0]; e.target.value=''; if(!f) return;
+  if(!window.XLSX) return toast('잠시 후 다시 시도해 주세요');
+  const wb=XLSX.read(await f.arrayBuffer(),{type:'array'});
+  const arr=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:'',raw:false});
+  const leads=arr.map(o=>{ const L={}; Object.entries(o).forEach(([k,v])=>{ const key=HMAP[String(k).trim()]; if(key && v!=='') L[key]=String(v).trim(); });
+    if(L.mobile) L.mobile=extractMobile(L.mobile)||L.mobile; if(L.status && !STATUSES.includes(L.status)) delete L.status; L.source=L.source||'엑셀'; return L; })
+    .filter(L=>(L.title||L.mobile) && !(L.title==='OO호프 상무점' && L.mobile==='010-0000-0000'));
+  if(!leads.length) return toast('읽을 수 있는 행이 없어요. 양식 제목줄을 확인해 주세요', 2800);
+  const localDup=leads.filter(L=>findDup('',L.mobile,L.listingNo)).length;
+  openTool('엑셀 일괄등록', `<div class="small" style="margin-bottom:10px"><b>${esc(f.name)}</b> · ${leads.length}행 읽음${localDup?` · 이미 DB에 있는 번호 <b style="color:var(--red)">${localDup}건</b>(자동 제외)`:''}</div>
+    <div class="hist" style="max-height:260px">${leads.slice(0,50).map(L=>esc([L.title,L.mobile,L.road].filter(Boolean).join(' · '))).join('<br>')}${leads.length>50?'<br>…':''}</div>
+    <button class="btn pri full" id="bulkGo" style="margin-top:12px">${leads.length-localDup}건 등록하기</button>`);
+  $('#bulkGo').onclick=async()=>{ $('#bulkGo').disabled=true; $('#bulkGo').innerHTML='<span class="spin"></span> 등록 중';
+    try{ const j=await api('bulk',{leads}); if(j.ok){ toast(`${j.added}건 등록 · 중복 ${j.dups.length}건 제외`,3000); closeTool(); refresh(); } else toast(j.error||'등록 실패'); }
+    catch(e){ toast('연결 실패'); } finally{ const b=$('#bulkGo'); if(b){ b.disabled=false; b.textContent='다시 시도'; } } };
+};
+
+/* 중복 검사 */
+$('#dupBtn').onclick=()=>{
+  openTool('중복 검사', `<div class="hint">번호나 링크, 상호를 한 줄에 하나씩 붙여넣으세요. 전체 영업자 DB와 비교해요.</div>
+    <textarea id="dupIn" style="min-height:140px" placeholder="010-1234-5678&#10;https://www.jumpoline.com/...webjofrsid=...&#10;OO호프"></textarea>
+    <button class="btn pri full" id="dupGo" style="margin-top:8px">검사하기</button><div class="dupres" id="dupOut" style="margin-top:10px"></div>`);
+  $('#dupGo').onclick=async()=>{
+    await refresh();
+    const lines=$('#dupIn').value.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+    $('#dupOut').innerHTML=lines.map(l=>{
+      const mob=extractMobile(l), pid=(l.match(/place\/(\d{5,})/)||[])[1], q=l.toLowerCase();
+      const hit=rows.find(r=>(mob&&digits(r['점주휴대폰'])===digits(mob)) || (pid&&r['플레이스ID']===pid) || (/webjofrsid=\d+/.test(l)&&r['플레이스링크']&&r['플레이스링크'].includes(l.match(/webjofrsid=\d+/)[0])) || (!mob&&!/^http/.test(l)&&l.length>=2&&(r['상호']||'').toLowerCase().includes(q)));
+      return `<div><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(l)}</span>${hit?`<b style="color:var(--red);flex:0 0 auto">있음 · ${esc(hit['담당자'])} · ${esc(hit['상태'])}</b>`:'<b style="color:var(--green);flex:0 0 auto">새 매장</b>'}</div>`;
+    }).join('') || '<div class="small">입력이 없어요</div>';
+  };
+};
+function openTool(t, html){ $('#toolTitle').textContent=t; $('#toolBody').innerHTML=html; $('#tool').classList.remove('hide'); }
+function closeTool(){ $('#tool').classList.add('hide'); }
+$('#toolClose').onclick=closeTool; $('#tool').onclick=e=>{ if(e.target.id==='tool') closeTool(); };
 
 /* ===== 설정 ===== */
-function loadSettingsUI(){ const s=settings(); $('#s_phone').value=s.phone; $('#s_link').value=s.link; $('#s_tpl').value=s.tpl; $('#openPdf').href=s.link||DEFAULT_LINK; }
-$('#saveSetBtn').onclick=()=>{ saveSettings({phone:fmtMobile($('#s_phone').value), link:$('#s_link').value.trim()||DEFAULT_LINK, tpl:$('#s_tpl').value}); loadSettingsUI(); updateQPreview(); toast('저장했어요'); };
-$('#resetTplBtn').onclick=()=>{ $('#s_tpl').value=DEFAULT_TPL; toast('기본 문구를 불러왔어요. 저장을 눌러주세요'); };
+function loadSettingsUI(){
+  $('#s_phone').value=S.phone||''; $('#s_link').value=S.link||DEFAULT_LINK; $('#openPdf').href=S.link||DEFAULT_LINK;
+  if(editTplIdx>=S.tpls.length) editTplIdx=0;
+  $('#tplChips').innerHTML=S.tpls.map((t,i)=>`<button class="chip ${i===editTplIdx?'on':''}" data-i="${i}">${esc(t.name)}</button>`).join('');
+  $('#t_name').value=S.tpls[editTplIdx]?.name||''; $('#t_body').value=S.tpls[editTplIdx]?.body||'';
+  $('#memberList').textContent='현재 팀원: '+MEMBERS.join(', ');
+}
+async function pushSettings(msg){ LS.set('set_'+me.name,S); const j=await api('saveSettings',{settings:S}); toast(j.ok?(msg||'저장했어요'):(j.error||'저장 실패')); }
+$('#saveMeBtn').onclick=()=>{ S.phone=fmtMobile($('#s_phone').value); S.link=$('#s_link').value.trim()||DEFAULT_LINK; loadSettingsUI(); pushSettings(); };
+$('#tplChips').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; editTplIdx=+b.dataset.i; loadSettingsUI(); };
+$('#saveTplBtn').onclick=()=>{ const n=$('#t_name').value.trim()||'새 멘트'; S.tpls[editTplIdx]={name:n, body:$('#t_body').value}; loadSettingsUI(); pushSettings('멘트를 저장했어요'); };
+$('#newTplBtn').onclick=()=>{ S.tpls.push({name:'새 멘트 '+(S.tpls.length+1), body:'(광고) 군함맥주 가맹 제안\n{호칭}, 군함맥주 가맹팀 {담당자}입니다.\n\n▶ 군함맥주 가맹제안서\n{제안서링크}\n\n'+SIGN+"\n수신거부: '거부' 회신"}); editTplIdx=S.tpls.length-1; loadSettingsUI(); $('#t_name').focus(); };
+$('#delTplBtn').onclick=()=>{ if(S.tpls.length<=1) return toast('멘트는 1개 이상 있어야 해요'); if(!confirm(`'${S.tpls[editTplIdx].name}' 멘트를 삭제할까요?`)) return; S.tpls.splice(editTplIdx,1); editTplIdx=0; loadSettingsUI(); pushSettings('삭제했어요'); };
+$('#resetTplBtn').onclick=()=>{ if(!confirm('멘트를 기본 4종으로 되돌릴까요?')) return; S.tpls=JSON.parse(JSON.stringify(DEFAULT_TPLS)); editTplIdx=0; loadSettingsUI(); pushSettings('기본 멘트로 되돌렸어요'); };
+$('#addMemberBtn').onclick=async()=>{ const n=$('#newMember').value.trim(); if(!n) return; if(!confirm(`'${n}'님을 영업자로 추가할까요?`)) return; const j=await api('addMember',{newName:n}); if(j.ok){ MEMBERS=j.members; LS.set('members',MEMBERS); $('#newMember').value=''; loadSettingsUI(); renderAll(); toast(n+'님 추가 완료'); } else toast(j.error||'추가 실패'); };
 
 /* ===== 시작 ===== */
+MEMBERS=LS.get('members', MEMBERS);
 renderReps();
+fetch(API_URL+'?action=meta').then(r=>r.json()).then(j=>{ if(j.ok&&j.members){ MEMBERS=j.members; LS.set('members',MEMBERS); if(!MEMBERS.includes(pickRep)) pickRep=MEMBERS[0]; renderReps(); } }).catch(()=>{});
 if(me) enter();
 if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js');
 </script>
