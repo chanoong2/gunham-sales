@@ -207,6 +207,41 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
 .live.off i{background:#FFB938;animation:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,245,138,.7)}70%{box-shadow:0 0 0 8px rgba(62,245,138,0)}100%{box-shadow:0 0 0 0 rgba(62,245,138,0)}}
 .side-brand{display:none}
+.xl{height:58px;font-size:17px;border-radius:16px}
+.center{text-align:center}
+.ttl.sec{margin:18px 2px 10px}
+.sum{background:var(--ice);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-nm{font-weight:900;font-size:19px;color:var(--navy)}
+.sum-ad{font-size:13.5px;color:var(--sub);margin-top:4px;line-height:1.45}
+.sum-ex{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sum-ex span{font-size:12.5px;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:9px;padding:4px 8px;color:var(--navy)}
+details.more{margin-top:12px}
+details.more summary{list-style:none;cursor:pointer;font-weight:800;font-size:14px;color:var(--sky3);display:flex;align-items:center;gap:6px;padding:4px 2px}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:'';width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-left:auto;margin-right:6px;transition:.15s}
+details.more[open] summary::after{transform:rotate(225deg)}
+.card.more summary{padding:0}
+.link-btn{display:block;margin:10px auto 0;font-weight:800;font-size:13.5px;color:var(--sky3);text-decoration:underline;text-underline-offset:3px;background:none;text-align:center}
+.link-btn.sm{margin:0;font-size:12.5px}
+.actions1{display:grid;gap:8px;margin-top:14px}
+.listhead{display:flex;justify-content:space-between;align-items:center;margin:0 2px 8px}
+.dbtop{display:grid;gap:8px;margin-bottom:8px}
+.dbtop .seg{margin:0}
+.toolgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.kpis.k3{grid-template-columns:repeat(3,1fr)}
+.dhead{display:flex;gap:10px;align-items:flex-start}
+.dname{font-weight:900;font-size:20px;color:var(--navy);line-height:1.25}
+.callbtn{flex:0 0 52px;height:52px;border-radius:16px;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(22,163,109,.35)}
+.dtabs.d3{grid-template-columns:repeat(3,1fr)}
+.dtabs.d3 button{height:42px;font-size:14px}
+.chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:800;color:var(--navy)}
+.chk input{width:18px;height:18px}
+nav{grid-template-columns:repeat(4,1fr)!important}
+nav .side-only{display:none}
+nav button.plus{color:var(--sky3)}
+nav .pl{width:40px;height:30px;border-radius:12px;background:linear-gradient(180deg,#45B4F2,#1E93DD);color:#fff;display:grid;place-items:center;box-shadow:0 4px 10px #1E93DD55}
+nav .pl svg{width:20px;height:20px}
+.me{cursor:pointer;border:0}
 .ptitle{display:none}
 .lead.flash{animation:flash 1.6s ease}
 @keyframes flash{0%{background:#FFF4D6}100%{background:#fff}}
@@ -233,7 +268,12 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
   #tab-db .dbtop{display:flex;gap:10px}
   header .wm{font-size:110px}
   main{margin-left:236px;max-width:none;padding:24px 32px 48px}
-  #tab-home,#tab-add,#tab-db,#tab-stat,#tab-set{max-width:1240px;margin:0 auto}
+  #tab-home,#tab-add,#tab-db,#tab-rank,#tab-set{max-width:1240px;margin:0 auto}
+  nav{display:flex!important}
+  nav .side-only{display:flex}
+  nav .pl{width:26px;height:26px;border-radius:8px}
+  .narrow{max-width:760px!important}
+  .dbtop{grid-template-columns:360px minmax(0,1fr)}
   .two:not(.hide){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px;align-items:start}
   #tab-home .colB > .ttl:first-child{margin-top:0!important}
   .today-hero{padding:24px}
@@ -253,7 +293,7 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
   .sheet{align-items:center;padding:30px}
   .sheet .panel{border-radius:24px;max-width:760px;max-height:88vh}
   .dtabs{top:-16px}
-  #dFields,#dt-prog .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #dFields,#dt-info details .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
   #toast{bottom:32px;left:calc(50% + 118px)}
   .btn{cursor:pointer}
   .lead:hover{border-color:#9ED6F8;box-shadow:0 8px 20px rgba(30,147,221,.12)}
@@ -284,14 +324,14 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
   <div class="wm anton">GUNHAM BEER</div>
   <div class="hd">
     <div class="logo"><img src="logo.png" alt="군함맥주"></div>
-    <div class="ptitle" id="pTitle">오늘</div>
+    <div class="ptitle" id="pTitle">홈</div>
     <div class="live" id="live" title="다른 영업자 기록이 자동으로 반영돼요"><i></i><span id="liveTxt">실시간</span></div>
-    <div class="me"><i id="meInit">염</i><span id="meName">염찬웅</span></div>
+    <button class="me" data-go="set" title="설정"><i id="meInit">염</i><span id="meName">염찬웅</span></button>
   </div>
 </header>
 
 <main>
-  <!-- 오늘 -->
+  <!-- 홈 -->
   <div id="tab-home" class="two">
    <div class="colA">
     <div class="today-hero">
@@ -300,217 +340,190 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
       <div class="hi" id="hiTxt">염찬웅님, 오늘도 출항!</div>
       <div class="big" id="bigTxt">오늘 연락할 곳 <b>0곳</b></div>
     </div>
-    <div class="kpis" id="kpis"></div>
-    <div class="grid2" style="margin-bottom:12px">
-      <button class="btn pri" data-go="add">링크로 매장 등록</button>
-      <button class="btn beer" id="goQuick">번호로 바로 제안서</button>
-    </div>
-    <div class="card hide" id="quickCard">
-      <div class="ttl">번호만 넣고 바로 제안서<span class="r" id="quickClose">닫기</span></div>
-      <input class="f" id="q_mobile" inputmode="tel" placeholder="010-0000-0000" style="font-size:20px;font-weight:900;text-align:center">
-      <div class="found" id="qFound"></div>
-      <input class="f" id="q_title" placeholder="상호 (선택)" style="margin-top:4px">
-      <button class="btn beer full" id="qSendBtn" style="margin-top:10px">문자로 제안서 보내기</button>
-      <button class="btn line full" id="qPdfBtn" style="margin-top:8px">PDF 파일로 공유 (카톡 등)</button>
-    </div>
-    <div class="card">
-      <div class="ttl">영업자 랭킹<span class="r" data-go="stat">자세히</span></div>
-      <div class="chips" id="rankChips" style="margin-bottom:6px"></div>
-      <div id="rankList"></div>
-      <div class="small" style="margin-top:6px">영업 = 그 기간에 새로 등록했거나 제안서·통화 기록을 남긴 매장 수</div>
-    </div>
+    <div class="kpis k3" id="kpis"></div>
+    <button class="btn pri full xl" data-go="add">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      새 매장 추가</button>
+    <div class="small center" style="margin:8px 0 4px">링크나 전화번호만 붙여넣으면 끝</div>
    </div>
    <div class="colB">
-    <div class="ttl" style="margin:16px 2px 10px">오늘 연락할 곳<span class="r" data-go="db" data-filter="오늘 연락">전체 보기</span></div>
+    <div class="ttl sec">오늘 연락할 곳<span class="r" data-go="db" data-filter="오늘 연락">전체</span></div>
     <div id="dueList"></div>
-    <div class="ttl" style="margin:16px 2px 10px">최근 등록<span class="r" data-go="db">DB 보기</span></div>
+    <div class="ttl sec">최근 추가한 매장<span class="r" data-go="db">전체</span></div>
     <div id="recentList"></div>
    </div>
   </div>
 
-  <!-- 등록 -->
-  <div id="tab-add" class="hide two">
-   <div class="colA">
+  <!-- 매장 추가 -->
+  <div id="tab-add" class="hide narrow">
     <div class="card">
-      <div class="ttl"><span class="n">1</span>링크 붙여넣기</div>
-      <div class="hint"><b>네이버 지도</b> 공유 링크나 <b>점포라인</b> 매물 링크를 넣으면 자동으로 채워요. 상호명만 넣어도 돼요.</div>
-      <textarea id="paste" placeholder="https://naver.me/xxxx&#10;https://www.jumpoline.com/_jumpo/jumpo_view.asp?webjofrsid=..."></textarea>
+      <div class="ttl"><span class="n">1</span>링크 또는 전화번호 붙여넣기</div>
+      <textarea id="paste" placeholder="네이버 지도 · 점포라인 링크&#10;또는 점주 전화번호 / 상호명"></textarea>
       <div class="row" style="margin-top:8px">
         <button class="btn line" id="clipBtn" style="flex:0 0 auto">붙여넣기</button>
-        <button class="btn pri" id="readBtn" style="flex:1">정보 불러오기</button>
+        <button class="btn pri" id="readBtn" style="flex:1">불러오기</button>
       </div>
     </div>
 
     <div class="card hide" id="resultCard">
       <div class="badges" id="resBadges"></div>
-      <div class="fields">
-        <div class="fld"><span class="k">상호</span><input id="f_title"><button class="cp" data-cp="f_title">복사</button></div>
-        <div class="fld"><span class="k">업종</span><input id="f_category"><button class="cp" data-cp="f_category">복사</button></div>
-        <div class="fld"><span class="k">도로명</span><input id="f_road"><button class="cp" data-cp="f_road">복사</button></div>
-        <div class="fld"><span class="k">지번</span><input id="f_jibun"><button class="cp" data-cp="f_jibun">복사</button></div>
-        <div class="fld"><span class="k">매장전화</span><input id="f_storePhone" inputmode="tel"><button class="cp" data-cp="f_storePhone">복사</button></div>
-        <div class="fld"><span class="k">링크</span><input id="f_link"><button class="cp" data-cp="f_link">복사</button></div>
+      <div class="sum">
+        <div class="sum-nm" id="sumTitle"></div>
+        <div class="sum-ad" id="sumAddr"></div>
+        <div class="sum-ex" id="sumExtra"></div>
       </div>
-      <div class="fgrid" id="extraFields">
-        <div class="fld"><span class="k">층수</span><input id="f_floor"></div>
-        <div class="fld"><span class="k">면적</span><input id="f_size"></div>
-        <div class="fld"><span class="k">권리금</span><input id="f_premium"></div>
-        <div class="fld"><span class="k">월세</span><input id="f_rent"></div>
-        <div class="fld"><span class="k">월매출</span><input id="f_sales"></div>
-        <div class="fld"><span class="k">점주</span><input id="f_ownerName"></div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn ghost" id="copyAllBtn" style="flex:1">정보 전체 복사</button>
+        <button class="btn line" id="editToggle" style="flex:0 0 auto">고치기·항목 복사</button>
       </div>
-      <button class="btn ghost full" id="copyAllBtn" style="margin-top:10px">전체 정보 한 번에 복사</button>
+      <div id="editBox" class="hide" style="margin-top:10px">
+        <div class="fields">
+          <div class="fld"><span class="k">상호</span><input id="f_title"><button class="cp" data-cp="f_title">복사</button></div>
+          <div class="fld"><span class="k">업종</span><input id="f_category"><button class="cp" data-cp="f_category">복사</button></div>
+          <div class="fld"><span class="k">도로명</span><input id="f_road"><button class="cp" data-cp="f_road">복사</button></div>
+          <div class="fld"><span class="k">지번</span><input id="f_jibun"><button class="cp" data-cp="f_jibun">복사</button></div>
+          <div class="fld"><span class="k">매장전화</span><input id="f_storePhone" inputmode="tel"><button class="cp" data-cp="f_storePhone">복사</button></div>
+          <div class="fld"><span class="k">링크</span><input id="f_link"><button class="cp" data-cp="f_link">복사</button></div>
+        </div>
+        <div class="fgrid" id="extraFields">
+          <div class="fld"><span class="k">층수</span><input id="f_floor"></div>
+          <div class="fld"><span class="k">면적</span><input id="f_size"></div>
+          <div class="fld"><span class="k">권리금</span><input id="f_premium"></div>
+          <div class="fld"><span class="k">월세</span><input id="f_rent"></div>
+          <div class="fld"><span class="k">월매출</span><input id="f_sales"></div>
+          <div class="fld"><span class="k">점주</span><input id="f_ownerName"></div>
+        </div>
+      </div>
       <div class="dup-msg hide" id="dupMsg"></div>
     </div>
 
-   </div>
-   <div class="colB">
     <div class="card">
-      <div class="ttl"><span class="n">2</span>점주 휴대폰 · 통화 결과</div>
+      <div class="ttl"><span class="n">2</span>점주 휴대폰</div>
       <div class="mobile-box">
         <input class="f" id="f_mobile" inputmode="tel" placeholder="010-0000-0000" autocomplete="off">
-        <div class="found" id="mobileFound">문장째 붙여넣어도 010 번호만 뽑아요</div>
+        <div class="found" id="mobileFound"></div>
       </div>
-      <div class="lbl2">통화 결과 <span style="font-weight:600;color:var(--sub)">(선택)</span></div>
-      <div class="res" id="addRes"></div>
-      <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:800">다음 연락일</span><input class="f" type="date" id="f_next"></div>
-      <div class="lbl2">상태</div>
-      <div class="chips" id="addStatus"></div>
-      <div class="lbl2">메모 · 희망조건</div>
-      <input class="f" id="f_memo" placeholder="예) 양도 고민 중, 저녁 통화 선호">
-      <div class="actions">
-        <button class="btn beer wide" id="sendSmsBtn">
+      <details class="more" id="moreAdd">
+        <summary>통화 결과·메모 남기기 (선택)</summary>
+        <div class="res" id="addRes" style="margin-top:10px"></div>
+        <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:800">다음 연락일</span><input class="f" type="date" id="f_next"></div>
+        <input class="f" id="f_memo" placeholder="메모 (예: 저녁 통화 선호)" style="margin-top:8px">
+        <div class="chips hide" id="addStatus"></div>
+      </details>
+      <div class="actions1">
+        <button class="btn beer xl" id="sendSmsBtn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          문자로 가맹제안서 보내기</button>
-        <button class="btn navy" id="sharePdfBtn">PDF 파일 공유</button>
-        <button class="btn line" id="saveBtn">DB 저장만</button>
+          저장하고 제안서 보내기</button>
+        <button class="btn line" id="saveBtn">저장만 하기</button>
       </div>
-      <button class="btn ghost full sm" id="resetBtn" style="margin-top:8px">새 매장 입력 (초기화)</button>
+      <button class="link-btn" id="resetBtn">새로 입력하기</button>
     </div>
-
-    <div class="card">
-      <div class="ttl">한 번에 여러 곳</div>
-      <div class="grid2">
-        <button class="btn line" id="bulkBtn">엑셀로 일괄등록</button>
-        <button class="btn line" id="dupBtn">중복 검사</button>
-      </div>
-      <button class="btn ghost full sm" id="formBtn" style="margin-top:8px">일괄등록 빈 양식 받기</button>
-      <input type="file" id="bulkFile" accept=".xlsx,.xls,.csv" class="hide">
-    </div>
-   </div>
   </div>
 
-  <!-- DB -->
+  <!-- 매장 목록 -->
   <div id="tab-db" class="hide">
-    <div class="seg"><button data-scope="mine" class="on">내 담당</button><button data-scope="all">전체 영업자</button></div>
+    <div class="dbtop">
+      <div class="seg"><button data-scope="mine" class="on">내 매장</button><button data-scope="all">전체 영업자</button></div>
+      <input class="f" id="q" placeholder="상호·주소·번호 검색">
+    </div>
     <div class="chips hide" id="repFilter" style="margin-bottom:8px"></div>
-    <div class="row" style="margin-bottom:8px">
-      <input class="f" id="q" placeholder="상호·주소·번호·메모 검색" style="flex:1">
-      <select class="f" id="sortSel" style="flex:0 0 112px"><option value="recent">최근 등록</option><option value="next">다음 연락순</option><option value="upd">최근 수정</option></select>
-    </div>
     <div class="chips" id="filterStatus" style="margin-bottom:10px"></div>
-    <div class="row xrow" style="margin-bottom:12px">
-      <button class="btn pri" id="xlsxBtn" style="flex:1">엑셀 받기</button>
-      <button class="btn line" id="xlsxShareBtn" style="flex:1">엑셀 보내기</button>
-    </div>
-    <div class="small" id="listCount" style="margin:0 2px 8px"></div>
+    <div class="listhead"><span class="small" id="listCount"></span><button class="link-btn sm" id="xlsxBtn">엑셀로 받기</button></div>
     <div id="list"></div>
   </div>
 
-  <!-- 현황 -->
-  <div id="tab-stat" class="hide statgrid">
-    <div class="chips span" id="periodChips" style="margin-bottom:12px"></div>
-    <div class="card span">
-      <div class="ttl">영업자별 현황</div>
+  <!-- 순위 -->
+  <div id="tab-rank" class="hide narrow">
+    <div class="card">
+      <div class="ttl">영업자 순위</div>
+      <div class="chips" id="rankChips" style="margin-bottom:6px"></div>
+      <div id="rankList"></div>
+      <div class="small" style="margin-top:8px">영업 = 그 기간에 매장을 추가했거나, 제안서를 보냈거나, 통화 기록을 남긴 곳 수</div>
+    </div>
+    <details class="more card">
+      <summary>자세한 현황 보기</summary>
+      <div class="chips" id="periodChips" style="margin:12px 0"></div>
       <table class="tbl" id="repTable"></table>
-    </div>
-    <div class="card">
-      <div class="ttl">전체 진행 단계</div>
+      <div class="lbl2">진행 단계</div>
       <div class="funnel" id="funnel"></div>
-    </div>
-    <div class="card">
-      <div class="ttl">출처별</div>
+      <div class="lbl2">출처별</div>
       <table class="tbl" id="srcTable"></table>
-    </div>
-    <div class="grid2 span">
-      <button class="btn pri" id="xlsxAllBtn">전체 DB 엑셀</button>
-      <button class="btn line" id="sheetBtn">구글시트 열기</button>
-    </div>
+    </details>
   </div>
 
-  <!-- 설정 -->
-  <div id="tab-set" class="hide setgrid">
+  <!-- 설정·도구 -->
+  <div id="tab-set" class="hide narrow">
     <div class="card">
       <div class="ttl">내 정보</div>
-      <div class="lbl2" style="margin-top:0">내 휴대폰 (문자 서명에 들어가요)</div>
-      <input class="f" id="s_phone" inputmode="tel" placeholder="010-0000-0000">
-      <div class="lbl2">제안서 링크</div>
-      <input class="f" id="s_link">
-      <div class="row" style="margin-top:8px"><a class="btn line" id="openPdf" target="_blank" style="flex:1">제안서 열어보기</a><button class="btn pri" id="saveMeBtn" style="flex:1">저장</button></div>
+      <div class="lbl2" style="margin-top:0">내 휴대폰 (문자 끝에 들어가요)</div>
+      <div class="row"><input class="f" id="s_phone" inputmode="tel" placeholder="010-0000-0000" style="flex:1"><button class="btn pri" id="saveMeBtn">저장</button></div>
+      <input class="f hide" id="s_link">
+      <a class="link-btn" id="openPdf" target="_blank">가맹제안서 열어보기</a>
     </div>
     <div class="card">
-      <div class="ttl">문자 멘트<span class="r" id="newTplBtn">+ 새 멘트</span></div>
-      <div class="chips" id="tplChips" style="margin-bottom:10px"></div>
-      <input class="f" id="t_name" placeholder="멘트 이름">
-      <textarea id="t_body" style="min-height:280px;font-size:13.5px;margin-top:8px"></textarea>
-      <div class="small" style="margin-top:6px">치환: {호칭} {상호} {지역} {담당자} {담당자번호} {제안서링크} {미팅일}</div>
-      <div class="row" style="margin-top:10px">
-        <button class="btn pri" id="saveTplBtn" style="flex:1">멘트 저장</button>
-        <button class="btn red" id="delTplBtn">삭제</button>
-        <button class="btn line" id="resetTplBtn">기본값</button>
+      <div class="ttl">도구</div>
+      <div class="toolgrid">
+        <button class="btn line" id="xlsxAllBtn">전체 DB 엑셀</button>
+        <button class="btn line" id="sheetBtn">구글시트 열기</button>
+        <button class="btn line" id="bulkBtn">엑셀로 한 번에 추가</button>
+        <button class="btn line" id="dupBtn">중복 검사</button>
       </div>
-      <div class="small" style="margin-top:10px">통화에서 자료 받기에 동의한 분께만 보내는 안내 문자예요. 동의 없이 처음 보내는 홍보 문자는 (광고) 표시와 수신거부 안내가 법으로 필요하니 이 앱으로 보내지 마세요.</div>
+      <button class="link-btn" id="formBtn">한 번에 추가용 빈 양식 받기</button>
+      <input type="file" id="bulkFile" accept=".xlsx,.xls,.csv" class="hide">
     </div>
-    <div class="card">
-      <div class="ttl">팀원</div>
-      <div class="small" id="memberList" style="margin-bottom:8px"></div>
+    <details class="more card">
+      <summary>문자 멘트 고치기</summary>
+      <div class="chips" id="tplChips" style="margin:12px 0 10px"></div>
+      <input class="f" id="t_name" placeholder="멘트 이름">
+      <textarea id="t_body" style="min-height:260px;font-size:13.5px;margin-top:8px"></textarea>
+      <div class="small" style="margin-top:6px">자동으로 바뀌는 글자: {호칭} {상호} {지역} {담당자} {담당자번호} {제안서링크} {미팅일}</div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn pri" id="saveTplBtn" style="flex:1">저장</button>
+        <button class="btn line" id="newTplBtn">새 멘트</button>
+        <button class="btn red" id="delTplBtn">삭제</button>
+      </div>
+      <button class="link-btn" id="resetTplBtn">기본 멘트로 되돌리기</button>
+    </details>
+    <details class="more card">
+      <summary>팀원 · 앱 설치</summary>
+      <div class="small" id="memberList" style="margin:12px 0 8px"></div>
       <div class="row"><input class="f" id="newMember" placeholder="새 영업자 이름" style="flex:1"><button class="btn pri" id="addMemberBtn">추가</button></div>
-    </div>
-    <div class="card">
-      <div class="ttl">휴대폰에 앱으로 설치</div>
-      <div class="small">아이폰: Safari 하단 공유 버튼 → <b>홈 화면에 추가</b><br>갤럭시: Chrome 오른쪽 위 ⋮ → <b>홈 화면에 추가</b> (또는 앱 설치)</div>
-    </div>
-    <div><button class="btn line full" id="logoutBtn">로그아웃</button>
-    <div class="small" style="margin-top:10px;text-align:center">군함맥주 가맹문의 1577-0832</div></div>
+      <div class="small" style="margin-top:12px">아이폰: Safari 공유 버튼 → <b>홈 화면에 추가</b><br>갤럭시: Chrome ⋮ → <b>홈 화면에 추가</b></div>
+    </details>
+    <button class="btn line full" id="logoutBtn">로그아웃</button>
+    <div class="small center" style="margin-top:10px">군함맥주 가맹문의 1577-0832</div>
   </div>
 </main>
 
 <nav>
   <div class="side-brand"><img src="logo.png" alt="군함맥주"><span>공식 가맹 영업앱</span></div>
-  <button data-tab="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>오늘<span class="dot hide" id="dueDot">0</span></button>
-  <button data-tab="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><path d="M12 7v5M9.5 9.5h5"/></svg>등록</button>
-  <button data-tab="db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>영업 DB</button>
-  <button data-tab="stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>현황</button>
-  <button data-tab="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>설정</button>
+  <button data-tab="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>홈<span class="dot hide" id="dueDot">0</span></button>
+  <button data-tab="add" class="plus"><span class="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>매장 추가</button>
+  <button data-tab="db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>매장 목록</button>
+  <button data-tab="rank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>순위</button>
+  <button data-tab="set" class="side-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.7 4.4V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>설정·도구</button>
 </nav>
 </section>
 
 <!-- 상세 시트 -->
 <div class="sheet hide" id="detail"><div class="panel">
   <div class="grab"></div>
-  <div class="badges" id="dBadges" style="margin-bottom:6px"></div>
-  <div style="font-weight:900;font-size:19px;color:var(--navy)" id="dTitle"></div>
-  <div class="small" id="dSub" style="margin-top:2px"></div>
-  <div class="dtabs"><button data-dt="info" class="on">정보</button><button data-dt="call">통화</button><button data-dt="msg">문자</button><button data-dt="prog">진행</button></div>
-
-  <div id="dt-info">
-    <div class="fields" id="dFields"></div>
-    <div class="lbl2">상태</div>
-    <div class="chips" id="dStatus"></div>
-    <div class="grid2" style="margin-top:12px">
-      <button class="btn pri" id="dSave">정보 저장</button>
-      <button class="btn line" id="dCopy">정보 복사</button>
-      <a class="btn ghost" id="dCall" href="#">전화 걸기</a>
-      <a class="btn ghost" id="dLink" target="_blank" href="#">원본 링크</a>
+  <div class="dhead">
+    <div style="min-width:0;flex:1">
+      <div class="badges" id="dBadges" style="margin-bottom:6px"></div>
+      <div class="dname" id="dTitle"></div>
+      <div class="small" id="dSub" style="margin-top:2px"></div>
     </div>
+    <a class="callbtn" id="dCall" href="#" title="전화 걸기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a>
   </div>
+  <div class="dtabs d3"><button data-dt="call" class="on">통화 기록</button><button data-dt="msg">제안서 보내기</button><button data-dt="info">매장 정보</button></div>
 
-  <div id="dt-call" class="hide">
+  <div id="dt-call">
     <div class="res" id="dRes"></div>
     <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:800">다음 연락일</span><input class="f" type="date" id="d_next"></div>
     <input class="f" id="d_note" placeholder="한 줄 메모 (예: 저녁 7시 이후 통화 가능)" style="margin-top:8px">
-    <label class="small" style="display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:700"><input type="checkbox" id="d_consent"> 통화 중 자료(문자) 받기 동의 받음</label>
-    <button class="btn pri full" id="dLogSave" style="margin-top:10px">통화 기록 저장</button>
+    <label class="small chk"><input type="checkbox" id="d_consent"> 통화에서 제안서 받기로 하셨어요</label>
+    <button class="btn pri full" id="dLogSave" style="margin-top:10px">기록 저장</button>
     <div class="lbl2">지난 기록</div>
     <div class="hist" id="dHist"></div>
   </div>
@@ -519,28 +532,39 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
     <div class="chips" id="dTpl" style="margin-bottom:10px"></div>
     <textarea class="preview" id="dPreview"></textarea>
     <div class="consent hide" id="dConsentBox" style="margin-top:10px">
-      <b>자료 받기 동의 확인</b><br>통화에서 제안서 받아보시겠다고 하신 분께만 보내요. 동의 받았다면 체크 후 보내세요. (한 번 체크하면 기록돼요)
-      <label style="display:flex;gap:8px;align-items:center;margin-top:8px;font-weight:800"><input type="checkbox" id="dConsentChk"> 통화로 자료 받기 동의 받았어요</label>
+      <label class="chk" style="margin:0"><input type="checkbox" id="dConsentChk"> 통화에서 제안서 받기로 하셨어요</label>
     </div>
-    <button class="btn beer full" id="dSms" style="margin-top:10px">문자 앱으로 보내기</button>
-    <div class="grid2" style="margin-top:8px">
-      <button class="btn navy" id="dPdf">PDF 파일 공유</button>
-      <button class="btn line" id="dMsgCopy">문구 복사</button>
+    <button class="btn beer full xl" id="dSms" style="margin-top:10px">문자 앱으로 보내기</button>
+    <div class="row" style="margin-top:8px">
+      <button class="btn line" id="dPdf" style="flex:1">PDF 파일 공유</button>
+      <button class="btn line" id="dMsgCopy" style="flex:1">문구 복사</button>
     </div>
   </div>
 
-  <div id="dt-prog" class="hide">
-    <div class="fields">
-      <div class="fld"><span class="k">미팅일</span><input type="date" id="p_meet"></div>
-      <div class="fld"><span class="k">계약일</span><input type="date" id="p_contract"></div>
-      <div class="fld"><span class="k">오픈예정</span><input type="date" id="p_open"></div>
-      <div class="fld"><span class="k">수신동의</span><input id="p_consent" placeholder="미확인 / 통화동의 11-02"></div>
+  <div id="dt-info" class="hide">
+    <div class="lbl2" style="margin-top:0">상태</div>
+    <div class="chips" id="dStatus"></div>
+    <div class="fields" id="dFields" style="margin-top:12px"></div>
+    <details class="more" style="margin-top:10px">
+      <summary>미팅·계약 일정</summary>
+      <div class="fields" style="margin-top:10px">
+        <div class="fld"><span class="k">미팅일</span><input type="date" id="p_meet"></div>
+        <div class="fld"><span class="k">계약일</span><input type="date" id="p_contract"></div>
+        <div class="fld"><span class="k">오픈예정</span><input type="date" id="p_open"></div>
+        <div class="fld"><span class="k">자료동의</span><input id="p_consent" placeholder="미확인 / 통화동의 11-02"></div>
+      </div>
+    </details>
+    <div class="row" style="margin-top:12px">
+      <button class="btn pri" id="dSave" style="flex:1">저장</button>
+      <button class="btn line" id="dCopy">전체 복사</button>
+      <a class="btn line" id="dLink" target="_blank" href="#">원본</a>
     </div>
-    <button class="btn pri full" id="pSave" style="margin-top:10px">진행 정보 저장</button>
-    <div class="lbl2">담당자 변경</div>
-    <div class="row"><select class="f" id="pTo" style="flex:1"></select><button class="btn line" id="pTransfer">넘기기</button></div>
-    <button class="btn ghost full" id="pTake" style="margin-top:8px">내 담당으로 가져오기</button>
-    <button class="btn red full" id="pDel" style="margin-top:16px">이 매장 삭제 (내 담당만)</button>
+    <details class="more" style="margin-top:12px">
+      <summary>담당자 변경 · 삭제</summary>
+      <div class="row" style="margin-top:10px"><select class="f" id="pTo" style="flex:1"></select><button class="btn line" id="pTransfer">넘기기</button></div>
+      <button class="btn ghost full" id="pTake" style="margin-top:8px">내 담당으로 가져오기</button>
+      <button class="btn red full" id="pDel" style="margin-top:8px">이 매장 삭제 (내 담당만)</button>
+    </details>
   </div>
   <button class="btn line full" id="dClose" style="margin-top:14px">닫기</button>
 </div></div>
@@ -710,13 +734,13 @@ async function refresh(silent){
 }
 
 /* ===== 탭 ===== */
-const TITLES={home:'오늘',add:'매장 등록',db:'영업 DB',stat:'영업 현황',set:'설정'};
+const TITLES={home:'홈',add:'매장 추가',db:'매장 목록',rank:'영업자 순위',set:'설정·도구'};
 function go(tab, filter){
   $('#pTitle').textContent=TITLES[tab]||'';
   $$('nav button').forEach(x=>x.classList.toggle('on',x.dataset.tab===tab));
-  ['home','add','db','stat','set'].forEach(t=>$('#tab-'+t).classList.toggle('hide', t!==tab));
+  ['home','add','db','rank','set'].forEach(t=>$('#tab-'+t).classList.toggle('hide', t!==tab));
   if(filter){ filterSt=filter; renderStaticChips(); renderList(); }
-  if(tab==='db'||tab==='home'||tab==='stat') refresh();
+  if(tab==='db'||tab==='home'||tab==='rank') refresh();
   scrollTo({top:0});
 }
 $$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.tab));
@@ -732,16 +756,16 @@ function renderHome(){
   const ws=weekStart();
   $('#hiTxt').textContent=`${me.name}님, 오늘도 출항!`;
   $('#bigTxt').innerHTML=`오늘 연락할 곳 <b>${due.length}곳</b>`;
-  $('#kpis').innerHTML=[['오늘 연락',due.length,due.length?'hot':''],['밀린 연락',late.length,late.length?'hot':''],['이번 주 등록',m.filter(r=>(r['등록일시']||'').slice(0,10)>=ws).length],['이번 주 발송',m.filter(r=>(r['최근제안발송']||'').slice(0,10)>=ws).length]]
+  const rk=MEMBERS.map(x=>repLine(x,'week')).sort((a,b)=>b.act-a.act); const myRank=rk.findIndex(x=>x.m===me.name)+1;
+  $('#kpis').innerHTML=[['오늘 연락',due.length,due.length?'hot':''],['이번 주 영업',repLine(me.name,'week').act+'곳'],['이번 주 순위',myRank?myRank+'위':'-']]
     .map(([k,v,c])=>`<div class="kpi ${c||''}"><b>${v}</b><span>${k}</span></div>`).join('');
   renderRank();
   const dot=$('#dueDot'); dot.textContent=due.length; dot.classList.toggle('hide',!due.length);
   $('#dueList').innerHTML = due.length ? due.sort((a,b)=>a['다음연락일'].localeCompare(b['다음연락일'])).slice(0,30).map(r=>card(r,true)).join('') : `<div class="empty">오늘 연락할 곳이 없어요. 새 매장을 등록해 보세요!</div>`;
-  const rec=m.slice(0,5);
+  const rec=m.slice(0,3);
   $('#recentList').innerHTML = rec.length ? rec.map(r=>card(r,false)).join('') : `<div class="empty">아직 등록한 매장이 없어요.</div>`;
 }
-$('#goQuick').onclick=()=>{ $('#quickCard').classList.toggle('hide'); $('#q_mobile').focus(); };
-$('#quickClose').onclick=()=>$('#quickCard').classList.add('hide');
+
 
 /* ===== 카드 ===== */
 function srcBadge(r){ return r['출처']==='점포라인'?'<span class="badge jp">점포라인</span>':r['출처']==='네이버'?'<span class="badge n">N</span>':''; }
@@ -767,7 +791,7 @@ function card(r, compact){
 document.addEventListener('click', e=>{
   const c=e.target.closest('.lead'); if(!c) return;
   const q=e.target.closest('[data-quick]');
-  openDetail(c.dataset.id, q?q.dataset.quick:'info');
+  openDetail(c.dataset.id, q?q.dataset.quick:'call');
 });
 
 /* ===== 1. 링크 읽기 ===== */
@@ -794,6 +818,9 @@ function showPlace(p){
   $('#resBadges').innerHTML=(jp?'<span class="badge jp">점포라인</span>':'<span class="badge n">N 플레이스</span>')+
     `<span class="badge">${esc(p.category||'업종 미확인')}</span>`+(p.listingNo?`<span class="badge">매물 ${esc(p.listingNo)}</span>`:'')+(p.reviews?`<span class="badge">${esc(p.reviews)}</span>`:'')+
     (jp?'<span class="badge orange">자료 동의 미확인</span>':'');
+  $('#sumTitle').textContent=p.title||'(상호 없음)';
+  $('#sumAddr').textContent=[p.road, p.storePhone].filter(Boolean).join(' · ');
+  $('#sumExtra').innerHTML=[p.floor, p.size, p.premium&&'권리금 '+p.premium, p.rent&&'월세 '+p.rent, p.sales&&p.sales!=='0만'&&'매출 '+p.sales].filter(Boolean).map(x=>'<span>'+esc(x)+'</span>').join('');
   $('#resultCard').classList.remove('hide');
   checkDup();
 }
@@ -801,6 +828,7 @@ async function readPlace(){
   const q=$('#paste').value.trim();
   if(!q) return toast('링크를 붙여넣어 주세요');
   const btn=$('#readBtn'); btn.disabled=true; btn.innerHTML='<span class="spin"></span> 불러오는 중';
+  if(!/https?:\/\//.test(q) && extractMobile(q) && digits(q).length<=13){ const m=extractMobile(q); $('#f_mobile').value=m; $('#mobileFound').textContent='✓ '+m; $('#paste').value=''; btn.disabled=false; btn.textContent='불러오기'; checkDup(); toast('번호를 넣었어요. 저장하거나 바로 보내세요'); $('#f_mobile').scrollIntoView({block:'center',behavior:'smooth'}); return; }
   const local=/jumpoline/i.test(q)?{}:parseShareText(q);
   try{
     const j=await api('place',{q});
@@ -808,7 +836,7 @@ async function readPlace(){
     else if(local.title){ showPlace(Object.assign({source:'네이버'},local)); toast('공유 문구에서 읽었어요'); }
     else toast(j.error||'정보를 찾지 못했어요', 2600);
   }catch(e){ if(local.title){ showPlace(local); toast('공유 문구에서 읽었어요'); } else toast('연결 실패'); }
-  finally{ btn.disabled=false; btn.textContent='정보 불러오기'; }
+  finally{ btn.disabled=false; btn.textContent='불러오기'; }
 }
 $('#readBtn').onclick=readPlace;
 $('#paste').addEventListener('paste', ()=>setTimeout(()=>{ if(/naver|jumpoline|^\[?네이버/.test($('#paste').value)) readPlace(); }, 60));
@@ -822,6 +850,7 @@ function infoText(o){
   return [`상호: ${o.title||''}`, o.category&&`업종: ${o.category}`, o.road&&`도로명: ${o.road}`, o.jibun&&`지번: ${o.jibun}`, o.floor&&`층수: ${o.floor}`, o.size&&`면적: ${o.size}`,
     o.premium&&`권리금: ${o.premium}`, o.rent&&`월세: ${o.rent}`, o.sales&&`월매출: ${o.sales}`, o.storePhone&&`매장전화: ${o.storePhone}`, o.mobile&&`점주: ${o.ownerName?o.ownerName+' ':''}${o.mobile}`, o.link&&`링크: ${o.link}`].filter(Boolean).join('\n');
 }
+$('#editToggle').onclick=()=>$('#editBox').classList.toggle('hide');
 $('#copyAllBtn').onclick=async()=>{ await copy(infoText(collectLead())); toast('전체 정보를 복사했어요'); };
 
 /* ===== 2. 번호/결과 ===== */
@@ -834,14 +863,17 @@ function bindMobile(inp, found, after){
   });
 }
 bindMobile($('#f_mobile'), $('#mobileFound'), checkDup);
-bindMobile($('#q_mobile'), $('#qFound'));
+
 function renderRes(el, sel){ el.innerHTML=RESULTS.map(r=>`<button data-r="${r}" class="${r===sel?'on':''}">${r}</button>`).join(''); }
+const FILTERS=['전체','오늘 연락','진행 중','계약','종료'];
+const GROUP={'진행 중':['신규','부재중','재연락','제안발송','상담중','미팅예정'],'계약':['계약'],'종료':['보류','거절']};
+function inFilter(r,s){ return s==='전체'||(s==='오늘 연락'?isDue(r):(GROUP[s]||[s]).includes(r['상태']||'신규')); }
 function renderStaticChips(){
   $('#addStatus').innerHTML=STATUSES.map(s=>`<button class="chip ${s===addStatus?'on':''}" data-s="${s}">${s}</button>`).join('');
   renderRes($('#addRes'), addResult);
   const base=rows.filter(r=>scope==='all'?(repSel==='전체'||r['담당자']===repSel):r['담당자']===me?.name);
-  const cnt=s=>s==='전체'?base.length:s==='오늘 연락'?base.filter(isDue).length:base.filter(r=>r['상태']===s).length;
-  $('#filterStatus').innerHTML=['전체','오늘 연락',...STATUSES].map(s=>`<button class="chip ${s===filterSt?'on':''}" data-s="${s}">${s}<span class="c">${cnt(s)}</span></button>`).join('');
+  const cnt=s=>base.filter(r=>inFilter(r,s)).length;
+  $('#filterStatus').innerHTML=FILTERS.map(s=>`<button class="chip ${s===filterSt?'on':''}" data-s="${s}">${s}<span class="c">${cnt(s)}</span></button>`).join('');
   $('#repFilter').innerHTML=['전체',...MEMBERS].map(s=>`<button class="chip ${s===repSel?'on':''}" data-r="${esc(s)}">${esc(s)}</button>`).join('');
   $('#periodChips').innerHTML=[['today','오늘'],['week','이번 주'],['month','이번 달'],['all','전체 기간']].map(([k,v])=>`<button class="chip ${k===period?'on':''}" data-p="${k}">${v}</button>`).join('');
 }
@@ -891,7 +923,7 @@ $('#saveBtn').onclick=async()=>{
   try{ const j=await saveLead(lead); if(j.ok) toast('영업 DB에 저장했어요'); else if(!j.cancel) toast(j.error||'저장 실패'); }
   catch(e){ toast('연결 실패'); } finally{ b.disabled=false; }
 };
-$('#resetBtn').onclick=()=>{ current=null; $('#paste').value=''; PF.forEach(k=>setF(k,'')); ['mobile','memo','next'].forEach(k=>setF(k,'')); $('#mobileFound').textContent=''; $('#resultCard').classList.add('hide'); addStatus='신규'; addResult=''; renderStaticChips(); scrollTo({top:0,behavior:'smooth'}); };
+$('#resetBtn').onclick=()=>{ current=null; $('#editBox').classList.add('hide'); $('#moreAdd').open=false; $('#paste').value=''; PF.forEach(k=>setF(k,'')); ['mobile','memo','next'].forEach(k=>setF(k,'')); $('#mobileFound').textContent=''; $('#resultCard').classList.add('hide'); addStatus='신규'; addResult=''; renderStaticChips(); scrollTo({top:0,behavior:'smooth'}); };
 $('#sendSmsBtn').onclick=async()=>{
   const lead=collectLead();
   if(!extractMobile(lead.mobile)) return toast('010 휴대폰 번호를 넣어주세요');
@@ -899,22 +931,9 @@ $('#sendSmsBtn').onclick=async()=>{
   try{ const j=await saveLead(lead); if(j.ok){ openDetail(current.id,'msg'); } else if(!j.cancel) toast(j.error||'저장 실패'); }
   catch(e){ toast('연결 실패'); } finally{ b.disabled=false; }
 };
-$('#sharePdfBtn').onclick=async()=>{
-  const lead=collectLead();
-  if(lead.title||lead.mobile){ const j=await saveLead(lead); if(j.ok && current?.id){ const ok=await sharePdf(lead.title); if(ok) api('sent',{id:current.id, phone:lead.mobile, via:'PDF공유'}).then(r=>r.ok&&upsert(r.row)); return; } }
-  sharePdf(lead.title);
-};
 
-/* 빠른 발송 */
-$('#qSendBtn').onclick=async()=>{
-  const mob=extractMobile($('#q_mobile').value), title=$('#q_title').value.trim();
-  if(!mob) return toast('010 휴대폰 번호를 넣어주세요');
-  const ex=findDup('', mob);
-  if(ex) return openDetail(ex.ID,'msg');
-  const j=await api('save',{lead:{title, mobile:mob, source:'직접', status:'신규', memo:'빠른발송'}});
-  if(j.ok){ upsert(j.row); $('#q_mobile').value=''; $('#q_title').value=''; $('#qFound').textContent=''; openDetail(j.row.ID,'msg'); } else toast(j.error||'저장 실패');
-};
-$('#qPdfBtn').onclick=()=>sharePdf($('#q_title').value.trim());
+
+
 
 /* ===== 문자 ===== */
 function tplFor(r){
@@ -951,7 +970,7 @@ async function sharePdf(title){
 /* ===== 상세 ===== */
 const DF=[['상호','title'],['업종','category'],['도로명','road'],['지번','jibun'],['매장전화','storePhone'],['점주명','ownerName'],['점주폰','mobile'],['층수','floor'],['면적','size'],['권리금','premium'],['월세','rent'],['월매출','sales'],['희망조건','wish'],['메모','memo']];
 const DCOL={title:'상호',category:'업종',road:'도로명주소',jibun:'지번주소',storePhone:'매장전화',ownerName:'점주명',mobile:'점주휴대폰',floor:'층수',size:'면적',premium:'권리금',rent:'월세',sales:'월매출',wish:'희망조건',memo:'메모'};
-function openDetail(id, tab='info'){
+function openDetail(id, tab='call'){
   D=rows.find(r=>r.ID===id); if(!D) return;
   dResult=''; dStatusSel=D['상태']; dTplIdx=tplFor(D);
   $('#detail').classList.remove('hide'); document.body.style.overflow='hidden';
@@ -965,7 +984,7 @@ function fillDetail(){
   $('#dFields').innerHTML=DF.map(([k,f])=>`<div class="fld"><span class="k">${k}</span><input data-f="${f}" value="${esc(r[DCOL[f]]||'')}" ${f==='mobile'||f==='storePhone'?'inputmode="tel"':''}><button class="cp" data-cpv="${f}">복사</button></div>`).join('');
   $('#dStatus').innerHTML=STATUSES.map(s=>`<button class="chip ${s===dStatusSel?'on':''}" data-s="${s}">${s}</button>`).join('');
   const tel=digits(r['점주휴대폰']||r['매장전화']); $('#dCall').href=tel?'tel:'+tel:'#'; $('#dCall').classList.toggle('hide',!tel);
-  $('#dLink').href=r['플레이스링크']||'#'; $('#dLink').classList.toggle('hide',!r['플레이스링크']); $('#dLink').textContent=r['출처']==='점포라인'?'점포라인 매물':'네이버 플레이스';
+  $('#dLink').href=r['플레이스링크']||'#'; $('#dLink').classList.toggle('hide',!r['플레이스링크']); $('#dLink').textContent=r['출처']==='점포라인'?'점포라인':'네이버';
   renderRes($('#dRes'), dResult); $('#d_next').value=r['다음연락일']||''; $('#d_note').value=''; $('#d_consent').checked=/동의/.test(r['수신동의']||'') && !/미확인/.test(r['수신동의']||'');
   $('#dHist').textContent=r['연락기록']||'아직 기록이 없어요.';
   $('#dTpl').innerHTML=S.tpls.map((t,i)=>`<button class="chip ${i===dTplIdx?'on':''}" data-i="${i}">${esc(t.name)}</button>`).join('');
@@ -985,7 +1004,7 @@ function syncDetail(){
   if(typing){ $('#dHist').textContent=n['연락기록']||'아직 기록이 없어요.'; return; }
   const keepTpl=dTplIdx, keepMsg=$('#dPreview').value; fillDetail(); dTplIdx=keepTpl;
 }
-function setDTab(t){ dTab=t; $$('.dtabs button').forEach(b=>b.classList.toggle('on',b.dataset.dt===t)); ['info','call','msg','prog'].forEach(x=>$('#dt-'+x).classList.toggle('hide',x!==t)); }
+function setDTab(t){ dTab=t; $$('.dtabs button').forEach(b=>b.classList.toggle('on',b.dataset.dt===t)); ['call','msg','info'].forEach(x=>$('#dt-'+x).classList.toggle('hide',x!==t)); }
 $$('.dtabs button').forEach(b=>b.onclick=()=>setDTab(b.dataset.dt));
 function closeDetail(){ $('#detail').classList.add('hide'); document.body.style.overflow=''; D=null; }
 $('#dClose').onclick=closeDetail; $('#detail').onclick=e=>{ if(e.target.id==='detail') closeDetail(); };
@@ -994,7 +1013,7 @@ $('#dStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; dSt
 async function dUpdate(fields, msg){
   const j=await api('update',{id:D.ID, fields}); if(j.ok){ upsert(j.row); D=j.row; fillDetail(); toast(msg||'저장했어요'); } else toast(j.error||'저장 실패'); return j;
 }
-$('#dSave').onclick=async()=>{ const f={status:dStatusSel}; $$('#dFields input').forEach(i=>f[i.dataset.f]=i.dataset.f==='mobile'?(extractMobile(i.value)||i.value.trim()):i.value.trim()); $('#dSave').disabled=true; try{ await dUpdate(f); } finally{ $('#dSave').disabled=false; } };
+$('#dSave').onclick=async()=>{ const f={status:dStatusSel, meetDate:$('#p_meet').value, contractDate:$('#p_contract').value, openDate:$('#p_open').value, consent:$('#p_consent').value.trim()}; $$('#dFields input').forEach(i=>f[i.dataset.f]=i.dataset.f==='mobile'?(extractMobile(i.value)||i.value.trim()):i.value.trim()); $('#dSave').disabled=true; try{ await dUpdate(f); } finally{ $('#dSave').disabled=false; } };
 $('#dCopy').onclick=async()=>{ const o={}; $$('#dFields input').forEach(i=>o[i.dataset.f]=i.value.trim()); o.link=D['플레이스링크']; await copy(infoText(o)+`\n담당: ${D['담당자']} · ${D['상태']}`); toast('복사했어요'); };
 $('#dRes').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; dResult = dResult===b.dataset.r?'':b.dataset.r; renderRes($('#dRes'), dResult); if(dResult){ $('#d_next').value=defaultNext(dResult); if(dResult==='날짜 지정'||dResult==='미팅잡힘') $('#d_next').showPicker?.(); } };
 $('#dLogSave').onclick=async()=>{
@@ -1019,7 +1038,7 @@ $('#dSms').onclick=async()=>{
   location.href=smsHref(mob, body);
 };
 $('#dPdf').onclick=async()=>{ const ok=await sharePdf(D['상호']); if(ok) api('sent',{id:D.ID, phone:D['점주휴대폰'], via:'PDF공유'}).then(r=>r.ok&&upsert(r.row)); };
-$('#pSave').onclick=()=>dUpdate({meetDate:$('#p_meet').value, contractDate:$('#p_contract').value, openDate:$('#p_open').value, consent:$('#p_consent').value.trim()}, '진행 정보를 저장했어요');
+
 async function transferTo(to){ const j=await api('transfer',{id:D.ID, to}); if(j.ok){ upsert(j.row); D=j.row; fillDetail(); toast('담당자: '+to); } else toast(j.error||'변경 실패'); }
 $('#pTransfer').onclick=()=>{ const to=$('#pTo').value; if(to && confirm(`${D['상호']||'이 매장'}을(를) ${to}님에게 넘길까요?`)) transferTo(to); };
 $('#pTake').onclick=()=>{ if(confirm(`${D['담당자']}님 담당을 내 담당으로 가져올까요?`)) transferTo(me.name); };
@@ -1029,7 +1048,7 @@ $('#pDel').onclick=async()=>{ if(!confirm('정말 삭제할까요? 되돌릴 수
 $$('.seg button').forEach(b=>b.onclick=()=>{ scope=b.dataset.scope; $$('.seg button').forEach(x=>x.classList.toggle('on',x===b)); $('#repFilter').classList.toggle('hide',scope!=='all'); renderStaticChips(); renderList(); });
 $('#filterStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; filterSt=b.dataset.s; renderStaticChips(); renderList(); };
 $('#repFilter').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; repSel=b.dataset.r; renderStaticChips(); renderList(); };
-$('#q').oninput=()=>renderList(); $('#sortSel').onchange=()=>renderList();
+$('#q').oninput=()=>renderList();
 function dupSet(){
   const c={}, s=new Set();
   rows.forEach(r=>{ [r['플레이스ID']&&'p'+r['플레이스ID'], r['매물번호']&&'j'+r['매물번호'], digits(r['점주휴대폰']).length>=10&&'m'+digits(r['점주휴대폰'])].filter(Boolean).forEach(k=>{ (c[k]=c[k]||[]).push(r.ID); }); });
@@ -1037,11 +1056,9 @@ function dupSet(){
 }
 function visibleRows(){
   const q=$('#q').value.trim().toLowerCase(), qd=digits(q);
-  let L=rows.filter(r=>(scope==='all'?(repSel==='전체'||r['담당자']===repSel):r['담당자']===me.name) && (filterSt==='전체'||(filterSt==='오늘 연락'? isDue(r) : r['상태']===filterSt)) &&
+  let L=rows.filter(r=>(scope==='all'?(repSel==='전체'||r['담당자']===repSel):r['담당자']===me.name) && inFilter(r,filterSt) &&
     (!q || [r['상호'],r['도로명주소'],r['지번주소'],r['메모'],r['담당자'],r['업종'],r['연락기록']].join(' ').toLowerCase().includes(q) || (qd.length>=3 && (digits(r['점주휴대폰'])+' '+digits(r['매장전화'])).includes(qd))));
-  const s=$('#sortSel').value;
-  if(s==='next') L=L.slice().sort((a,b)=>(a['다음연락일']||'9999').localeCompare(b['다음연락일']||'9999'));
-  if(s==='upd') L=L.slice().sort((a,b)=>(b['수정일시']||'').localeCompare(a['수정일시']||''));
+  L=L.slice().sort((a,b)=>(isDue(b)-isDue(a)) || (b['수정일시']||'').localeCompare(a['수정일시']||''));
   return L;
 }
 function renderList(){
@@ -1107,12 +1124,7 @@ function download(x){ const a=document.createElement('a'); a.href=URL.createObje
 const whoNow=()=>scope==='all'?(repSel==='전체'?'전체':repSel):me.name;
 $('#xlsxBtn').onclick=()=>{ const x=xlsxOf(visibleRows(), whoNow()); if(x) download(x); };
 $('#xlsxAllBtn').onclick=()=>{ const x=xlsxOf(rows,'전체'); if(x) download(x); };
-$('#xlsxShareBtn').onclick=async()=>{
-  const x=xlsxOf(visibleRows(), whoNow()); if(!x) return;
-  const f=new File([x.blob], x.name, {type:x.blob.type});
-  try{ if(navigator.canShare && navigator.canShare({files:[f]})){ await navigator.share({files:[f], title:x.name, text:`군함맥주 영업DB ${x.n}건 (${me.name})`}); return; } }catch(e){ if(e.name==='AbortError') return; }
-  download(x); toast('이 기기는 바로 보내기가 안 돼서 파일로 저장했어요', 2600);
-};
+
 
 /* 일괄등록 */
 const FORM_COLS=['상호','업종','도로명주소','지번주소','층수','면적','권리금','월세','월매출','매장전화','점주명','점주휴대폰','상태','다음연락일','메모','출처','담당자','링크'];
