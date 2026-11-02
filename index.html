@@ -133,6 +133,20 @@ nav button.on{color:var(--blue);background:var(--ice)}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 .spin{width:18px;height:18px;border:2.5px solid #ffffff66;border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.res button{height:44px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:13.5px;color:var(--deep)}
+.res button.on{background:var(--deep);border-color:var(--deep);color:#fff}
+.res button[data-r="부재중"].on{background:#F08C00;border-color:#F08C00}
+.res button[data-r="관심없음"].on{background:#8A99B4;border-color:#8A99B4}
+.nextrow{display:flex;gap:8px;align-items:center;margin-top:8px}
+.nextrow input{flex:1;min-width:0;height:44px}
+.badge.orange{background:#FFF1DC;color:#C66A00}
+.badge.alert{background:var(--red);color:#fff}
+.loglast{font-size:12px;color:var(--sub);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#sheet{position:fixed;inset:0;z-index:60;background:rgba(8,30,82,.45);display:flex;align-items:flex-end}
+#sheet .panel{background:#fff;width:100%;max-width:640px;margin:0 auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + var(--safe-b));max-height:86dvh;overflow:auto}
+#sheet .grab{width:44px;height:5px;border-radius:9px;background:#D6E4FA;margin:-6px auto 12px}
+.hist{white-space:pre-wrap;font-size:12.5px;line-height:1.6;background:var(--ice2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--ink);max-height:180px;overflow:auto}
 .small{font-size:12px;color:var(--sub);line-height:1.5}
 .lbl2{font-size:12.5px;font-weight:800;color:var(--deep);margin:12px 0 6px}
 .demo{background:#FFF7E6;color:#9A6A00;border:1px solid #F3D9A0;border-radius:12px;padding:9px 12px;font-size:12.5px;font-weight:700;margin-bottom:12px}
@@ -209,6 +223,9 @@ nav button.on{color:var(--blue);background:var(--ice)}
         <input class="f" id="f_mobile" inputmode="tel" placeholder="010-0000-0000" autocomplete="off">
         <div class="found" id="mobileFound"></div>
       </div>
+      <div class="lbl2">통화 결과 <span style="font-weight:600;color:var(--sub)">(선택)</span></div>
+      <div class="res" id="addRes"></div>
+      <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:700">다음 연락일</span><input class="f" type="date" id="f_next"></div>
       <div class="lbl2">상태</div>
       <div class="statusbar" id="addStatus"></div>
       <div class="lbl2">메모</div>
@@ -304,6 +321,17 @@ GUNHAM BEER GUNHAM BEER</div>
   <button data-tab="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>내 설정</button>
 </nav>
 </section>
+<div id="sheet" class="hide"><div class="panel">
+  <div class="grab"></div>
+  <div class="ttl" id="shTitle" style="margin-bottom:4px">통화 기록</div>
+  <div class="small" id="shSub" style="margin-bottom:12px"></div>
+  <div class="res" id="shRes"></div>
+  <div class="nextrow"><span class="small" style="flex:0 0 auto;font-weight:700">다음 연락일</span><input class="f" type="date" id="sh_next"></div>
+  <input class="f" id="sh_note" placeholder="한 줄 메모 (예: 사장님 저녁 7시 이후 통화 가능)" style="margin-top:8px">
+  <div class="row" style="margin-top:10px"><button class="btn line" id="shClose" style="flex:0 0 auto">닫기</button><button class="btn pri" id="shSave" style="flex:1">기록 저장</button></div>
+  <div class="lbl2">지난 기록</div>
+  <div class="hist" id="shHist"></div>
+</div></div>
 <div id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
@@ -311,7 +339,14 @@ GUNHAM BEER GUNHAM BEER</div>
 /* ===== 설정 ===== */
 const API_URL = 'https://script.google.com/macros/s/AKfycby24cqc3vdb0DNdGuNGX3pDaqjSYc65h_NwxbHsAV8lH7v26A0ffbA0crv1QiXD3shk1w/exec';            // Apps Script 웹앱 /exec 주소 (배포 후 입력)
 const MEMBERS = ['염찬웅','한얼','배한나','유경웅'];
-const STATUSES = ['신규','제안발송','상담중','미팅예정','계약','보류','거절'];
+const STATUSES = ['신규','부재중','재연락','제안발송','상담중','미팅예정','계약','보류','거절'];
+const RESULTS = ['부재중','내일 다시','날짜 지정','통화완료','미팅잡힘','관심없음'];
+const RES_STATUS = {'부재중':'부재중','내일 다시':'재연락','날짜 지정':'재연락','통화완료':'상담중','미팅잡힘':'미팅예정','관심없음':'거절'};
+function ymd(d){ return d.toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'}); }
+function plusDays(n){ const d=new Date(); d.setDate(d.getDate()+n); return ymd(d); }
+function today(){ return ymd(new Date()); }
+function defaultNext(r){ return r==='내일 다시'?plusDays(1):r==='부재중'?plusDays(1):r==='날짜 지정'?plusDays(2):''; }
+function renderRes(el, sel){ el.innerHTML=RESULTS.map(r=>`<button data-r="${r}" class="${r===sel?'on':''}">${r}</button>`).join(''); }
 const DEFAULT_LINK = new URL('proposal.pdf', location.href).href;
 const DEFAULT_TPL =
 `(광고) 군함맥주 가맹 제안
@@ -336,7 +371,7 @@ const DEMO = !API_URL;
 let me = LS.get('me', null);
 let rows = [];
 let current = null;      // 현재 등록 중인 리드 (서버 저장 후 ID 보유)
-let addStatus = '신규', filterSt = '전체', scope = 'mine';
+let addStatus = '신규', filterSt = '전체', scope = 'mine', addResult = '', shResult = '', shId = null;
 
 function toast(m, ms=2000){ const t=$('#toast'); t.textContent=m; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'), ms); }
 function esc(s){ return String(s??'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -408,7 +443,7 @@ function enter(){
   $('#login').classList.add('hide'); $('#app').classList.remove('hide');
   $('#meName').textContent=me.name; $('#meInit').textContent=me.name[0];
   $('#demoBar').classList.toggle('hide', !DEMO);
-  loadSettingsUI(); renderAddStatus(); renderFilter(); updateQPreview();
+  loadSettingsUI(); renderAddStatus(); renderRes($('#addRes'), addResult); renderFilter(); updateQPreview();
   refresh();
 }
 
@@ -490,6 +525,8 @@ $('#q_title').oninput=updateQPreview;
 
 function renderAddStatus(){ $('#addStatus').innerHTML=STATUSES.map(s=>`<button class="chip ${s===addStatus?'on':''}" data-s="${s}">${s}</button>`).join(''); }
 $('#addStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; addStatus=b.dataset.s; renderAddStatus(); };
+$('#addRes').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; addResult = addResult===b.dataset.r ? '' : b.dataset.r; renderRes($('#addRes'), addResult);
+  if(addResult){ addStatus=RES_STATUS[addResult]; renderAddStatus(); const n=defaultNext(addResult); $('#f_next').value=n; if(addResult==='날짜 지정') $('#f_next').showPicker?.(); } };
 
 function findDup(placeId, mobile, exceptId){
   const d=digits(mobile);
@@ -508,11 +545,13 @@ function checkDup(){
 function collectLead(){
   const g=k=>$('#f_'+k).value.trim();
   return { title:g('title'), category:g('category'), road:g('road'), jibun:g('jibun'), storePhone:g('storePhone'), link:g('link'),
-    placeId: current?.placeId||'', mobile:extractMobile($('#f_mobile').value)||$('#f_mobile').value.trim(), memo:$('#f_memo').value.trim(), status:addStatus };
+    placeId: current?.placeId||'', mobile:extractMobile($('#f_mobile').value)||$('#f_mobile').value.trim(), memo:$('#f_memo').value.trim(), status:addStatus, nextDate:$('#f_next').value, log: addResult ? addResult+($('#f_next').value?' → '+$('#f_next').value:'')+' ['+me.name+']' : '' };
 }
 async function saveLead(lead, opt={}){
   if(current?.id){ // 이미 저장됨 → 수정
-    const j=await api('update',{id:current.id, fields:lead});
+    const f=Object.assign({}, lead); delete f.log;
+    let j=await api('update',{id:current.id, fields:f});
+    if(j.ok && lead.log && current.lastLog!==lead.log){ const c=await api('contact',{id:current.id, result:addResult, nextDate:lead.nextDate}); if(c.ok){ j=c; current.lastLog=lead.log; } }
     if(j.ok) upsert(j.row);
     return j;
   }
@@ -522,7 +561,7 @@ async function saveLead(lead, opt={}){
     if(!confirm(`이미 등록된 매장/번호예요.\n담당: ${d['담당자']} · ${d['상태']}\n\n그래도 새로 등록할까요?`)) return {ok:false, cancel:true};
     j=await api('save',{lead, force:true});
   }
-  if(j.ok){ current=Object.assign(current||{}, {id:j.row.ID, placeId:lead.placeId}); upsert(j.row); }
+  if(j.ok){ current=Object.assign(current||{}, {id:j.row.ID, placeId:lead.placeId, lastLog:lead.log}); upsert(j.row); }
   return j;
 }
 function upsert(row){ const i=rows.findIndex(r=>r.ID===row.ID); if(i>=0) rows[i]=row; else rows.unshift(row); }
@@ -534,7 +573,7 @@ $('#saveBtn').onclick=async()=>{
   try{ const j=await saveLead(lead); if(j.ok) toast('영업 DB에 저장했어요'); else if(!j.cancel) toast(j.error||'저장 실패'); }
   catch(e){ toast('연결 실패'); } finally{ b.disabled=false; }
 };
-$('#resetBtn').onclick=()=>{ current=null; $('#paste').value=''; ['title','category','road','jibun','storePhone','link','mobile','memo'].forEach(k=>setField(k,'')); $('#mobileFound').textContent=''; $('#resultCard').classList.add('hide'); addStatus='신규'; renderAddStatus(); scrollTo({top:0,behavior:'smooth'}); };
+$('#resetBtn').onclick=()=>{ current=null; $('#paste').value=''; ['title','category','road','jibun','storePhone','link','mobile','memo'].forEach(k=>setField(k,'')); $('#mobileFound').textContent=''; $('#resultCard').classList.add('hide'); addStatus='신규'; renderAddStatus(); addResult=''; renderRes($('#addRes'),''); $('#f_next').value=''; scrollTo({top:0,behavior:'smooth'}); };
 
 /* ===== 3. 제안서 발송 ===== */
 function buildMsg(title){
@@ -592,15 +631,16 @@ async function refresh(){
   try{ const j=await api('list'); if(j.ok){ rows=j.rows; renderList(); checkDup(); } else toast(j.error||'불러오기 실패'); }
   catch(e){ toast('DB 연결 실패'); }
 }
-function renderFilter(){ $('#filterStatus').innerHTML=['전체',...STATUSES].map(s=>`<button class="chip ${s===filterSt?'on':''}" data-s="${s}">${s}</button>`).join(''); }
+function renderFilter(){ $('#filterStatus').innerHTML=['전체','오늘 연락',...STATUSES].map(s=>`<button class="chip ${s===filterSt?'on':''}" data-s="${s}">${s}</button>`).join(''); }
 $('#filterStatus').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; filterSt=b.dataset.s; renderFilter(); renderList(); };
 $$('.seg button').forEach(b=>b.onclick=()=>{ scope=b.dataset.scope; $$('.seg button').forEach(x=>x.classList.toggle('on',x===b)); renderList(); });
 $('#q').oninput=()=>renderList();
 function visibleRows(){
   const q=$('#q').value.trim().toLowerCase(), qd=digits(q);
-  return rows.filter(r=>(scope==='all'||r['담당자']===me.name) && (filterSt==='전체'||r['상태']===filterSt) &&
+  return rows.filter(r=>(scope==='all'||r['담당자']===me.name) && (filterSt==='전체'||(filterSt==='오늘 연락'? isDue(r) : r['상태']===filterSt)) &&
     (!q || [r['상호'],r['도로명주소'],r['지번주소'],r['메모'],r['담당자']].join(' ').toLowerCase().includes(q) || (qd.length>=3 && (digits(r['점주휴대폰'])+digits(r['매장전화'])).includes(qd))));
 }
+function isDue(r){ const n=r['다음연락일']; return !!n && n<=today() && !['계약','거절'].includes(r['상태']); }
 function dupSet(){
   const c={}, s=new Set();
   rows.forEach(r=>{ [r['플레이스ID']&&'p'+r['플레이스ID'], digits(r['점주휴대폰']).length>=10&&'m'+digits(r['점주휴대폰'])].filter(Boolean).forEach(k=>{ (c[k]=c[k]||[]).push(r.ID); }); });
@@ -609,8 +649,8 @@ function dupSet(){
 function renderList(){
   const base=rows.filter(r=>scope==='all'||r['담당자']===me.name);
   const cnt=s=>base.filter(r=>r['상태']===s).length;
-  $('#stats').innerHTML=[['전체',base.length],['제안발송',cnt('제안발송')],['상담·미팅',cnt('상담중')+cnt('미팅예정')],['계약',cnt('계약')]].map(([k,v])=>`<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
-  const list=visibleRows(), dups=dupSet();
+  $('#stats').innerHTML=[['전체',base.length],['오늘 연락',base.filter(isDue).length],['부재·재연락',cnt('부재중')+cnt('재연락')],['계약',cnt('계약')]].map(([k,v])=>`<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
+  const list=visibleRows().sort((a,b)=>(isDue(b)-isDue(a))), dups=dupSet();
   if(!list.length){ $('#list').innerHTML=`<div class="empty">아직 등록된 매장이 없어요.<br>매장 등록 탭에서 플레이스 링크를 붙여넣어 보세요.</div>`; return; }
   $('#list').innerHTML=list.map(r=>`
   <div class="lead ${dups.has(r.ID)?'isdup':''}" data-id="${r.ID}">
@@ -624,13 +664,15 @@ function renderList(){
       ${r['업종']?`<span class="badge">${esc(r['업종'])}</span>`:''}
       ${scope==='all'?`<span class="badge">${esc(r['담당자'])}</span>`:''}
       ${dups.has(r.ID)?'<span class="badge red">중복</span>':''}
+      ${r['다음연락일']?`<span class="badge ${isDue(r)?'alert':'orange'}">${r['다음연락일']<today()?'연락 밀림 ':r['다음연락일']===today()?'오늘 연락 ':'다음 연락 '}${esc(r['다음연락일'].slice(5).replace('-','/'))}</span>`:''}
       ${+r['발송횟수']>0?`<span class="badge green">발송 ${r['발송횟수']}회 · ${esc(r['최근제안발송'])}</span>`:''}
     </div>
-    ${r['메모']?`<div class="ad" style="margin-top:6px">📝 ${esc(r['메모'])}</div>`:''}
+    ${r['메모']?`<div class="ad" style="margin-top:6px">메모: ${esc(r['메모'])}</div>`:''}
+    ${r['연락기록']?`<div class="loglast">최근: ${esc(String(r['연락기록']).split('\n')[0])}</div>`:''}
     <div class="btns">
       <button class="btn gold" data-act="sms">제안서 문자</button>
       <button class="btn line" data-act="copy">정보 복사</button>
-      <button class="btn ghost" data-act="memo">메모</button>
+      <button class="btn ghost" data-act="call">통화기록</button>
       ${r['플레이스링크']?`<a class="btn ghost" style="text-decoration:none;flex:0 0 auto" href="${esc(r['플레이스링크'])}" target="_blank">N</a>`:''}
     </div>
   </div>`).join('');
@@ -650,17 +692,38 @@ $('#list').addEventListener('click', async e=>{
     location.href=smsHref(mob, buildMsg(r['상호']));
   }
   if(b.dataset.act==='copy'){ await copy([`상호: ${r['상호']}`,`업종: ${r['업종']}`,`도로명: ${r['도로명주소']}`,r['지번주소']&&`지번: ${r['지번주소']}`,r['매장전화']&&`매장전화: ${r['매장전화']}`,r['점주휴대폰']&&`점주: ${r['점주휴대폰']}`,`담당: ${r['담당자']} · ${r['상태']}`,r['플레이스링크']&&`플레이스: ${r['플레이스링크']}`].filter(Boolean).join('\n')); toast('복사했어요'); }
+  if(b.dataset.act==='call'){ openSheet(r); return; }
   if(b.dataset.act==='memo'){ const m=prompt('메모', r['메모']||''); if(m===null) return; const j=await api('update',{id, fields:{memo:m}}); if(j.ok){ upsert(j.row); renderList(); } }
 });
+
+/* 통화 기록 시트 */
+function openSheet(r){
+  shId=r.ID; shResult='';
+  $('#shTitle').textContent=r['상호']||r['점주휴대폰']||'통화 기록';
+  $('#shSub').textContent=[r['점주휴대폰'], r['상태'], r['다음연락일']&&('다음 연락 '+r['다음연락일'])].filter(Boolean).join(' · ');
+  renderRes($('#shRes'),''); $('#sh_next').value=r['다음연락일']||''; $('#sh_note').value='';
+  $('#shHist').textContent=r['연락기록']||'아직 기록이 없어요.';
+  $('#sheet').classList.remove('hide');
+}
+$('#shRes').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; shResult = shResult===b.dataset.r?'':b.dataset.r; renderRes($('#shRes'), shResult); if(shResult){ $('#sh_next').value=defaultNext(shResult); if(shResult==='날짜 지정') $('#sh_next').showPicker?.(); } };
+$('#shClose').onclick=()=>$('#sheet').classList.add('hide');
+$('#sheet').onclick=e=>{ if(e.target.id==='sheet') $('#sheet').classList.add('hide'); };
+$('#shSave').onclick=async()=>{
+  const note=$('#sh_note').value.trim(), next=$('#sh_next').value;
+  if(!shResult && !note && !next) return toast('결과를 고르거나 메모를 적어주세요');
+  const b=$('#shSave'); b.disabled=true;
+  try{ const j=await api('contact',{id:shId, result:shResult||'메모', nextDate:next, note}); if(j.ok){ upsert(j.row); renderList(); $('#sheet').classList.add('hide'); toast('기록했어요'+(next?' · 다음 연락 '+next:'')); } else toast(j.error||'저장 실패'); }
+  catch(e){ toast('연결 실패'); } finally{ b.disabled=false; }
+};
 
 /* 엑셀 */
 function xlsxBlob(){
   if(!window.XLSX) { toast('엑셀 모듈 로딩 중이에요. 잠시 후 다시 눌러주세요'); return null; }
-  const cols=['등록일시','담당자','상호','업종','도로명주소','지번주소','매장전화','점주휴대폰','상태','메모','최근제안발송','발송횟수','플레이스링크'];
+  const cols=['등록일시','담당자','상호','업종','도로명주소','지번주소','매장전화','점주휴대폰','상태','다음연락일','연락기록','메모','최근제안발송','발송횟수','플레이스링크'];
   const data=visibleRows().map(r=>cols.map(c=>c==='발송횟수'?(+r[c]||0):(r[c]||'')));
   const ws=XLSX.utils.aoa_to_sheet([cols,...data]);
-  ws['!cols']=[16,8,22,10,34,26,15,15,9,30,16,8,40].map(w=>({wch:w}));
-  ws['!autofilter']={ref:`A1:M${data.length+1}`};
+  ws['!cols']=[16,8,22,10,34,26,15,15,9,12,40,30,16,8,40].map(w=>({wch:w}));
+  ws['!autofilter']={ref:`A1:O${data.length+1}`};
   const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, '영업DB');
   const out=XLSX.write(wb,{bookType:'xlsx',type:'array'});
   const d=new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'}).replaceAll('-','');
