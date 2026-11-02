@@ -392,7 +392,7 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
         <button class="btn red" id="delTplBtn">삭제</button>
         <button class="btn line" id="resetTplBtn">기본값</button>
       </div>
-      <div class="small" style="margin-top:10px">광고 문자는 (광고) 표시, 수신거부 안내, 받는 분의 사전 동의가 필요해요. 통화로 자료 받기를 허락받은 번호에만 보내 주세요.</div>
+      <div class="small" style="margin-top:10px">통화에서 자료 받기에 동의한 분께만 보내는 안내 문자예요. 동의 없이 처음 보내는 홍보 문자는 (광고) 표시와 수신거부 안내가 법으로 필요하니 이 앱으로 보내지 마세요.</div>
     </div>
     <div class="card">
       <div class="ttl">팀원</div>
@@ -451,8 +451,8 @@ nav .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:17px;height:
     <div class="chips" id="dTpl" style="margin-bottom:10px"></div>
     <textarea class="preview" id="dPreview"></textarea>
     <div class="consent hide" id="dConsentBox" style="margin-top:10px">
-      <b>광고 수신 동의 확인</b><br>이 번호는 아직 동의 기록이 없어요. 통화로 자료 받기를 허락받았다면 체크 후 보내세요.
-      <label style="display:flex;gap:8px;align-items:center;margin-top:8px;font-weight:800"><input type="checkbox" id="dConsentChk"> 통화로 동의 받았어요</label>
+      <b>자료 받기 동의 확인</b><br>통화에서 제안서 받아보시겠다고 하신 분께만 보내요. 동의 받았다면 체크 후 보내세요. (한 번 체크하면 기록돼요)
+      <label style="display:flex;gap:8px;align-items:center;margin-top:8px;font-weight:800"><input type="checkbox" id="dConsentChk"> 통화로 자료 받기 동의 받았어요</label>
     </div>
     <button class="btn beer full" id="dSms" style="margin-top:10px">문자 앱으로 보내기</button>
     <div class="grid2" style="margin-top:8px">
@@ -497,41 +497,37 @@ const RES_STATUS = {'부재중':'부재중','내일 다시':'재연락','날짜 
 const DEFAULT_LINK = new URL('proposal.pdf', location.href).href;
 const SIGN = `담당 {담당자} {담당자번호}\n가맹문의 1577-0832`;
 const DEFAULT_TPLS = [
- {name:'첫 제안', body:`(광고) 군함맥주 가맹 제안
-{호칭}, 안녕하세요.
-군함맥주 가맹팀 {담당자}입니다.
-
-매장 자리 보고 군함맥주로 확실히 승부 볼 수 있다고 자신 있게 연락드립니다.
-업종 변경이면 기존 시설을 살려 비용을 크게 줄일 수 있고, 11월 프로모션으로 최대 2,400만원까지 지원해 드립니다.
+ {name:'통화 후 제안서', body:`{호칭}, 안녕하세요.
+방금 통화드린 군함맥주 가맹팀 {담당자}입니다.
+말씀드린 가맹제안서 보내드립니다.
 
 ▶ 군함맥주 가맹제안서
 {제안서링크}
 
-10분만 통화해 보시면 왜 자신 있게 연락드렸는지 아실 겁니다.
-${SIGN}
-수신거부: '거부' 회신`},
- {name:'점포라인 매물', body:`(광고) 군함맥주 업종전환 제안
-사장님, 안녕하세요. 군함맥주 가맹팀 {담당자}입니다.
-점포라인에 올리신 {지역} 매물 보고 연락드렸습니다.
+업종 변경이면 기존 시설을 살려 비용을 크게 줄일 수 있고, 11월 프로모션으로 최대 2,400만원까지 지원해 드립니다.
+천천히 보시고 궁금한 점은 편하게 연락 주세요. 자신 있게 권해드릴 수 있는 브랜드입니다.
 
-양도 전에 한 번만 검토해 보세요. 지금 시설 살려서 군함맥주로 업종 전환하면 신규 창업보다 비용 부담이 확 줄고, 11월 프로모션으로 최대 2,400만원까지 지원합니다.
+${SIGN}`},
+ {name:'점포라인 매물', body:`사장님, 안녕하세요.
+점포라인 {지역} 매물 건으로 통화드린 군함맥주 가맹팀 {담당자}입니다.
+말씀드린 대로 가맹제안서 보내드립니다.
+
+▶ 군함맥주 가맹제안서
+{제안서링크}
+
+양도 전에 지금 시설 살려서 군함맥주로 업종 전환하면 신규 창업보다 비용 부담이 확 줄고, 11월 프로모션으로 최대 2,400만원까지 지원합니다.
 이 자리라면 군함맥주로 확실히 승부 볼 수 있다고 자신 있게 말씀드립니다.
 
-▶ 군함맥주 가맹제안서
-{제안서링크}
-
-${SIGN}
-수신거부: '거부' 회신`},
- {name:'부재중 후속', body:`(광고) 군함맥주 가맹 제안
-{호칭}, 군함맥주 가맹팀 {담당자}입니다.
-조금 전 전화드렸는데 바쁘신 것 같아 자료 먼저 보내드립니다.
+${SIGN}`},
+ {name:'재연락', body:`{호칭}, 안녕하세요. 군함맥주 가맹팀 {담당자}입니다.
+지난번 보내드린 가맹제안서는 보셨을까요?
 
 ▶ 군함맥주 가맹제안서
 {제안서링크}
 
-편하신 시간 알려주시면 10분만 설명드리겠습니다.
-${SIGN}
-수신거부: '거부' 회신`},
+편하신 시간 알려주시면 10분만 자세히 설명드리겠습니다.
+
+${SIGN}`},
  {name:'미팅 안내', body:`{호칭}, 군함맥주 가맹팀 {담당자}입니다.
 {미팅일} 미팅 일정 안내드립니다.
 미리 제안서 한 번 훑어보시면 미팅이 훨씬 빠르게 진행됩니다.
@@ -611,10 +607,10 @@ $('#logoutBtn').onclick=logout;
 async function enter(){
   $('#login').classList.add('hide'); $('#app').classList.remove('hide');
   $('#meName').textContent=me.name; $('#meInit').textContent=me.name[0];
-  S = LS.get('set_'+me.name, null) || {phone:'', link:DEFAULT_LINK, tpls:DEFAULT_TPLS};
+  S = LS.get('set2_'+me.name, null) || {phone:'', link:DEFAULT_LINK, tpls:DEFAULT_TPLS};
   renderStaticChips(); renderAll(); loadSettingsUI();
   refresh();
-  api('getSettings').then(j=>{ if(j.ok && j.settings && j.settings.tpls){ S=Object.assign({phone:'',link:DEFAULT_LINK,tpls:DEFAULT_TPLS}, j.settings); LS.set('set_'+me.name,S); loadSettingsUI(); } });
+  api('getSettings').then(j=>{ if(j.ok && j.settings && j.settings.tpls && j.settings.v===2){ S=Object.assign({phone:'',link:DEFAULT_LINK,tpls:DEFAULT_TPLS}, j.settings); LS.set('set2_'+me.name,S); loadSettingsUI(); } });
 }
 async function refresh(){
   try{ const j=await api('list'); if(j.ok){ rows=j.rows; if(j.members){ MEMBERS=j.members; LS.set('members',MEMBERS);} LS.set('rowsCache', rows.slice(0,800)); renderAll(); } }
@@ -703,7 +699,7 @@ function showPlace(p){
   $('#extraFields').classList.toggle('hide', !jp && !p.floor);
   $('#resBadges').innerHTML=(jp?'<span class="badge jp">점포라인</span>':'<span class="badge n">N 플레이스</span>')+
     `<span class="badge">${esc(p.category||'업종 미확인')}</span>`+(p.listingNo?`<span class="badge">매물 ${esc(p.listingNo)}</span>`:'')+(p.reviews?`<span class="badge">${esc(p.reviews)}</span>`:'')+
-    (jp?'<span class="badge orange">광고 수신동의 미확인</span>':'');
+    (jp?'<span class="badge orange">자료 동의 미확인</span>':'');
   $('#resultCard').classList.remove('hide');
   checkDup();
 }
@@ -829,7 +825,7 @@ $('#qPdfBtn').onclick=()=>sharePdf($('#q_title').value.trim());
 /* ===== 문자 ===== */
 function tplFor(r){
   const names=S.tpls.map(t=>t.name);
-  let n = r['상태']==='미팅예정'?'미팅 안내': r['상태']==='부재중'?'부재중 후속': r['출처']==='점포라인'?'점포라인 매물':'첫 제안';
+  let n = r['상태']==='미팅예정'?'미팅 안내': ['부재중','재연락'].includes(r['상태'])||+r['발송횟수']>0?'재연락': r['출처']==='점포라인'?'점포라인 매물':'통화 후 제안서';
   const i=names.indexOf(n); return i>=0?i:0;
 }
 function buildMsg(body, r){
@@ -880,7 +876,7 @@ function fillDetail(){
   $('#dHist').textContent=r['연락기록']||'아직 기록이 없어요.';
   $('#dTpl').innerHTML=S.tpls.map((t,i)=>`<button class="chip ${i===dTplIdx?'on':''}" data-i="${i}">${esc(t.name)}</button>`).join('');
   $('#dPreview').value=buildMsg(S.tpls[dTplIdx]?.body||'', r);
-  const needConsent=/\(광고\)/.test($('#dPreview').value) && !(/동의/.test(r['수신동의']||'') && !/미확인/.test(r['수신동의']||''));
+  const needConsent=!(/동의/.test(r['수신동의']||'') && !/미확인/.test(r['수신동의']||''));
   $('#dConsentBox').classList.toggle('hide', !needConsent); $('#dConsentChk').checked=false;
   $('#p_meet').value=r['미팅일']||''; $('#p_contract').value=r['계약일']||''; $('#p_open').value=r['오픈예정일']||''; $('#p_consent').value=r['수신동의']||'';
   $('#pTo').innerHTML=MEMBERS.filter(m=>m!==r['담당자']).map(m=>`<option>${esc(m)}</option>`).join('');
@@ -1072,11 +1068,11 @@ function loadSettingsUI(){
   $('#t_name').value=S.tpls[editTplIdx]?.name||''; $('#t_body').value=S.tpls[editTplIdx]?.body||'';
   $('#memberList').textContent='현재 팀원: '+MEMBERS.join(', ');
 }
-async function pushSettings(msg){ LS.set('set_'+me.name,S); const j=await api('saveSettings',{settings:S}); toast(j.ok?(msg||'저장했어요'):(j.error||'저장 실패')); }
+async function pushSettings(msg){ S.v=2; LS.set('set2_'+me.name,S); const j=await api('saveSettings',{settings:S}); toast(j.ok?(msg||'저장했어요'):(j.error||'저장 실패')); }
 $('#saveMeBtn').onclick=()=>{ S.phone=fmtMobile($('#s_phone').value); S.link=$('#s_link').value.trim()||DEFAULT_LINK; loadSettingsUI(); pushSettings(); };
 $('#tplChips').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return; editTplIdx=+b.dataset.i; loadSettingsUI(); };
 $('#saveTplBtn').onclick=()=>{ const n=$('#t_name').value.trim()||'새 멘트'; S.tpls[editTplIdx]={name:n, body:$('#t_body').value}; loadSettingsUI(); pushSettings('멘트를 저장했어요'); };
-$('#newTplBtn').onclick=()=>{ S.tpls.push({name:'새 멘트 '+(S.tpls.length+1), body:'(광고) 군함맥주 가맹 제안\n{호칭}, 군함맥주 가맹팀 {담당자}입니다.\n\n▶ 군함맥주 가맹제안서\n{제안서링크}\n\n'+SIGN+"\n수신거부: '거부' 회신"}); editTplIdx=S.tpls.length-1; loadSettingsUI(); $('#t_name').focus(); };
+$('#newTplBtn').onclick=()=>{ S.tpls.push({name:'새 멘트 '+(S.tpls.length+1), body:'{호칭}, 안녕하세요. 군함맥주 가맹팀 {담당자}입니다.\n\n▶ 군함맥주 가맹제안서\n{제안서링크}\n\n'+SIGN}); editTplIdx=S.tpls.length-1; loadSettingsUI(); $('#t_name').focus(); };
 $('#delTplBtn').onclick=()=>{ if(S.tpls.length<=1) return toast('멘트는 1개 이상 있어야 해요'); if(!confirm(`'${S.tpls[editTplIdx].name}' 멘트를 삭제할까요?`)) return; S.tpls.splice(editTplIdx,1); editTplIdx=0; loadSettingsUI(); pushSettings('삭제했어요'); };
 $('#resetTplBtn').onclick=()=>{ if(!confirm('멘트를 기본 4종으로 되돌릴까요?')) return; S.tpls=JSON.parse(JSON.stringify(DEFAULT_TPLS)); editTplIdx=0; loadSettingsUI(); pushSettings('기본 멘트로 되돌렸어요'); };
 $('#addMemberBtn').onclick=async()=>{ const n=$('#newMember').value.trim(); if(!n) return; if(!confirm(`'${n}'님을 영업자로 추가할까요?`)) return; const j=await api('addMember',{newName:n}); if(j.ok){ MEMBERS=j.members; LS.set('members',MEMBERS); $('#newMember').value=''; loadSettingsUI(); renderAll(); toast(n+'님 추가 완료'); } else toast(j.error||'추가 실패'); };
