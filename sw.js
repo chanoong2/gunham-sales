@@ -1,4 +1,4 @@
-const CACHE='gunham-sales-v6';
+const CACHE='gunham-sales-v7';
 const CORE=['./','index.html','logo-white.png','logo.png','icon-192.png','hero.jpg','manifest.json'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});

@@ -259,7 +259,14 @@ nav .pl svg{width:20px;height:20px}
 .who{flex:0 0 auto;color:#fff;font-size:12px;font-weight:900;border-radius:9px;padding:4px 8px}.who.none{background:#EEF3F8;color:#8BA0B6}
 a.nv{flex:0 0 auto;min-width:34px;height:34px;border-radius:10px;background:#03C75A;color:#fff;font-weight:900;font-size:13px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:0 9px}
 .mycard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:12px}.mycard .mh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.mycard .mh b{font-size:17px;color:var(--navy)}.mycard .mh span{font-size:12.5px;color:var(--sub);font-weight:700}
-.mydong{border-top:1px solid #EAF3FB;padding:11px 0 6px;cursor:pointer}.mydong.home{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 13px;margin-bottom:8px}.mydong .t{display:flex;align-items:center;justify-content:space-between;gap:8px}.mydong .t b{font-size:15px;color:var(--ink)}
+.mydong{border-top:1px solid #EAF3FB;padding:11px 0 6px;cursor:pointer}.amemo{margin-top:6px;background:var(--foam);border:1px solid #F5DFA8;color:#8A5A00;border-radius:10px;padding:6px 10px;font-size:13px;font-weight:800}
+.ainp{width:100%;height:50px;border-radius:14px;border:2px solid var(--line);background:var(--ice);padding:0 14px;font-size:16px;outline:none}.ainp:focus{border-color:var(--sky)}
+.prow{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:13px;padding:9px 11px;margin-bottom:6px;background:#fff;cursor:pointer}.prow.on{border-color:var(--sky2);background:var(--skyl)}.prow .ck{width:24px;height:24px;border-radius:8px;border:2px solid #B9D4EA;display:grid;place-items:center;font-weight:900;color:#fff;flex:0 0 auto}.prow.on .ck{background:var(--sky2);border-color:var(--sky2)}.prow .ai{flex:1;min-width:0}.prow .ai b{display:block;font-size:14.5px;color:var(--navy)}.prow .ai span{font-size:12px;color:var(--sub)}
+.chip.big{height:42px;padding:0 20px;font-size:15px}
+.plist-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:800;color:var(--navy);margin:4px 2px 8px}
+.plist{max-height:46vh;overflow:auto;padding-right:2px}
+.chip.warn{background:var(--orange)!important;border-color:var(--orange)!important}
+.mydong.home{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 13px;margin-bottom:8px}.mydong .t{display:flex;align-items:center;justify-content:space-between;gap:8px}.mydong .t b{font-size:15px;color:var(--ink)}
 .pbar{height:8px;border-radius:5px;background:#EAF3FB;overflow:hidden;margin:7px 0 4px}.pbar i{display:block;height:100%;border-radius:5px}
 .stp{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .nbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.nbtns a{text-decoration:none}.nbtns .btn.pri{background:linear-gradient(180deg,#19D16C,#03C75A);box-shadow:0 6px 16px #03C75A40}@media (max-width:370px){ body{font-size:14px} .kpi b{font-size:18px} .today-hero .big{font-size:21px} .rank .nm{flex-basis:44px} .tbl{font-size:12px} .live span{display:none} }
@@ -785,7 +792,8 @@ function renderHomeArea(){
   const LL = A.data ? sortedList() : [];
   const list = mineA.map(a=>LL.find(r=>r.c===a.cd) || { c:a.cd, d:a.name, g:'', p:'', pop:0, br:0, pb:0, rank:'-' }).sort((x,y)=>y.pop-x.pop);
   el.innerHTML = `<div class="ttl sec">내 담당 지역 ${list.length?list.length+'곳':''}<span class="r" data-go="area">지도 보기</span></div>` + (list.length ? list.slice(0,5).map(r=>{ const ss = storesIn(r.c, me.name); const tot = r.br+r.pb; const pct = tot ? Math.min(100, Math.round(ss.length/tot*100)) : 0;
-    return `<div class="mydong home" data-acd="${r.c}"><div class="t"><b>${esc((r.p==='광주'?'광주 ':'')+(r.g?r.g+' ':'')+r.d)}</b>${r.g?`<a class="nv" href="${naverUrl(r,'술집')}" target="_blank" onclick="event.stopPropagation()">N 술집</a>`:''}</div><div class="pbar"><i style="width:${pct}%;background:${mColor(me.name)}"></i></div><div class="small">맥주집 ${tot}곳 중 <b>${ss.length}곳 등록</b> · 유동인구 ${fmtN(r.pop)}명</div></div>`; }).join('') + (list.length>5?`<button class="btn line full sm" data-go="area">내 지역 전체 보기</button>`:'')
+    const am = (areaOf(r.c)||{}).memo;
+    return `<div class="mydong home" data-acd="${r.c}"><div class="t"><b>${esc((r.p==='광주'?'광주 ':'')+(r.g?r.g+' ':'')+r.d)}</b>${r.g?`<a class="nv" href="${naverUrl(r,'술집')}" target="_blank" onclick="event.stopPropagation()">N 술집</a>`:''}</div>${am?`<div class="amemo">지시 · ${esc(am)}</div>`:''}<div class="pbar"><i style="width:${pct}%;background:${mColor(me.name)}"></i></div><div class="small">맥주집 ${tot}곳 중 <b>${ss.length}곳 등록</b> · 유동인구 ${fmtN(r.pop)}명</div></div>`; }).join('') + (list.length>5?`<button class="btn line full sm" data-go="area">내 지역 전체 보기</button>`:'')
     : `<div class="empty" style="padding:16px 10px">${isAdmin()?'지역 탭에서 영업자별 동네를 배정해 주세요':'아직 배정된 지역이 없어요'}</div>`);
 }
 async function initArea(){
@@ -820,11 +828,12 @@ function renderArea(){
   renderAreaTop();
   const LL = sortedList();
   const sggs = [...new Set(A.data.list.filter(r=>A.sido==='전체'||r.p===A.sido).map(r=>(r.p==='광주'?'':'')+r.g))].sort();
-  $('#aFil').innerHTML = A.view==='mine' ? '' : `
+  const planBtn = isAdmin() ? `<button class="btn beer full" data-aplan="1" style="margin-bottom:10px">+ 영업 지역 지정하기 (누구에게 어디)</button>` : '';
+  $('#aFil').innerHTML = planBtn + (A.view==='mine' ? '' : `
     <div class="chips">${['전체','광주','전남','전북'].map(s=>`<button class="chip ${A.sido===s?'on':''}" data-sido="${s}">${s}</button>`).join('')}
       <select id="aSgg" class="asel"><option value="전체">시·군·구 전체</option>${sggs.map(g=>`<option ${A.sgg===g?'selected':''}>${esc(g)}</option>`).join('')}</select></div>
     <div class="chips">${['전체','미배정',...SALES()].map(s=>`<button class="chip ${A.who===s?'on':''}" data-who="${esc(s)}">${s==='전체'?'담당 전체':esc(s)}${SALES().includes(s)?` <i class="cdot" style="background:${mColor(s)}"></i>`:''}</button>`).join('')}</div>
-    <div class="chips"><button class="chip ${A.sort==='pop'?'on':''}" data-sort="pop">유동인구 많은 순</button><button class="chip ${A.sort==='beer'?'on':''}" data-sort="beer">맥주집 많은 순</button></div>`;
+    <div class="chips"><button class="chip ${A.sort==='pop'?'on':''}" data-sort="pop">유동인구 많은 순</button><button class="chip ${A.sort==='beer'?'on':''}" data-sort="beer">맥주집 많은 순</button></div>`);
   const F = filtered(LL);
   $('#aMapWrap').classList.toggle('hide', A.view!=='map');
   if (A.view==='map') { drawMap(F); $('#aBody').innerHTML = `<div class="small" style="margin:8px 2px">동그라미 크기 = 유동인구 · 색 = 담당자 · 숫자 = 순위 · 작은 핀 = 등록 매장. 동그라미를 누르면 상세가 열려요.</div>` + listHtml(F.slice(0, 10), true); }
@@ -845,7 +854,8 @@ function mineHtml(LL){
     const pop = mine.reduce((s,r)=>s+r.pop,0), bars = mine.reduce((s,r)=>s+r.br+r.pb,0), reg = mine.reduce((s,r)=>s+storesIn(r.c,n).length,0);
     return `<div class="mycard"><div class="mh"><i class="cdot big" style="background:${mColor(n)}"></i><b>${esc(n)}</b><span>담당 ${mine.length}곳 · 맥주집 ${bars}곳 · 내 등록 ${reg}곳</span></div>
     ${mine.length? mine.map(r=>{ const ss = storesIn(r.c, n); const pct = (r.br+r.pb) ? Math.min(100, Math.round(ss.length/(r.br+r.pb)*100)) : 0;
-      return `<div class="mydong" data-acd="${r.c}"><div class="t"><b>${r.rank}위 · ${esc((r.p==='광주'?'광주 ':'')+r.g)} ${esc(r.d)}</b><a class="nv" href="${naverUrl(r,'술집')}" target="_blank" onclick="event.stopPropagation()">N 술집 보기</a></div>
+      const am = (areaOf(r.c)||{}).memo;
+      return `<div class="mydong" data-acd="${r.c}"><div class="t"><b>${r.rank}위 · ${esc((r.p==='광주'?'광주 ':'')+r.g)} ${esc(r.d)}</b><a class="nv" href="${naverUrl(r,'술집')}" target="_blank" onclick="event.stopPropagation()">N 술집 보기</a></div>${am?`<div class="amemo">지시 · ${esc(am)}</div>`:''}
       <div class="pbar"><i style="width:${pct}%;background:${mColor(n)}"></i></div>
       <div class="small">맥주집 ${r.br+r.pb}곳 중 <b>${ss.length}곳 등록</b> (${pct}%) · 유동인구 ${fmtN(r.pop)}명</div>
       ${ss.length?`<div class="stp">${ss.slice(0,12).map(s=>`<span class="st s-${esc(s['상태'])}" data-id="${s.ID}">${esc((s['상호']||'').slice(0,10))}</span>`).join('')}</div>`:''}</div>`; }).join('')
@@ -899,11 +909,79 @@ document.addEventListener('click', async e => {
   const mo = t.closest('[data-amore]'); if (mo) { A.more += 100; renderArea(); return; }
   const sp = t.closest('.stp .st[data-id]'); if (sp) { openDetail(sp.dataset.id); return; }
   const ar = t.closest('[data-acd]'); if (ar && !t.closest('a')) { openArea(ar.dataset.acd); return; }
-  const as = t.closest('[data-assign]'); if (as) { const cd = as.dataset.cd; const r = A.data.list.find(x=>x.c===cd); const who = as.dataset.assign;
-    as.disabled = true; const j = await api('assign', { cd, member: who, areaName: (r.p==='광주'?'광주 ':'')+r.g+' '+r.d });
+  const pl = t.closest('[data-aplan]'); if (pl) { planSheet(); return; }
+  const pm = t.closest('[data-pmember]'); if (pm) { A.pick.member = pm.dataset.pmember; $$('[data-pmember]').forEach(b=>b.classList.toggle('on', b===pm)); drawPlanResults(); drawPlanFoot(); return; }
+  const pr = t.closest('[data-pcd]'); if (pr) { const cd = pr.dataset.pcd; if (A.pick.sel.has(cd)) A.pick.sel.delete(cd); else A.pick.sel.add(cd); drawPlanFoot(); return; }
+  const pa = t.closest('[data-pall]'); if (pa) { planMatches().filter(r=>!areaOf(r.c)).forEach(r=>A.pick.sel.add(r.c)); drawPlanFoot(); return; }
+  const psd = t.closest('[data-psido]'); if (psd) { A.pick.sido = psd.dataset.psido; A.pick.sgg = ''; A.pick.q = ''; drawPlan(); return; }
+  const psg = t.closest('[data-psgg]'); if (psg) { A.pick.sgg = psg.dataset.psgg; A.pick.q = ''; drawPlan(); return; }
+  const ps = t.closest('[data-psave]'); if (ps) { await savePlan(ps); return; }
+  const as = t.closest('[data-assign]'); if (as) { const cd = as.dataset.cd; const r = A.data.list.find(x=>x.c===cd); const who = as.dataset.assign; const cur = areaOf(cd);
+    let force = false; if (who && cur && cur.member && cur.member!==who) { if (!confirm(`${r.d}는 지금 ${cur.member} 담당이에요. ${who}에게 옮길까요?`)) return; force = true; }
+    as.disabled = true; const j = await api('assign', { cd, member: who, force, areaName: (r.p==='광주'?'광주 ':'')+r.g+' '+r.d });
     if (!j.ok) { toast(j.error||'배정 실패'); as.disabled=false; return; } AREAS = j.areas; LS.set('areaMeta',{ADMINS,NONSALES,AREAS}); toast(who ? `${r.d} → ${who} 배정` : `${r.d} 배정 해제`); openArea(cd); renderArea(); return; }
 });
 document.addEventListener('change', e => { if (e.target.id==='aSgg') { A.sgg = e.target.value; A.more=60; renderArea(); } });
+document.addEventListener('input', e => { if (e.target.id==='aq') { A.pick.q = e.target.value; drawPlanResults(); drawPlanFoot(); } if (e.target.id==='aqMemo') A.pick.memo = e.target.value; });
+/* ---- 관리자: 영업 지역 지정 (누구에게 어디) ---- */
+A.pick = { member:'', q:'', sel:new Set(), memo:'' };
+const dongLabel = r => (r.p==='광주'?'광주 ':'')+r.g+' '+r.d;
+function planMatches(){
+  const q = (A.pick.q||'').trim().replace(/\s+/g,' ');
+  if (!q) { const P = A.pick; if (!P.sido) return []; return sortedList().filter(r=>r.p===P.sido && (!P.sgg || r.g===P.sgg)); }
+  const parts = q.split(/[,·/]+/).map(s=>s.trim()).filter(Boolean);
+  const LL = sortedList();
+  return LL.filter(r=>{ const name = (r.p+' '+dongLabel(r)).replace(/\s+/g,''); return parts.some(p=>name.includes(p.replace(/\s+/g,'').replace(/시$|군$/,''))); }).slice(0, 80);
+}
+async function planSheet(){
+  if (!(await ensureAreaData())) return toast('지역 데이터를 불러오지 못했어요');
+  A.pick = { member: A.pick.member||'', q:'', sel:new Set(), memo:'', sido: A.pick.sido||'', sgg: A.pick.sgg||'' };
+  openTool('영업 지역 지정', `<div id="planBox"></div>`); drawPlan();
+}
+function drawPlan(){
+  const box = $('#planBox'); if (!box) return; const P = A.pick;
+  const selList = [...P.sel].map(cd=>A.data.list.find(r=>r.c===cd)).filter(Boolean);
+  box.innerHTML = `
+  <div class="ttl" style="margin-bottom:8px"><span class="n">1</span>누구에게</div>
+  <div class="chips" style="flex-wrap:wrap;margin-bottom:12px">${SALES().map(n=>`<button class="chip ${P.member===n?'on':''}" data-pmember="${esc(n)}"><i class="cdot" style="background:${mColor(n)}"></i> ${esc(n)} <span class="c">${AREAS.filter(a=>a.member===n).length}곳</span></button>`).join('')}</div>
+  <div class="ttl" style="margin-bottom:8px"><span class="n">2</span>어느 지역?</div>
+  <div class="chips" style="flex-wrap:wrap;margin-bottom:8px">${['광주','전남','전북'].map(s=>`<button class="chip big ${P.sido===s&&!P.q?'on':''}" data-psido="${s}">${s}</button>`).join('')}</div>
+  ${P.sido&&!P.q?`<div class="chips" style="flex-wrap:wrap;margin-bottom:8px"><button class="chip ${!P.sgg?'on':''}" data-psgg="">${P.sido} 전체</button>${[...new Set(sortedList().filter(r=>r.p===P.sido).map(r=>r.g))].sort().map(g=>`<button class="chip ${P.sgg===g?'on':''}" data-psgg="${esc(g)}">${esc(g)} <span class="c">${A.data.list.filter(r=>r.p===P.sido&&r.g===g).length}</span></button>`).join('')}</div>`:''}
+  <input id="aq" class="ainp" placeholder="또는 동네 이름으로 찾기 (예: 치평동, 수완동)" value="${esc(P.q)}" autocomplete="off" style="margin-bottom:8px">
+  <div class="small" style="margin:0 2px 8px">동네는 유동인구 많은 순이에요. 눌러서 체크하면 돼요.</div>
+  <div id="aqRes"></div>
+  <div id="aqSel"></div>
+  <div class="ttl" style="margin:14px 0 8px"><span class="n">3</span>지시 메모 (선택)</div>
+  <input id="aqMemo" class="ainp" placeholder="예) 상무지구 먹자골목 호프·맥주집 전부 방문" value="${esc(P.memo)}">
+  <button class="btn pri full xl" data-psave="1" id="aqSave" style="margin-top:14px"></button>`;
+  drawPlanResults(); drawPlanFoot();
+}
+function drawPlanFoot(){
+  const P = A.pick; const selList = [...P.sel].map(cd=>A.data.list.find(r=>r.c===cd)).filter(Boolean);
+  const s = $('#aqSel'); if (s) s.innerHTML = selList.length ? `<div class="ttl" style="margin:14px 0 8px">선택한 동네 ${selList.length}곳</div><div class="chips" style="flex-wrap:wrap">${selList.map(r=>{ const cur = areaOf(r.c); const other = cur && cur.member && cur.member!==P.member; return `<button class="chip on ${other?'warn':''}" data-pcd="${r.c}">${esc(r.d)}${other?` (${esc(cur.member)})`:''} ✕</button>`; }).join('')}</div>` : '';
+  const b = $('#aqSave'); if (b) { b.disabled = !(P.member && selList.length); b.textContent = (P.member ? P.member+'에게 ' : '영업자를 고르고 ') + (selList.length ? selList.length+'곳 ' : '') + '지정하기'; }
+  $$('.prow[data-pcd]').forEach(r=>{ const on = P.sel.has(r.dataset.pcd); r.classList.toggle('on', on); r.querySelector('.ck').textContent = on ? '✓' : ''; });
+}
+function drawPlanResults(){
+  const el = $('#aqRes'); if (!el) return; const P = A.pick; const M = planMatches();
+  if (!P.q.trim() && !P.sido) { el.innerHTML = '<div class="empty" style="padding:12px">위에서 지역을 고르거나 동네 이름을 써 주세요</div>'; return; }
+  const free = M.filter(r=>!areaOf(r.c));
+  el.innerHTML = `<div class="plist-h"><span>${P.q.trim()?'검색 결과':esc(P.sido+(P.sgg?' '+P.sgg:' 전체'))} · ${M.length}곳 (미배정 ${free.length})</span>${free.length>1?`<button class="btn line sm" data-pall="1">미배정 모두 선택</button>`:''}</div><div class="plist">` + (M.length ? M.map(r=>{ const cur = areaOf(r.c); const on = P.sel.has(r.c); const other = cur && cur.member && cur.member!==P.member;
+    return `<div class="prow ${on?'on':''}" data-pcd="${r.c}"><span class="ck">${on?'✓':''}</span><div class="ai"><b>${r.rank}위 · ${esc(dongLabel(r))}</b><span>유동인구 ${fmtN(r.pop)} · 맥주집 ${r.br+r.pb}</span></div>${cur?`<span class="who" style="background:${mColor(cur.member)}">${esc(cur.member)} 담당</span>`:''}</div>`; }).join('') : '<div class="empty" style="padding:14px">맞는 동네가 없어요 (현재 전라도만)</div>') + '</div>';
+}
+async function savePlan(btn){
+  const P = A.pick; if (!P.member || !P.sel.size) return;
+  const items = [...P.sel].map(cd=>{ const r = A.data.list.find(x=>x.c===cd); return { cd, name: dongLabel(r) }; });
+  btn.disabled = true; btn.textContent = '저장 중…';
+  let j = await api('assignMany', { member: P.member, memo: P.memo||'', items });
+  if (!j.ok) { toast(j.error||'저장 실패'); btn.disabled=false; drawPlan(); return; }
+  let done = j.done; AREAS = j.areas;
+  if (j.conflicts && j.conflicts.length) {
+    if (confirm(`이미 다른 사람이 맡은 동네 ${j.conflicts.length}곳이 있어요.\n${j.conflicts.map(c=>c.name+' ('+c.member+')').join('\n')}\n\n${P.member}에게 옮길까요? (취소하면 그대로 둡니다)`)) {
+      const j2 = await api('assignMany', { member: P.member, memo: P.memo||'', items: j.conflicts.map(c=>({ cd:c.cd, name:c.name })), force: true }); if (j2.ok) { done += j2.done; AREAS = j2.areas; } }
+  }
+  LS.set('areaMeta',{ADMINS,NONSALES,AREAS}); closeTool(); toast(`${P.member}에게 ${done}곳을 지정했어요`); A.pick.sel = new Set(); renderArea(); renderHomeArea();
+}
 
 /* ===== 탭 ===== */
 const TITLES={home:'홈',add:'매장 추가',db:'매장 목록',rank:'영업자 순위',area:'영업 지역',set:'설정·도구'};
