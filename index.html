@@ -259,7 +259,12 @@ nav .pl svg{width:20px;height:20px}
 .who{flex:0 0 auto;color:#fff;font-size:12px;font-weight:900;border-radius:9px;padding:4px 8px}.who.none{background:#EEF3F8;color:#8BA0B6}
 a.nv{flex:0 0 auto;min-width:34px;height:34px;border-radius:10px;background:#03C75A;color:#fff;font-weight:900;font-size:13px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:0 9px}
 .mycard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:12px}.mycard .mh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.mycard .mh b{font-size:17px;color:var(--navy)}.mycard .mh span{font-size:12.5px;color:var(--sub);font-weight:700}
-.mydong{border-top:1px solid #EAF3FB;padding:11px 0 6px;cursor:pointer}.guide{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 13px;font-size:13.5px;color:var(--sub);line-height:1.55;margin-bottom:10px}.guide b{color:var(--navy)}.guide.warn{background:var(--foam);border-color:#F5DFA8}.okb{color:var(--green);font-weight:900}
+.mydong{border-top:1px solid #EAF3FB;padding:11px 0 6px;cursor:pointer}.wk{font-style:normal;font-size:10.5px;font-weight:900;color:#B45F00;background:#FFF1DB;border:1px solid #F7C77A;border-radius:6px;padding:1px 5px}
+.exbox{background:#FFF6F5;border:1px solid #F5C9C6;border-radius:14px;padding:10px 12px;margin-bottom:10px;font-size:13px;color:#8A3A36}.exbox summary{cursor:pointer;font-weight:700}.exbox b{color:var(--red)}
+.tag.off{background:#F3F4F6;border-style:dashed;color:#9AA4B2;box-shadow:none;height:auto;padding:6px 10px;flex-direction:column;align-items:flex-start;gap:0}.tag.off small{font-size:10.5px;color:#B0646A}
+.ctile .cm span.r{background:#FDECEC;color:var(--red)}
+.ghicon b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#E5484D;color:#fff;font-size:14px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.guide{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 13px;font-size:13.5px;color:var(--sub);line-height:1.55;margin-bottom:10px}.guide b{color:var(--navy)}.guide.warn{background:var(--foam);border-color:#F5DFA8}.okb{color:var(--green);font-weight:900}
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .ctile{position:relative;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:12px 12px 10px;display:flex;flex-direction:column;gap:2px;min-height:96px}
 .ctile.top{border-color:var(--sky);box-shadow:0 6px 16px rgba(30,147,221,.15)}
@@ -804,7 +809,7 @@ const naverUrl = (r, kw) => 'https://map.naver.com/p/search/' + encodeURICompone
 const fmtN = n => Number(n||0).toLocaleString('ko-KR');
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
 function loadCss(href){ const l=document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l); }
-async function ensureAreaData(){ if (A.data) return true; try { A.data = await (await fetch('regions-jeolla.json?v=1')).json(); A.data.list.forEach(r=>{ r.score = r.br*2 + r.pb; }); return true; } catch(e) { return false; } }
+async function ensureAreaData(){ if (A.data) return true; try { A.data = await (await fetch('regions-jeolla.json?v=2')).json(); A.data.list.forEach(r=>{ r.score = r.br*2 + r.pb; }); return true; } catch(e) { return false; } }
 function renderHomeArea(){
   const el = $('#homeArea'); if (!el || !me) return;
   const mineA = AREAS.filter(a=>a.member===me.name);
@@ -819,7 +824,7 @@ function renderHomeArea(){
 async function initArea(){
   if (!A._opened) { A._opened = true; if (!isAdmin() && AREAS.some(a=>a.member===me.name)) A.view = 'mine'; }
   renderAreaTop();
-  if (!A.data) { $('#aBody').innerHTML='<div class="empty">지역 데이터를 불러오는 중…</div>'; try { A.data = await (await fetch('regions-jeolla.json?v=1')).json(); A.data.list.forEach((r,i)=>{ r.score = r.br*2 + r.pb; }); } catch(e) { $('#aBody').innerHTML='<div class="empty">지역 데이터를 불러오지 못했어요</div>'; return; } }
+  if (!A.data) { $('#aBody').innerHTML='<div class="empty">지역 데이터를 불러오는 중…</div>'; try { A.data = await (await fetch('regions-jeolla.json?v=2')).json(); A.data.list.forEach((r,i)=>{ r.score = r.br*2 + r.pb; }); } catch(e) { $('#aBody').innerHTML='<div class="empty">지역 데이터를 불러오지 못했어요</div>'; return; } }
   if (!A.leaflet) { loadCss('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'); try { await loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'); A.leaflet = true; } catch(e) {} }
   renderArea();
 }
@@ -828,7 +833,7 @@ function renderAreaTop(){
   $$('#aSeg button').forEach(b=>b.classList.toggle('on', b.dataset.v===A.view));
 }
 function sortedList(){
-  const LS2 = A.data.list.slice().sort((a,b)=> A.sort==='beer' ? (b.score-a.score)||(b.pop-a.pop) : b.pop-a.pop);
+  const LS2 = A.data.list.filter(r=>!r.x).sort((a,b)=> A.sort==='beer' ? (b.score-a.score)||(b.pop-a.pop) : b.pop-a.pop);
   LS2.forEach((r,i)=>r.rank=i+1); return LS2;
 }
 function filtered(LL){
@@ -869,29 +874,36 @@ const manN = n => n>=10000 ? (Math.round(n/1000)/10)+'만' : fmtN(n);
 const SEEN_KEY = () => 'seen_'+(me?me.name:'');
 const seen = () => new Set(LS.get(SEEN_KEY(), []));
 function markSeen(cd){ const s = seen(); s.add(cd); LS.set(SEEN_KEY(), [...s]); }
+function exHtml(){
+  const ex = A.data.list.filter(r=>r.x && cityKey(r)===A.city).sort((a,b)=>b.pop-a.pop);
+  const wn = sortedList().filter(r=>r.w && cityKey(r)===A.city).length;
+  if (!ex.length && !wn) return '';
+  return `<details class="exbox"><summary>기존 군함맥주 2km 안이라 제외된 동네 <b>${ex.length}곳</b>${wn?` · <span class="wk">경계</span> ${wn}곳은 2~3km라 현장 거리 확인`:''}</summary><div class="tags" style="margin-top:8px">${ex.map(r=>`<span class="tag off"><b>${esc(r.d)}</b><small>${esc(r.x)}</small></span>`).join('')}</div></details>`;
+}
 function cityList(LL){
   const m = {}; LL.forEach(r=>{ const k = cityKey(r); if (!m[k]) m[k] = { k, p:r.p, pop:0, n:0, bars:0, asg:0 }; const c = m[k]; c.pop += r.pop; c.n++; c.bars += r.br+r.pb; if (areaOf(r.c)) c.asg++; });
+  A.data.list.filter(r=>r.x).forEach(r=>{ const c = m[cityKey(r)]; if (c) c.ex = (c.ex||0)+1; });
   return Object.values(m).sort((a,b)=>b.pop-a.pop);
 }
 function citiesHtml(LL){
   const C = cityList(LL); const S = seen();
   return `<div class="guide">전라도 도시를 유동인구 많은 순으로 보여드려요. <b>도시를 누르면 동네가 태그로 죽 나와요.</b></div>
   <div class="cgrid">${C.map((c,i)=>{ const seenN = LL.filter(r=>cityKey(r)===c.k && S.has(r.c)).length;
-    return `<button class="ctile ${i<3?'top':''}" data-city="${esc(c.k)}"><span class="cr">${i+1}</span><b>${esc(c.k)}</b><small>${c.p==='광주'?'광역시':c.p} · 동네 ${c.n}</small><em>유동인구 ${manN(c.pop)}</em><div class="cm">${c.asg?`<span>담당 ${c.asg}</span>`:''}${seenN?`<span class="g">✓ ${seenN}/${c.n}</span>`:''}</div></button>`; }).join('')}</div>`;
+    return `<button class="ctile ${i<3?'top':''}" data-city="${esc(c.k)}"><span class="cr">${i+1}</span><b>${esc(c.k)}</b><small>${c.p==='광주'?'광역시':c.p} · 동네 ${c.n}</small><em>유동인구 ${manN(c.pop)}</em><div class="cm">${c.ex?`<span class="r">제외 ${c.ex}</span>`:''}${c.asg?`<span>담당 ${c.asg}</span>`:''}${seenN?`<span class="g">✓ ${seenN}/${c.n}</span>`:''}</div></button>`; }).join('')}</div>`;
 }
 function cityHtml(LL){
   const list = LL.filter(r=>cityKey(r)===A.city).sort((a,b)=>b.pop-a.pop); const S = seen();
   const groups = A.city==='광주' ? [...new Set(list.map(r=>r.g))].map(g=>[g, list.filter(r=>r.g===g)]).sort((a,b)=>b[1].reduce((s,r)=>s+r.pop,0)-a[1].reduce((s,r)=>s+r.pop,0)) : [[null, list]];
   const seenN = list.filter(r=>S.has(r.c)).length; const P = A.pick;
   const tag = r => { const a = areaOf(r.c); const on = A.assign && P.sel.has(r.c); const sn = S.has(r.c);
-    const inner = `${a?`<i class="td" style="background:${mColor(a.member)}"></i>`:''}<b>${esc(r.d)}</b><small>${manN(r.pop)}</small>${sn&&!A.assign?'<span class="ok">✓</span>':''}`;
+    const inner = `${a?`<i class="td" style="background:${mColor(a.member)}"></i>`:''}<b>${esc(r.d)}</b><small>${manN(r.pop)}</small>${r.w?`<span class="wk">경계</span>`:''}${sn&&!A.assign?'<span class="ok">✓</span>':''}`;
     return A.assign ? `<button class="tag ${on?'sel':''} ${a&&a.member!==P.member?'taken':''}" data-tcd="${r.c}">${inner}${a?`<em>${esc(a.member)}</em>`:''}</button>`
       : `<a class="tag ${sn?'seen':''}" href="${naverUrl(r,'술집')}" target="_blank" data-seen="${r.c}">${inner}</a>`; };
   return `<div class="chead"><button class="back" data-cityback="1">← 도시</button><div><b>${esc(A.city)}</b><small>동네 ${list.length}곳 · 열어본 곳 ${seenN}</small></div></div>
   <div class="cbtns"><button class="btn line sm" data-citymap="1">지도로 보기</button>${isAdmin()?`<button class="btn ${A.assign?'navy':'beer'} sm" data-assignmode="1">${A.assign?'지정 끝내기':'담당 지정하기'}</button>`:''}${seenN?`<button class="btn ghost sm" data-seenreset="1">✓ 초기화</button>`:''}</div>
   ${A.assign ? `<div class="guide warn"><b>1. 누구에게?</b><div class="chips" style="flex-wrap:wrap;margin:6px 0 8px">${SALES().map(n=>`<button class="chip ${P.member===n?'on':''}" data-amember="${esc(n)}"><i class="cdot" style="background:${mColor(n)}"></i> ${esc(n)}</button>`).join('')}</div><b>2. 동네 태그를 눌러 고르세요</b> <span>(다른 사람 담당은 회색)</span><div class="chips" style="margin-top:6px"><button class="chip" data-aall="1">미배정 모두 선택</button><input id="aqMemo" class="asel memo" placeholder="지시 메모 (선택)" value="${esc(P.memo||'')}"></div></div>`
     : `<div class="guide">태그를 누르면 <b>네이버 지도에서 '○○동 술집'</b>이 바로 열려요. 열어본 동네는 <span class="okb">✓</span> 표시돼요.${AREAS.length?' 색 점 = 담당자.':''}</div>`}
-  ${groups.map(([g, rs])=>`${g?`<div class="tgh">${esc(g)} <small>${rs.length}곳</small></div>`:''}<div class="tags">${rs.map(tag).join('')}</div>`).join('')}`;
+  ${exHtml()}${groups.map(([g, rs])=>`${g?`<div class="tgh">${esc(g)} <small>${rs.length}곳</small></div>`:''}<div class="tags">${rs.map(tag).join('')}</div>`).join('')}`;
 }
 function drawAssignBar(){
   let bar = $('#assignBar'); if (!bar) { bar = document.createElement('div'); bar.id = 'assignBar'; document.body.appendChild(bar); }
@@ -934,6 +946,8 @@ function drawMap(F){
       .bindTooltip(`${r.rank}위 ${r.d} · ${fmtN(r.pop)}명`, { direction: 'top' });
     if (r.rank <= 30) L.marker([r.la, r.ln], { icon: L.divIcon({ className: 'rkicon', html: `<b style="border-color:${col}">${r.rank}</b>`, iconSize: [22,22] }), interactive: false }).addTo(A.layer);
   });
+  (A.data.stores||[]).forEach(s=>{ L.circle([s.la, s.ln], { radius: 2000, color: '#E5484D', weight: 1.5, fillColor: '#E5484D', fillOpacity: .08, dashArray: '4 4', interactive: false }).addTo(A.layer);
+    L.marker([s.la, s.ln], { icon: L.divIcon({ className: 'ghicon', html: '<b>⚓</b>', iconSize: [26,26] }) }).addTo(A.layer).bindTooltip('군함맥주 ' + s.name + ' · 반경 2km 창업 불가'); });
   rows.filter(r=>Number(r['위도'])).forEach(r=>{ L.circleMarker([Number(r['위도']), Number(r['경도'])], { radius: 6, color: '#13285E', weight: 2, fillColor: mColor(r['담당자']), fillOpacity: 1 }).addTo(A.layer)
     .bindTooltip(`${esc(r['상호']||'')} · ${esc(r['담당자'])} · ${esc(r['상태']||'신규')}`).on('click', ()=>openDetail(r.ID)); });
   $('#aLegend').innerHTML = SALES().map(n=>`<span><i class="cdot" style="background:${mColor(n)}"></i>${esc(n)}</span>`).join('') + '<span><i class="cdot" style="background:#7A93AC"></i>미배정</span>';
