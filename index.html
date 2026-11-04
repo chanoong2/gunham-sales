@@ -236,7 +236,7 @@ details.more[open] summary::after{transform:rotate(225deg)}
 .dtabs.d3 button{height:42px;font-size:14px}
 .chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:800;color:var(--navy)}
 .chk input{width:18px;height:18px}
-nav{grid-template-columns:repeat(4,1fr)!important}
+nav{grid-template-columns:repeat(5,1fr)!important}
 nav .side-only{display:none}
 nav button.plus{color:var(--sky3)}
 nav .pl{width:40px;height:30px;border-radius:12px;background:linear-gradient(180deg,#45B4F2,#1E93DD);color:#fff;display:grid;place-items:center;box-shadow:0 4px 10px #1E93DD55}
@@ -245,7 +245,24 @@ nav .pl svg{width:20px;height:20px}
 .ptitle{display:none}
 .lead.flash{animation:flash 1.6s ease}
 @keyframes flash{0%{background:#FFF4D6}100%{background:#fff}}
-@media (max-width:370px){ body{font-size:14px} .kpi b{font-size:18px} .today-hero .big{font-size:21px} .rank .nm{flex-basis:44px} .tbl{font-size:12px} .live span{display:none} }
+/* ---------- 영업 지역 ---------- */
+.areg{display:flex;gap:6px;margin-bottom:10px}.areg button{flex:1;height:42px;border-radius:13px;background:#fff;border:1.5px solid var(--line);font-weight:900;color:var(--navy);font-size:15px}.areg button.on{background:linear-gradient(180deg,#45B4F2,#1E93DD);border-color:transparent;color:#fff}.areg button[disabled]{opacity:.45}.areg small{font-size:10.5px;font-weight:700}
+.aseg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--skyl);padding:4px;border-radius:13px;margin-bottom:10px}.aseg button{height:40px;border-radius:10px;font-weight:900;font-size:14px;color:var(--sub)}.aseg button.on{background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(30,147,221,.18)}
+.afil .chips{margin-bottom:7px;align-items:center}.asel{height:34px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:13px;color:var(--sub);padding:0 10px;flex:0 0 auto}
+.cdot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px}.cdot.big{width:14px;height:14px}
+#aMapWrap{position:relative;margin:4px 0 6px}#aMap{height:62vh;min-height:360px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#E8F1F8;z-index:1}
+.alegend{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;font-weight:800;color:var(--sub);margin-top:7px}.alegend span{display:flex;align-items:center;gap:4px}
+.rkicon b{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid;font-size:11px;font-weight:900;color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.arow{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 12px;margin-bottom:7px;cursor:pointer}
+.arow .rk{width:34px;height:34px;border-radius:11px;background:var(--skyl);color:var(--sky3);font-weight:900;display:grid;place-items:center;flex:0 0 auto;font-size:14px}.arow .rk.top{background:var(--navy);color:#fff}
+.arow .ai{flex:1;min-width:0}.arow .ai b{display:block;font-size:15.5px;color:var(--navy)}.arow .ai span{font-size:12.5px;color:var(--sub)}.arow .ai em{font-style:normal;font-weight:900;color:var(--sky3)}
+.who{flex:0 0 auto;color:#fff;font-size:12px;font-weight:900;border-radius:9px;padding:4px 8px}.who.none{background:#EEF3F8;color:#8BA0B6}
+a.nv{flex:0 0 auto;min-width:34px;height:34px;border-radius:10px;background:#03C75A;color:#fff;font-weight:900;font-size:13px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:0 9px}
+.mycard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:12px}.mycard .mh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.mycard .mh b{font-size:17px;color:var(--navy)}.mycard .mh span{font-size:12.5px;color:var(--sub);font-weight:700}
+.mydong{border-top:1px solid #EAF3FB;padding:11px 0 6px;cursor:pointer}.mydong.home{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 13px;margin-bottom:8px}.mydong .t{display:flex;align-items:center;justify-content:space-between;gap:8px}.mydong .t b{font-size:15px;color:var(--ink)}
+.pbar{height:8px;border-radius:5px;background:#EAF3FB;overflow:hidden;margin:7px 0 4px}.pbar i{display:block;height:100%;border-radius:5px}
+.stp{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.nbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.nbtns a{text-decoration:none}.nbtns .btn.pri{background:linear-gradient(180deg,#19D16C,#03C75A);box-shadow:0 6px 16px #03C75A40}@media (max-width:370px){ body{font-size:14px} .kpi b{font-size:18px} .today-hero .big{font-size:21px} .rank .nm{flex-basis:44px} .tbl{font-size:12px} .live span{display:none} }
 @media (min-width:900px){
   body{font-size:15px}
   #login{display:flex;align-items:center;justify-content:center;padding:40px}
@@ -345,6 +362,7 @@ nav .pl svg{width:20px;height:20px}
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
       새 매장 추가</button>
     <div class="small center" style="margin:8px 0 4px">링크나 전화번호만 붙여넣으면 끝</div>
+    <div id="homeArea"></div>
    </div>
    <div class="colB">
     <div class="ttl sec">오늘 연락할 곳<span class="r" data-go="db" data-filter="오늘 연락">전체</span></div>
@@ -495,6 +513,15 @@ nav .pl svg{width:20px;height:20px}
     <button class="btn line full" id="logoutBtn">로그아웃</button>
     <div class="small center" style="margin-top:10px">군함맥주 가맹문의 1577-0832</div>
   </div>
+  <!-- 지역 -->
+  <div id="tab-area" class="hide">
+    <div class="areg" id="aReg"></div>
+    <div class="aseg" id="aSeg"><button data-v="map" class="on">지도</button><button data-v="list">유동인구 순위</button><button data-v="mine">내 지역</button></div>
+    <div class="afil" id="aFil"></div>
+    <div id="aMapWrap"><div id="aMap"></div><div class="alegend" id="aLegend"></div></div>
+    <div id="aBody"></div>
+    <div class="small center" id="aSrc" style="margin:10px 0 4px"></div>
+  </div>
 </main>
 
 <nav>
@@ -503,6 +530,7 @@ nav .pl svg{width:20px;height:20px}
   <button data-tab="add" class="plus"><span class="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>매장 추가</button>
   <button data-tab="db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>매장 목록</button>
   <button data-tab="rank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>순위</button>
+  <button data-tab="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13M15 6.5v13"/></svg>지역</button>
   <button data-tab="set" class="side-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.7 4.4V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>설정·도구</button>
 </nav>
 </section>
@@ -731,24 +759,167 @@ setInterval(liveLabel, 5000);
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) poll(); });
 window.addEventListener('focus', ()=>poll());
 async function refresh(silent){
-  try{ const j=await api('list'); if(j.ok){ rows=j.rows; if(j.members){ MEMBERS=j.members; LS.set('members',MEMBERS);} LS.set('rowsCache', rows.slice(0,800)); lastSync=Date.now(); liveLabel(); renderAll(); syncDetail(); } }
+  try{ const j=await api('list'); if(j.ok){ rows=j.rows; if(j.members){ MEMBERS=j.members; LS.set('members',MEMBERS);} if(j.admins){ ADMINS=j.admins; NONSALES=j.nonsales||[]; AREAS=j.areas||[]; LS.set('areaMeta',{ADMINS,NONSALES,AREAS}); } geoKick(); LS.set('rowsCache', rows.slice(0,800)); lastSync=Date.now(); liveLabel(); renderAll(); syncDetail(); } }
   catch(e){ if(!silent) toast('DB 연결 실패 (저장된 목록 표시 중)'); setLive(false); }
 }
 
+/* ===== 영업 지역 (지도·유동인구 순위·관리자 배정) ===== */
+var _am = LS.get('areaMeta', {});
+var ADMINS = _am.ADMINS || ['염찬웅','박하운'], NONSALES = _am.NONSALES || ['박하운'], AREAS = _am.AREAS || [];
+const SALES = () => MEMBERS.filter(m=>!NONSALES.includes(m));
+const isAdmin = () => !!me && ADMINS.includes(me.name);
+const MCOL = ['#1E93DD','#16A36D','#F08C00','#8A55C9','#E5484D','#0D6FB8','#C2185B','#00897B'];
+const mColor = n => MCOL[Math.max(0, SALES().indexOf(n)) % MCOL.length];
+const REGIONS = [{k:'jeolla', name:'전라도', file:'regions-jeolla.json'},{k:'gs', name:'경상도'},{k:'gg', name:'경기도'}];
+let A = { reg:'jeolla', data:null, view:'map', sido:'전체', sgg:'전체', who:'전체', sort:'pop', more:60, map:null, layer:null, leaflet:false };
+const areaOf = cd => AREAS.find(a=>a.cd===cd);
+const naverUrl = (r, kw) => 'https://map.naver.com/p/search/' + encodeURIComponent(((r.p==='광주'?'광주 ':'')+r.g+' '+r.d+' '+kw).trim());
+const fmtN = n => Number(n||0).toLocaleString('ko-KR');
+function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
+function loadCss(href){ const l=document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l); }
+async function ensureAreaData(){ if (A.data) return true; try { A.data = await (await fetch('regions-jeolla.json?v=1')).json(); A.data.list.forEach(r=>{ r.score = r.br*2 + r.pb; }); return true; } catch(e) { return false; } }
+function renderHomeArea(){
+  const el = $('#homeArea'); if (!el || !me) return;
+  const mineA = AREAS.filter(a=>a.member===me.name);
+  if (!A.data) { if (mineA.length) ensureAreaData().then(ok=>ok&&renderHomeArea()); }
+  const LL = A.data ? sortedList() : [];
+  const list = mineA.map(a=>LL.find(r=>r.c===a.cd) || { c:a.cd, d:a.name, g:'', p:'', pop:0, br:0, pb:0, rank:'-' }).sort((x,y)=>y.pop-x.pop);
+  el.innerHTML = `<div class="ttl sec">내 담당 지역 ${list.length?list.length+'곳':''}<span class="r" data-go="area">지도 보기</span></div>` + (list.length ? list.slice(0,5).map(r=>{ const ss = storesIn(r.c, me.name); const tot = r.br+r.pb; const pct = tot ? Math.min(100, Math.round(ss.length/tot*100)) : 0;
+    return `<div class="mydong home" data-acd="${r.c}"><div class="t"><b>${esc((r.p==='광주'?'광주 ':'')+(r.g?r.g+' ':'')+r.d)}</b>${r.g?`<a class="nv" href="${naverUrl(r,'술집')}" target="_blank" onclick="event.stopPropagation()">N 술집</a>`:''}</div><div class="pbar"><i style="width:${pct}%;background:${mColor(me.name)}"></i></div><div class="small">맥주집 ${tot}곳 중 <b>${ss.length}곳 등록</b> · 유동인구 ${fmtN(r.pop)}명</div></div>`; }).join('') + (list.length>5?`<button class="btn line full sm" data-go="area">내 지역 전체 보기</button>`:'')
+    : `<div class="empty" style="padding:16px 10px">${isAdmin()?'지역 탭에서 영업자별 동네를 배정해 주세요':'아직 배정된 지역이 없어요'}</div>`);
+}
+async function initArea(){
+  if (!A._opened) { A._opened = true; if (!isAdmin()) A.view = 'mine'; }
+  renderAreaTop();
+  if (!A.data) { $('#aBody').innerHTML='<div class="empty">지역 데이터를 불러오는 중…</div>'; try { A.data = await (await fetch('regions-jeolla.json?v=1')).json(); A.data.list.forEach((r,i)=>{ r.score = r.br*2 + r.pb; }); } catch(e) { $('#aBody').innerHTML='<div class="empty">지역 데이터를 불러오지 못했어요</div>'; return; } }
+  if (!A.leaflet) { loadCss('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'); try { await loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'); A.leaflet = true; } catch(e) {} }
+  renderArea();
+}
+function renderAreaTop(){
+  $('#aReg').innerHTML = REGIONS.map(g=>`<button class="${A.reg===g.k?'on':''}" ${g.file?'':'disabled'} data-reg="${g.k}">${g.name}${g.file?'':' <small>준비 중</small>'}</button>`).join('');
+  $$('#aSeg button').forEach(b=>b.classList.toggle('on', b.dataset.v===A.view));
+}
+function sortedList(){
+  const LS2 = A.data.list.slice().sort((a,b)=> A.sort==='beer' ? (b.score-a.score)||(b.pop-a.pop) : b.pop-a.pop);
+  LS2.forEach((r,i)=>r.rank=i+1); return LS2;
+}
+function filtered(LL){
+  return LL.filter(r=>(A.sido==='전체'||r.p===A.sido) && (A.sgg==='전체'||r.g===A.sgg) && (A.who==='전체' || (A.who==='미배정' ? !areaOf(r.c) : (areaOf(r.c)||{}).member===A.who)));
+}
+/* 매장 → 가장 가까운 행정동 */
+const _near = {};
+function dongOf(r){
+  const la = Number(r['위도']), ln = Number(r['경도']); if (!la || !ln || !A.data) return null;
+  const k = la+','+ln; if (_near[k] !== undefined) return _near[k];
+  let best = null, bd = 1e9; for (const d of A.data.list) { const dd = (d.la-la)**2 + ((d.ln-ln)*0.82)**2; if (dd < bd) { bd = dd; best = d; } }
+  return _near[k] = (bd < 0.0025 ? best : null);
+}
+const storesIn = (cd, who) => rows.filter(r=>{ const d = dongOf(r); return d && d.c===cd && (!who || r['담당자']===who); });
+function renderArea(){
+  if (!A.data) return;
+  renderAreaTop();
+  const LL = sortedList();
+  const sggs = [...new Set(A.data.list.filter(r=>A.sido==='전체'||r.p===A.sido).map(r=>(r.p==='광주'?'':'')+r.g))].sort();
+  $('#aFil').innerHTML = A.view==='mine' ? '' : `
+    <div class="chips">${['전체','광주','전남','전북'].map(s=>`<button class="chip ${A.sido===s?'on':''}" data-sido="${s}">${s}</button>`).join('')}
+      <select id="aSgg" class="asel"><option value="전체">시·군·구 전체</option>${sggs.map(g=>`<option ${A.sgg===g?'selected':''}>${esc(g)}</option>`).join('')}</select></div>
+    <div class="chips">${['전체','미배정',...SALES()].map(s=>`<button class="chip ${A.who===s?'on':''}" data-who="${esc(s)}">${s==='전체'?'담당 전체':esc(s)}${SALES().includes(s)?` <i class="cdot" style="background:${mColor(s)}"></i>`:''}</button>`).join('')}</div>
+    <div class="chips"><button class="chip ${A.sort==='pop'?'on':''}" data-sort="pop">유동인구 많은 순</button><button class="chip ${A.sort==='beer'?'on':''}" data-sort="beer">맥주집 많은 순</button></div>`;
+  const F = filtered(LL);
+  $('#aMapWrap').classList.toggle('hide', A.view!=='map');
+  if (A.view==='map') { drawMap(F); $('#aBody').innerHTML = `<div class="small" style="margin:8px 2px">동그라미 크기 = 유동인구 · 색 = 담당자 · 숫자 = 순위 · 작은 핀 = 등록 매장. 동그라미를 누르면 상세가 열려요.</div>` + listHtml(F.slice(0, 10), true); }
+  else if (A.view==='list') $('#aBody').innerHTML = `<div class="small" style="margin:4px 2px 8px">${F.length}곳 · ${A.sort==='pop'?'일평균 유동인구 많은 순':'맥주집(생맥주 전문 ×2 + 요리주점) 많은 순'}</div>` + listHtml(F.slice(0, A.more)) + (F.length>A.more?`<button class="btn line full" data-amore="1" style="margin-top:8px">더 보기 (${F.length-A.more}곳 남음)</button>`:'');
+  else $('#aBody').innerHTML = mineHtml(LL);
+  $('#aSrc').textContent = `출처: ${A.data.src} · ${A.data.ym} 기준 · 행정동 단위`;
+}
+function listHtml(F, compact){
+  return F.map(r=>{ const a = areaOf(r.c); const my = storesIn(r.c).length;
+    return `<div class="arow" data-acd="${r.c}"><div class="rk ${r.rank<=10?'top':''}">${r.rank}</div>
+    <div class="ai"><b>${esc((r.p==='광주'?'광주 ':'')+r.g)} ${esc(r.d)}</b><span>유동인구 <em>${fmtN(r.pop)}</em>명/일 · 생맥주 ${r.br} · 요리주점 ${r.pb}${my?` · 등록 ${my}`:''}</span></div>
+    ${a?`<span class="who" style="background:${mColor(a.member)}">${esc(a.member)}</span>`:'<span class="who none">미배정</span>'}
+    <a class="nv" href="${naverUrl(r,'술집')}" target="_blank" onclick="event.stopPropagation()" title="네이버 지도">N</a></div>`; }).join('') || '<div class="empty">조건에 맞는 동네가 없어요</div>';
+}
+function mineHtml(LL){
+  const people = isAdmin() ? SALES() : [me.name];
+  return people.map(n=>{ const mine = LL.filter(r=>(areaOf(r.c)||{}).member===n); const st = rows.filter(r=>r['담당자']===n);
+    const pop = mine.reduce((s,r)=>s+r.pop,0), bars = mine.reduce((s,r)=>s+r.br+r.pb,0), reg = mine.reduce((s,r)=>s+storesIn(r.c,n).length,0);
+    return `<div class="mycard"><div class="mh"><i class="cdot big" style="background:${mColor(n)}"></i><b>${esc(n)}</b><span>담당 ${mine.length}곳 · 맥주집 ${bars}곳 · 내 등록 ${reg}곳</span></div>
+    ${mine.length? mine.map(r=>{ const ss = storesIn(r.c, n); const pct = (r.br+r.pb) ? Math.min(100, Math.round(ss.length/(r.br+r.pb)*100)) : 0;
+      return `<div class="mydong" data-acd="${r.c}"><div class="t"><b>${r.rank}위 · ${esc((r.p==='광주'?'광주 ':'')+r.g)} ${esc(r.d)}</b><a class="nv" href="${naverUrl(r,'술집')}" target="_blank" onclick="event.stopPropagation()">N 술집 보기</a></div>
+      <div class="pbar"><i style="width:${pct}%;background:${mColor(n)}"></i></div>
+      <div class="small">맥주집 ${r.br+r.pb}곳 중 <b>${ss.length}곳 등록</b> (${pct}%) · 유동인구 ${fmtN(r.pop)}명</div>
+      ${ss.length?`<div class="stp">${ss.slice(0,12).map(s=>`<span class="st s-${esc(s['상태'])}" data-id="${s.ID}">${esc((s['상호']||'').slice(0,10))}</span>`).join('')}</div>`:''}</div>`; }).join('')
+     : `<div class="empty">${isAdmin()?'지도나 순위에서 동네를 눌러 배정해 주세요':'아직 배정된 지역이 없어요. 관리자에게 요청하세요'}</div>`}
+    ${st.filter(r=>r['위도'] && !dongOf(r)).length?'':''}</div>`; }).join('');
+}
+function drawMap(F){
+  if (!window.L) { $('#aMap').innerHTML = '<div class="empty">지도를 불러오지 못했어요 (인터넷 확인)</div>'; return; }
+  if (!A.map) { A.map = L.map('aMap', { zoomControl: true, attributionControl: true }).setView([35.4, 127.0], 8); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '© OpenStreetMap' }).addTo(A.map); A.map.fitBounds(L.latLngBounds(A.data.list.map(r=>[r.la, r.ln])).pad(0.03)); }
+  if (A.layer) A.layer.remove();
+  A.layer = L.layerGroup().addTo(A.map);
+  const top = F.slice(0, 400);
+  top.slice().reverse().forEach(r=>{ const a = areaOf(r.c); const col = a ? mColor(a.member) : '#7A93AC';
+    const rad = 2.5 + Math.sqrt(r.pop/1000)*0.8;
+    L.circleMarker([r.la, r.ln], { radius: rad, color: '#fff', weight: 1.5, fillColor: col, fillOpacity: a ? .78 : .45 }).addTo(A.layer).on('click', ()=>openArea(r.c))
+      .bindTooltip(`${r.rank}위 ${r.d} · ${fmtN(r.pop)}명`, { direction: 'top' });
+    if (r.rank <= 30) L.marker([r.la, r.ln], { icon: L.divIcon({ className: 'rkicon', html: `<b style="border-color:${col}">${r.rank}</b>`, iconSize: [22,22] }), interactive: false }).addTo(A.layer);
+  });
+  rows.filter(r=>Number(r['위도'])).forEach(r=>{ L.circleMarker([Number(r['위도']), Number(r['경도'])], { radius: 6, color: '#13285E', weight: 2, fillColor: mColor(r['담당자']), fillOpacity: 1 }).addTo(A.layer)
+    .bindTooltip(`${esc(r['상호']||'')} · ${esc(r['담당자'])} · ${esc(r['상태']||'신규')}`).on('click', ()=>openDetail(r.ID)); });
+  $('#aLegend').innerHTML = SALES().map(n=>`<span><i class="cdot" style="background:${mColor(n)}"></i>${esc(n)}</span>`).join('') + '<span><i class="cdot" style="background:#7A93AC"></i>미배정</span>';
+  setTimeout(()=>A.map.invalidateSize(), 50);
+  if (F.length && (A.sgg!=='전체' || A.sido!=='전체' || A.who!=='전체')) { const b = L.latLngBounds(F.slice(0,400).map(r=>[r.la, r.ln])); A.map.fitBounds(b.pad(0.15), { maxZoom: 14 }); }
+}
+function openArea(cd){
+  const r = sortedList().find(x=>x.c===cd); if (!r) return; const a = areaOf(cd); const ss = storesIn(cd);
+  openTool(`${r.rank}위 · ${(r.p==='광주'?'광주 ':'')+r.g} ${r.d}`, `
+    <div class="kpis k3" style="margin-bottom:10px"><div class="kpi"><b>${fmtN(r.pop)}</b><span>일평균 유동인구</span></div><div class="kpi"><b>${r.br}</b><span>생맥주 전문</span></div><div class="kpi"><b>${r.pb}</b><span>요리주점</span></div></div>
+    <div class="nbtns"><a class="btn pri full" href="${naverUrl(r,'술집')}" target="_blank">네이버 지도에서 술집 보기</a><a class="btn line full" href="${naverUrl(r,'호프')}" target="_blank">호프·맥주집 보기</a></div>
+    <div class="ttl sec" style="margin-top:14px">담당자 ${a?`<span class="who" style="background:${mColor(a.member)}">${esc(a.member)}</span>`:'<span class="who none">미배정</span>'}</div>
+    ${isAdmin()?`<div class="chips" id="assignChips">${SALES().map(n=>`<button class="chip ${a&&a.member===n?'on':''}" data-assign="${esc(n)}" data-cd="${cd}"><i class="cdot" style="background:${mColor(n)}"></i> ${esc(n)}</button>`).join('')}${a?`<button class="chip" data-assign="" data-cd="${cd}">배정 해제</button>`:''}</div>${a?`<div class="small">${esc(a.by)} 배정 · ${esc(a.at)}</div>`:''}`:'<div class="small">지역 배정은 관리자(염찬웅·박하운)만 할 수 있어요</div>'}
+    <div class="ttl sec" style="margin-top:14px">이 동네 등록 매장 ${ss.length}곳</div>
+    ${ss.length? ss.map(x=>card(x,true)).join('') : '<div class="empty">아직 등록한 매장이 없어요. 네이버 지도에서 술집을 찾아 링크를 매장 추가에 붙여넣으세요</div>'}
+    <div class="small" style="margin-top:10px">매장 위치는 주소 좌표로 가장 가까운 행정동에 묶어요</div>`);
+}
+let _geoBusy = false, _geoAt = 0;
+async function geoKick(){
+  if (_geoBusy || Date.now()-_geoAt < 60000) return;
+  if (!rows.some(r=>!r['위도'] && (r['도로명주소']||r['지번주소']))) return;
+  _geoBusy = true; _geoAt = Date.now();
+  try { const j = await api('geocode'); if (j.ok && j.done) { Object.entries(j.done).forEach(([id,[la,ln]])=>{ const r = rows.find(x=>x.ID===id); if (r) { r['위도']=la; r['경도']=ln; } }); if (Object.keys(j.done).length && !$('#tab-area').classList.contains('hide')) renderArea(); if (j.left) { _geoAt = 0; setTimeout(geoKick, 1500); } } } catch(e) {}
+  _geoBusy = false;
+}
+document.addEventListener('click', async e => {
+  const t = e.target;
+  const reg = t.closest('#aReg button'); if (reg && !reg.disabled) { A.reg = reg.dataset.reg; renderArea(); return; }
+  const sg = t.closest('#aSeg button'); if (sg) { A.view = sg.dataset.v; renderArea(); return; }
+  const c1 = t.closest('[data-sido]'); if (c1) { A.sido = c1.dataset.sido; A.sgg='전체'; A.more=60; renderArea(); return; }
+  const c2 = t.closest('[data-who]'); if (c2) { A.who = c2.dataset.who; A.more=60; renderArea(); return; }
+  const c3 = t.closest('[data-sort]'); if (c3) { A.sort = c3.dataset.sort; renderArea(); return; }
+  const mo = t.closest('[data-amore]'); if (mo) { A.more += 100; renderArea(); return; }
+  const sp = t.closest('.stp .st[data-id]'); if (sp) { openDetail(sp.dataset.id); return; }
+  const ar = t.closest('[data-acd]'); if (ar && !t.closest('a')) { openArea(ar.dataset.acd); return; }
+  const as = t.closest('[data-assign]'); if (as) { const cd = as.dataset.cd; const r = A.data.list.find(x=>x.c===cd); const who = as.dataset.assign;
+    as.disabled = true; const j = await api('assign', { cd, member: who, areaName: (r.p==='광주'?'광주 ':'')+r.g+' '+r.d });
+    if (!j.ok) { toast(j.error||'배정 실패'); as.disabled=false; return; } AREAS = j.areas; LS.set('areaMeta',{ADMINS,NONSALES,AREAS}); toast(who ? `${r.d} → ${who} 배정` : `${r.d} 배정 해제`); openArea(cd); renderArea(); return; }
+});
+document.addEventListener('change', e => { if (e.target.id==='aSgg') { A.sgg = e.target.value; A.more=60; renderArea(); } });
+
 /* ===== 탭 ===== */
-const TITLES={home:'홈',add:'매장 추가',db:'매장 목록',rank:'영업자 순위',set:'설정·도구'};
+const TITLES={home:'홈',add:'매장 추가',db:'매장 목록',rank:'영업자 순위',area:'영업 지역',set:'설정·도구'};
 function go(tab, filter){
   $('#pTitle').textContent=TITLES[tab]||'';
   $$('nav button').forEach(x=>x.classList.toggle('on',x.dataset.tab===tab));
-  ['home','add','db','rank','set'].forEach(t=>$('#tab-'+t).classList.toggle('hide', t!==tab));
+  ['home','add','db','rank','area','set'].forEach(t=>$('#tab-'+t).classList.toggle('hide', t!==tab));
   if(filter){ filterSt=filter; renderStaticChips(); renderList(); }
+  if(tab==='area') initArea();
   if(tab==='db'||tab==='home'||tab==='rank') refresh();
   scrollTo({top:0});
 }
 $$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.tab));
 document.addEventListener('click',e=>{ const g=e.target.closest('[data-go]'); if(g) go(g.dataset.go, g.dataset.filter); });
 
-function renderAll(){ if(!me) return; renderHome(); renderList(); renderStats(); checkDup(); }
+function renderAll(){ if(!me) return; renderHome(); renderList(); renderStats(); checkDup(); renderHomeArea(); if(!$('#tab-area').classList.contains('hide')) renderArea(); }
 
 /* ===== 오늘 ===== */
 function mine(){ return rows.filter(r=>r['담당자']===me.name); }
@@ -758,7 +929,7 @@ function renderHome(){
   const ws=weekStart();
   $('#hiTxt').textContent=`${me.name}님, 오늘도 출항!`;
   $('#bigTxt').innerHTML=`오늘 연락할 곳 <b>${due.length}곳</b>`;
-  const rk=MEMBERS.map(x=>repLine(x,'week')).sort((a,b)=>b.act-a.act); const myRank=rk.findIndex(x=>x.m===me.name)+1;
+  const rk=SALES().map(x=>repLine(x,'week')).sort((a,b)=>b.act-a.act); const myRank=rk.findIndex(x=>x.m===me.name)+1;
   $('#kpis').innerHTML=[['오늘 연락',due.length,due.length?'hot':''],['이번 주 영업',repLine(me.name,'week').act+'곳'],['이번 주 순위',myRank?myRank+'위':'-']]
     .map(([k,v,c])=>`<div class="kpi ${c||''}"><b>${v}</b><span>${k}</span></div>`).join('');
   renderRank();
@@ -1100,7 +1271,7 @@ function repLine(m, p){
 }
 function renderRank(){
   $('#rankChips').innerHTML=[['today','오늘'],['week','이번 주'],['month','이번 달'],['all','전체']].map(([k,v])=>`<button class="chip ${k===rankPeriod?'on':''}" data-p="${k}">${v}</button>`).join('');
-  const L=MEMBERS.map(m=>repLine(m,rankPeriod)).sort((a,b)=>b.act-a.act||b.sent-a.sent);
+  const L=SALES().map(m=>repLine(m,rankPeriod)).sort((a,b)=>b.act-a.act||b.sent-a.sent);
   const max=Math.max(1,...L.map(x=>x.act));
   $('#rankList').innerHTML=L.map((x,i)=>`<div class="rank ${i===0&&x.act?'r1':''} ${x.m===me.name?'me':''}"><span class="no">${i+1}</span><span class="nm">${esc(x.m)}</span>
     <div style="flex:1;min-width:0"><div class="bar"><i style="width:${Math.round(x.act/max*100)}%"></i></div><span class="d">등록 ${x.reg} · 발송 ${x.sent} · 통화 ${x.calls}</span></div>
@@ -1113,7 +1284,7 @@ $('#periodChips').onclick=e=>{ const b=e.target.closest('.chip'); if(!b) return;
 function inPeriod(d){ if(!d) return false; if(period==='all') return true; const s=period==='week'?weekStart():today().slice(0,8)+'01'; return d.slice(0,10)>=s; }
 function renderStats(){
   if(!me) return;
-  const L=MEMBERS.map(m=>repLine(m,period)).sort((a,b)=>b.act-a.act);
+  const L=SALES().map(m=>repLine(m,period)).sort((a,b)=>b.act-a.act);
   const sum=k=>L.reduce((a,x)=>a+x[k],0);
   $('#repTable').innerHTML=`<tr><th>영업자</th><th>영업</th><th>등록</th><th>발송</th><th>통화</th><th>상담·미팅</th><th>계약</th><th>보유</th></tr>`+
     L.map(x=>`<tr class="${x.m===me.name?'me':''}"><td>${esc(x.m)}</td><td style="color:var(--sky3)">${x.act}</td><td>${x.reg}</td><td>${x.sent}</td><td>${x.calls}</td><td>${x.talk}</td><td>${x.win}</td><td>${x.total}</td></tr>`).join('')+
